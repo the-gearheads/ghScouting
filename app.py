@@ -1,9 +1,6 @@
 from flask import Flask, request, render_template
 import database
 
-test = database.Database("database_test")
-print(test.get_name())
-
 app = Flask(__name__)
 
 
@@ -14,5 +11,10 @@ def input_form():
 
 @app.route('/', methods=['POST'])
 def input_form_post():
-    text = request.form['text']
-    return "You submitted: " + text
+    db = database.Database("database_test")
+    db.set_team(request.form['team'])
+    db.set_number(request.form['number'])
+    db.set_boolean(request.form['boolean'])
+    db.set_string(request.form['string'])
+    db.close()
+    return "probably added to the db but error codes are hard"
