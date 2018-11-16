@@ -13,3 +13,6 @@ boolean:
 string:
     type: text
     display: "String: "
+points:
+    type: number
+    display: "points"

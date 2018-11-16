@@ -1,6 +1,6 @@
 from flask import Flask, request
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-import yaml
+import yaml, sys
 
 import database
 
@@ -12,7 +12,19 @@ def load_config(config):
     return yaml.load(stream)
 
 
-yamlCfg = load_config("config.yml")  # TODO: Make file selection less dumb
+def validate_config(config):
+    if list(config.keys())[0] != "matchnum" or list(config.keys())[1] != "team":
+            print("In config.yml, the first field must be matchnum and the second field must be team.")
+            sys.exit(1)
+
+
+yamlCfg = load_config("config.yml")
+validate_config(yamlCfg)
+
+
+# TODO: Make file selection less dumb
+
+validate_config(yamlCfg)
 
 env = Environment(
     loader=FileSystemLoader('templates'),
@@ -20,7 +32,6 @@ env = Environment(
 )
 
 input_template = env.get_template('input_form.html')
-
 
 @app.route('/')
 def input_form():
@@ -30,11 +41,12 @@ def input_form():
 @app.route('/', methods=['POST'])
 def input_form_post():
     db = database.Database("database_test")  # TODO: automatically generate db calls based on config file
+    db.create_columns(yamlCfg)
     db.set_match(request.form['matchnum'])
     db.set_team(request.form['team'])
-    db.set_number(request.form['number'])
-    db.set_boolean(request.form['boolean'])
-    db.set_string(request.form['string'])
+    db.add_queue("number", request.form['number'])
+    db.add_queue("boolean", request.form['boolean'])
+    db.add_queue("string", request.form['string'])
     db.commit()
     db.close()
     return "probably added to the db but error codes are hard" # TODO: actually error handle please
