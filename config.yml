@@ -1,0 +1,15 @@
+matchnum:
+    type: number
+    display: "Match Number: "
+team:
+    type: number
+    display: "Team Number: "
+number:
+    type: number
+    display: "Number: "
+boolean:
+    type: checkbox
+    display: "Boolean: "
+string:
+    type: text
+    display: "String: "

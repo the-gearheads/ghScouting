@@ -50,12 +50,6 @@ class Database:
     def get_filename(self):
         return self.filename+".db"
 
-    def set_self_values(self):
-        if self.__check_values_exist__():
-            self.cursor.execute("SELECT number, boolean, string FROM matches WHERE team = ? AND matchnum = ?", (self.team, self.match))
-            print(self.cursor.fetchone())
-            # self.number, self.boolean, self.string = self.cursor.fetchone() TODO: Fix, currently tries to set values even if none present
-
     def commit(self):
         self.__set_def_values__()
         self.cursor.execute("UPDATE matches SET number = ?, boolean = ?, string = ? WHERE team = ? AND matchnum = ?", (self.number, self.boolean, self.string, self.team, self.match))
