@@ -13,18 +13,17 @@ def load_config(config):
 
 
 def validate_config(config):
-    if list(config.keys())[0] != "matchnum" or list(config.keys())[1] != "team":
-            print("In config.yml, the first field must be matchnum and the second field must be team.")
-            sys.exit(1)
+    try:
+        config["matchnum"]
+        config["team"]
+    except KeyError:
+        print("Config must contain fields for matchnum and team")
+        exit(1)
 
 
 yamlCfg = load_config("config.yml")
 validate_config(yamlCfg)
 
-
-# TODO: Make file selection less dumb
-
-validate_config(yamlCfg)
 
 env = Environment(
     loader=FileSystemLoader('templates'),
@@ -32,6 +31,7 @@ env = Environment(
 )
 
 input_template = env.get_template('input_form.html')
+
 
 @app.route('/')
 def input_form():
