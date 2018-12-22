@@ -60,9 +60,18 @@ class Database:
         return self.filename+".db"
 
     def commit(self):
-        for key, value in self.queue.items():
-            print("Setting " + key + " to " + value)
+        for key, value in self.queue.items():  # Iterate through queue
+            print("About to create row with matchnum and team: " + self.match + " " + self.team)
+            if not self.__check_values_exist__():
+                print("Creating row with matchnum and team: " + self.match + " " + self.team)
+                self.cursor.execute(
+                    'INSERT INTO matches (matchnum,team) VALUES (?,?)',
+                    (self.match, self.team,)
+                )
+                self.cursor.execute('SELECT team FROM matches WHERE matchnum = %s' % self.match)
+                print(self.cursor.fetchone())
 
+            print("Setting " + key + " to " + value)
             self.cursor.execute(  # TODO: currently only works when row already exists
                 'UPDATE matches SET %s = ? WHERE team = ? and matchnum = ?' % key,
                 (value, self.team, self.match)

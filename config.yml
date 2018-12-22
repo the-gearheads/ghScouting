@@ -1,18 +1,21 @@
 matchnum:
     type: number
-    display: "Match Number: "
+    display: "Match Number"
 team:
     type: number
-    display: "Team Number: "
+    display: "Team Number"
 number:
     type: number
-    display: "Number: "
+    display: "Number"
 boolean:
     type: checkbox
-    display: "Boolean: "
+    display: "Boolean"
 string:
     type: text
-    display: "String: "
+    display: "String"
 points:
     type: number
     display: "points"
+testthing:
+    type: number
+    display: "oooh fancy a test"

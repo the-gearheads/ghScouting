@@ -1,8 +1,20 @@
-<form method="POST">
-    {% for key, values in config.items() %}
-        <label for="{{ key }}">{{ values['display'] }}</label>
-        <input name="{{ key }}" type="{{ values['type'] }}">
-        <br>
-  {% endfor %}
-    <input type="submit">
-</form>
+<!DOCTYPE html>
+<title>not ghscouting</title>
+<link rel="stylesheet" href="{{ stylesheet }}">
+
+<body>
+
+    <img src="{{ photo }}" alt="Gearheads Logo">
+    <form method="POST">
+        {% for key, values in config.items() %}
+                <br>
+                <label for="{{ key }}">{{ values['display'] }}</label>
+                <br>
+                <input name="{{ key }}" type="{{ values['type'] }}">
+                <br>
+        {% endfor %}
+            <input type="submit">
+    </form>
+
+</body>
+

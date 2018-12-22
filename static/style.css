@@ -1,0 +1,71 @@
+﻿
+html {
+    background-color: white;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f4f4f4;
+    margin-top: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    box-shadow: rgba(0,0,0,0.5) 0px 0px 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    border-radius: 90px;
+}
+h1 {
+    text-shadow: rgba(0,0,0,0.2) 0px 0px 10px;
+}
+p {
+    text-shadow: rgba(0,0,0,0.2) 0px 0px 10px;
+}
+input {
+    box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
+    border-color: #f4f4f4;
+    border-radius: 20px;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+input[type=checkbox] {  
+    background-color: #f4f4f4;
+    -ms-transform: scale(4);
+    -moz-transform: scale(4); 
+    -webkit-transform: scale(4); 
+    -o-transform: scale(4);
+    margin-left: 20px;
+}
+
+input[type=number] {  
+    box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
+    border-color: #f4f4f4;
+    border-radius: 20px;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+
+button {
+    font-size: 20px;
+    color: f4f4f4;
+    font-weight: bold;
+    border-color: white;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: rgba(0,0,0,0.2) 0px 0px 50px;
+}
