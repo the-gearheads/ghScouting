@@ -1,4 +1,4 @@
-﻿
+
 html {
     background-color: white;
 }
@@ -9,13 +9,14 @@ body {
     margin-top: 50px;
     text-align: center;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 15px;
     box-shadow: rgba(0,0,0,0.5) 0px 0px 50px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 400px;
+    margin-right: 400px;
     padding-top: 20px;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     border-radius: 90px;
+    min-width: 600px;
 }
 h1 {
     text-shadow: rgba(0,0,0,0.2) 0px 0px 10px;
@@ -26,46 +27,50 @@ p {
 input {
     box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
     border-color: #f4f4f4;
-    border-radius: 20px;
-    padding-right: 40px;
-    padding-left: 40px;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    border-radius: 10px;
     text-align: center;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 input[type=checkbox] {  
     background-color: #f4f4f4;
-    -ms-transform: scale(4);
-    -moz-transform: scale(4); 
-    -webkit-transform: scale(4); 
-    -o-transform: scale(4);
-    margin-left: 20px;
+    -ms-transform: scale(2);
+    -moz-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    margin-top: 20px;
+
 }
 
-input[type=number] {  
+input[type=number] {
+
     box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
     border-color: #f4f4f4;
-    border-radius: 20px;
-    padding-right: 40px;
-    padding-left: 40px;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    border-radius: 10px;
     text-align: center;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
+}
+input[type=textarea] {
+
+    box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
+    border-color: #f4f4f4;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
 }
 
 
-button {
-    font-size: 20px;
-    color: f4f4f4;
+input[type=submit] {
+    font-size: 15px;
+    color: black;
     font-weight: bold;
     border-color: white;
-    background-color: white;
+    background-color: lightgrey;
     border-radius: 5px;
-    padding: 20px;
+    margin-top: 10px;
+    padding: 5px;
     box-shadow: rgba(0,0,0,0.2) 0px 0px 50px;
 }
