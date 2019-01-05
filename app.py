@@ -37,7 +37,8 @@ input_template = env.get_template('input_form.html')
 def input_form():
     stylesheet = url_for('static', filename='style.css')
     photo = url_for('static', filename='gearheads.png')
-    return input_template.render(config=yamlCfg,stylesheet=stylesheet,photo=photo)
+    favicon = url_for('static', filename='favicon.ico')
+    return input_template.render(config=yamlCfg,stylesheet=stylesheet,photo=photo,favicon=favicon)
 
 
 @app.route('/', methods=['POST'])

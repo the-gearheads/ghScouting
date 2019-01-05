@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<title>not ghscouting</title>
-<link rel="stylesheet" href="{{ stylesheet }}">
-
-<body>
-
-    <img src="{{ photo }}" alt="Gearheads Logo">
-    <form method="POST">
-        {% for key, values in config.items() %}
-                <br>
-                <label for="{{ key }}">{{ values['display'] }}</label>
-                <br>
-                <input name="{{ key }}" type="{{ values['type'] }}">
-                <br>
-        {% endfor %}
-            <input type="submit">
-    </form>
-
-</body>
-
+<head>
+    <title>Gearheads Scouting</title>
+    <link rel="shortcut icon" type="image/png" href="{{ favicon }}"/>
+    <link rel="stylesheet" href="{{ stylesheet }}">
+    <body>
+        <img src="{{ photo }}" alt="Gearheads Logo">
+        <form method="POST">
+          {% for key, values in config.items() %}
+                    <br>
+                    <label for="{{ key }}">{{ values['display'] }}</label>
+                    <br>
+                    <input name="{{ key }}" type="{{ values['type'] }}">
+                    <br>
+            {% endfor %}
+                <input type="submit">
+        </form>
+    </body>
+</head>
