@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, sys
 
 
 class Database:
@@ -15,10 +15,6 @@ class Database:
         self.cursor.execute('CREATE TABLE IF NOT EXISTS matches (matchnum, team)')
         self.connection.commit()
 
-    def __set_def_values__(self):  # TODO: remove?
-        if not self.__check_values_exist__():
-            self.cursor.execute('INSERT INTO matches VALUES (?,?,?,?,?)', (self.match, self.team, 0, False, 'Default'))
-
     def __check_values_exist__(self):
         self.cursor.execute("SELECT team FROM matches WHERE team = ? AND matchnum = ?", (self.team, self.match))
         if self.cursor.fetchone() is None:
@@ -32,7 +28,7 @@ class Database:
                 return True
         return False
 
-    def __get_column_count__(self): #  TODO: Merge with check column exist
+    def __get_column_count__(self):  # TODO: Merge with check column exist
         self.cursor.execute("PRAGMA table_info(matches);")
         return len(self.cursor.fetchall())
 
@@ -44,6 +40,15 @@ class Database:
 
     def set_team(self, team: int):
         self.team = team
+
+    def verify_columns(self, config):
+        self.cursor.execute("PRAGMA table_info(matches);")  # Prints columns in table
+        for line in self.cursor.fetchall():  # Iterates over lines in pragma output
+            if line[1] in config:  # Checks if second element (column name) is equal to the provided column name
+                    pass
+            else:
+                print('ERROR: Config must contain existing values in database! Either add config entry for value "' + line[1] + '" or delete the current database.')
+                sys.exit(1) # TODO FIX EXIT
 
     def create_columns(self, config):
         for key, values in config.items():

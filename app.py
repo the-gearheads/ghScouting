@@ -1,6 +1,8 @@
 from flask import Flask, request, url_for
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import yaml
+import collections
+import sys
 
 import database
 
@@ -13,15 +15,15 @@ def load_config(config):
 
 
 def validate_config(config):
-    try:
-        config["matchnum"]
-        config["team"]
+    try:  # Use try instead of if so that it can output error message
+        config['matchnum']
+        config['team']
     except KeyError:
-        print("Config must contain fields for matchnum and team")
-        exit(1)
+        print("ERROR: matchnum and team fields must be present in config")
+        sys.exit(1)
 
 
-yamlCfg = load_config("config.yml")
+yamlCfg = collections.OrderedDict(load_config("config.yml"))
 validate_config(yamlCfg)
 
 
@@ -43,13 +45,21 @@ def input_form():
 
 @app.route('/', methods=['POST'])
 def input_form_post():
-    db = database.Database("database_test")  # TODO: automatically generate db calls based on config file
+    db = database.Database("database_test")
+    db.verify_columns(yamlCfg)
     db.create_columns(yamlCfg)
+
+    if not request.form['matchnum'] or not request.form['team']:
+        return "You must supply a match number and team number!"
+
     db.set_match(request.form['matchnum'])
     db.set_team(request.form['team'])
+
     for key in yamlCfg.keys():
         if key != "matchnum" and key != "team":
-            db.add_queue(key, request.form[key])
+            if request.form[key]:
+                db.add_queue(key, request.form[key])
+
     db.commit()
     db.close()
-    return "probably added to the db but error codes are hard" # TODO: actually error handle please
+    return "Submitted!"  # TODO: refresh page with fancy message

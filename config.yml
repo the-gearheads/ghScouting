@@ -4,9 +4,9 @@ matchnum:
 team:
     type: number
     display: "Team Number"
-number:
-    type: number
-    display: "Number"
+#number:
+#    type: number
+#    display: "Number"
 boolean:
     type: checkbox
     display: "Boolean"
