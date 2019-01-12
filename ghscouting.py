@@ -8,6 +8,8 @@ import database
 
 app = Flask(__name__)
 
+if __name__ == "__name__":
+    app.run(host='0.0.0.0')
 
 def load_config(config):
     stream = open(config)
