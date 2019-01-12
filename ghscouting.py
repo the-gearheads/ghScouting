@@ -2,14 +2,11 @@ from flask import Flask, request, url_for
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import yaml
 import collections
-import sys
 
 import database
 
 app = Flask(__name__)
 
-if __name__ == "__name__":
-    app.run(host='0.0.0.0')
 
 def load_config(config):
     stream = open(config)
@@ -22,10 +19,19 @@ def validate_config(config):
         config['team']
     except KeyError:
         print("ERROR: matchnum and team fields must be present in config")
-        sys.exit(1)
+        exit(1)
 
 
-yamlCfg = collections.OrderedDict(load_config("config.yml"))
+_mapping_tag = yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG
+
+
+def dict_constructor(loader, node):
+    return collections.OrderedDict(loader.construct_pairs(node))
+
+
+yaml.add_constructor(_mapping_tag, dict_constructor)
+
+yamlCfg = load_config("config.yml")
 validate_config(yamlCfg)
 
 
@@ -65,3 +71,4 @@ def input_form_post():
     db.commit()
     db.close()
     return "Submitted!"  # TODO: refresh page with fancy message
+
