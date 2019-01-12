@@ -65,7 +65,7 @@ def input_form_post():
 
     for key in yamlCfg.keys():
         if key != "matchnum" and key != "team":
-            if request.form[key]:
+            if key in request.form:
                 db.add_queue(key, request.form[key])
 
     db.commit()
