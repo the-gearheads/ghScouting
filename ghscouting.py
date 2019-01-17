@@ -48,7 +48,7 @@ def input_form():
     stylesheet = url_for('static', filename='style.css')
     photo = url_for('static', filename='gearheads.png')
     favicon = url_for('static', filename='favicon.ico')
-    return input_template.render(config=yamlCfg,stylesheet=stylesheet,photo=photo,favicon=favicon)
+    return input_template.render(config=yamlCfg, stylesheet=stylesheet, photo=photo, favicon=favicon)
 
 
 @app.route('/', methods=['POST'])
@@ -64,11 +64,20 @@ def input_form_post():
     db.set_team(request.form['team'])
 
     for key in yamlCfg.keys():
-        if key != "matchnum" and key != "team":
-            if key in request.form:
+        if key != "matchnum" and key != "team" and yamlCfg[key]["metatype"] != "display":
+            if yamlCfg[key]['type'] == 'counter':
+                count = 0
+                for selection in yamlCfg[key]['selections']:
+                    try:
+                        request.form[yamlCfg[key]["counting"]+"_"+selection[0]+"_"+selection[2]]  # TODO: make this less dumb
+                    except KeyError:
+                        pass
+                    else:
+                        count = count + 1
+                db.add_queue(key, count)
+            if key in request.form and request.form[key] != "":  # "" to not record empty strings
                 db.add_queue(key, request.form[key])
 
     db.commit()
     db.close()
     return "Submitted!"  # TODO: refresh page with fancy message
-

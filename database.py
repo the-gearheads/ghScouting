@@ -1,4 +1,5 @@
-import sqlite3, sys
+import sqlite3
+import os
 
 
 class Database:
@@ -48,12 +49,12 @@ class Database:
                     pass
             else:
                 print('ERROR: Config must contain existing values in database! Either add config entry for value "' + line[1] + '" or delete the current database.')
-                sys.exit(1) # TODO FIX EXIT
+                os._exit(1)  # TODO FIX EXIT
 
     def create_columns(self, config):
         for key, values in config.items():
-            if not self.__check_column_exist__(key):
-                print("Created column " + key)
+            if not self.__check_column_exist__(key) and config[key]["metatype"] != "display":
+                print("Creating column " + key)
                 self.cursor.execute('ALTER TABLE matches ADD COLUMN %s' % key)
 
     def get_number(self):
@@ -66,7 +67,6 @@ class Database:
 
     def commit(self):
         for key, value in self.queue.items():  # Iterate through queue
-            print("About to create row with matchnum and team: " + self.match + " " + self.team)
             if not self.__check_values_exist__():
                 print("Creating row with matchnum and team: " + self.match + " " + self.team)
                 self.cursor.execute(
@@ -74,9 +74,8 @@ class Database:
                     (self.match, self.team,)
                 )
                 self.cursor.execute('SELECT team FROM matches WHERE matchnum = %s' % self.match)
-                print(self.cursor.fetchone())
 
-            print("Setting " + key + " to " + value)
+            print("Setting " + key + " to " + str(value))
             self.cursor.execute(  # TODO: currently only works when row already exists
                 'UPDATE matches SET %s = ? WHERE team = ? and matchnum = ?' % key,
                 (value, self.team, self.match)

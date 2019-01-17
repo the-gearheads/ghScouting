@@ -1,21 +1,43 @@
 matchnum:
     type: number
-    display: "Match Number"
+    display: Match Number
+    metatype: field
 team:
     type: number
-    display: "Team Number"
-#number:
-#    type: number
-#    display: "Number"
-boolean:
-    type: checkbox
-    display: "Boolean"
+    display: Team Number
+    metatype: field
+number:
+    type: number
+    display: Number
+    metatype: field
 string:
-    type: text
-    display: "String"
-points:
-    type: number
-    display: "points"
-testthing:
-    type: number
-    display: "oooh fancy a test"
+    type: string
+    display: epic string
+    metatype: field
+checkgrid:
+    type: grid
+    display: Rocket
+    gridtype: checkbox
+    columns: 5
+    rows: 5
+    metatype: display
+highest_row:
+    metatype: value
+    type: counter
+    counting: checkgrid
+    selections:
+        - 0,0
+        - 1,0
+        - 2,0
+        - 3,0
+        - 4,0
+lowest_row:
+    metatype: value
+    type: counter
+    counting: checkgrid
+    selections:
+        - 4,0
+        - 4,1
+        - 4,2
+        - 4,3
+        - 4,4

@@ -47,7 +47,8 @@ input[type=checkbox] {
     -webkit-transform: scale(2);
     -o-transform: scale(2);
     margin-top: 20px;
-
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 input[type=number] {
