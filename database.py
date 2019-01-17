@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import shutil
 
 
 class Database:
@@ -42,14 +43,18 @@ class Database:
     def set_team(self, team: int):
         self.team = team
 
+    def list_columns(self):
+        self.cursor.execute("PRAGMA table_info(matches);")
+        return self.cursor.fetchall()
+
     def verify_columns(self, config):
-        self.cursor.execute("PRAGMA table_info(matches);")  # Prints columns in table
-        for line in self.cursor.fetchall():  # Iterates over lines in pragma output
+        for line in self.list_columns():  # Iterates over lines in pragma output
             if line[1] in config:  # Checks if second element (column name) is equal to the provided column name
                     pass
             else:
                 print('ERROR: Config must contain existing values in database! Either add config entry for value "' + line[1] + '" or delete the current database.')
-                os._exit(1)  # TODO FIX EXIT
+                return False
+        return True
 
     def create_columns(self, config):
         for key, values in config.items():
@@ -64,6 +69,10 @@ class Database:
 
     def get_filename(self):
         return self.filename+".db"
+
+    def output_to_csv(self, filename):
+        os.system("sqlite3 "+self.get_filename()+" < sqlite_to_csv.txt")
+        shutil.move("output.csv", filename+".csv")
 
     def commit(self):
         for key, value in self.queue.items():  # Iterate through queue

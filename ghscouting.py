@@ -1,11 +1,21 @@
 from flask import Flask, request, url_for
+from flask_basicauth import BasicAuth
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import yaml
 import collections
+import pyudev
+import psutil
+import shutil
+import os
 
 import database
 
 app = Flask(__name__)
+
+app.config['BASIC_AUTH_USERNAME'] = 'ghscouting'
+app.config['BASIC_AUTH_PASSWORD'] = 'password'
+
+basic_auth = BasicAuth(app)
 
 
 def load_config(config):
@@ -29,6 +39,28 @@ def dict_constructor(loader, node):
     return collections.OrderedDict(loader.construct_pairs(node))
 
 
+def list_usb():
+    usbs = []
+    context = pyudev.Context()
+    removable = [device for device in context.list_devices(subsystem='block', DEVTYPE='disk') if device.attributes.asstring('removable') == "1"]
+    for device in removable:
+        partitions = [device.device_node for device in context.list_devices(subsystem='block', DEVTYPE='partition', parent=device)]
+        for p in psutil.disk_partitions():
+            if p.device in partitions:
+                usbs.append("{}".format(p.mountpoint))
+    usbs.sort()
+    return usbs
+
+
+def list_databases():
+    databases = []
+    for file in os.listdir(os.getcwd()):
+        if file.endswith(".db"):
+            databases.append(file)
+    databases.sort()
+    return databases
+
+
 yaml.add_constructor(_mapping_tag, dict_constructor)
 
 yamlCfg = load_config("config.yml")
@@ -41,6 +73,7 @@ env = Environment(
 )
 
 input_template = env.get_template('input_form.html')
+advanced_template = env.get_template('advanced.html')
 
 
 @app.route('/')
@@ -54,7 +87,10 @@ def input_form():
 @app.route('/', methods=['POST'])
 def input_form_post():
     db = database.Database("database_test")
-    db.verify_columns(yamlCfg)
+
+    if not db.verify_columns(yamlCfg):
+        return "FATAL ERROR! No further data will be recorded until config fixed!"
+
     db.create_columns(yamlCfg)
 
     if not request.form['matchnum'] or not request.form['team']:
@@ -69,7 +105,8 @@ def input_form_post():
                 count = 0
                 for selection in yamlCfg[key]['selections']:
                     try:
-                        request.form[yamlCfg[key]["counting"]+"_"+selection[0]+"_"+selection[2]]  # TODO: make this less dumb
+                        counting = yamlCfg[key]["counting"]
+                        request.form[counting+"_"+selection[0]+"_"+selection[2]]  # TODO: make this less dumb
                     except KeyError:
                         pass
                     else:
@@ -79,5 +116,39 @@ def input_form_post():
                 db.add_queue(key, request.form[key])
 
     db.commit()
+    db.output_to_csv('testcsv')
     db.close()
-    return "Submitted!"  # TODO: refresh page with fancy message
+    return "Successfully submitted!"  # TODO: refresh page with fancy message
+
+
+@app.route('/advanced')
+@basic_auth.required
+def advanced():
+    return advanced_template.render(list_usb=list_usb(), list_db=list_databases())
+
+
+@app.route('/advanced', methods=['POST'])
+def advanced_post():
+    if "export_config" in request.form:
+        shutil.copyfile("config.yml", request.form['device']+"/config.yml")
+        return "Config successfully exported"
+    elif "import_config" in request.form:
+        shutil.copyfile(request.form['device'] + "/config.yml", "config.yml")
+        return "Config successfully imported"
+    elif "export_database_db" in request.form:
+        shutil.copyfile(request.form['database'], request.form['device'] + "/" + request.form['database'])
+        return "Database successfully exported"
+    elif "export_database_csv" in request.form:
+        dbname = request.form['database']
+        csvname = dbname + ".csv"
+        db = database.Database(os.path.splitext(dbname)[0])
+        db.output_to_csv(db.get_filename())
+        db.close()
+        shutil.copyfile(csvname, request.form['device'] + "/" + csvname)
+        os.remove(csvname)
+        return "Database successfully exported"
+    elif "restart" in request.form:
+        os._exit(0)
+    elif "shutdown" in request.form:
+        os.system('shutdown now')
+    return "this could be my fault but you probably inspect elemented the site and that's not very cool of you"

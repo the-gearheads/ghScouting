@@ -12,7 +12,7 @@ number:
     metatype: field
 string:
     type: string
-    display: epic string
+    display: epic
     metatype: field
 checkgrid:
     type: grid
