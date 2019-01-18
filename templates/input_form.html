@@ -4,7 +4,6 @@
     <title>Gearheads Scouting</title>
     <link rel="shortcut icon" type="image/png" href="{{ favicon }}" />
     <link rel="stylesheet" href="{{ stylesheet }}">
-
     <body>
         <img src="{{ photo }}" alt="Gearheads Logo">
         <form method="POST">
@@ -19,10 +18,14 @@
                         {% for column in range(0,values['columns']) %}
                             {% for row in range(0,values['rows']) %}
                                     {% if column|string+","+row|string not in values['skipdraw'] %}
-                                        <input name="{{ key }}_{{ row }}_{{ column }}" type="{{ values['gridtype'] }}">
+                                        {% if values['gridtype'] == "radio" %}
+                                            <input name="{{ key }}" type="{{ values['gridtype'] }}">
+                                        {% else %}
+                                            <input name="{{ key }}_{{ row }}_{{ column }}" type="{{ values['gridtype'] }}">
+                                        {% endif %}
                                     {% else %}
-                                        <style>#checkbox{opacity: 0;}</style>
-                                        <input type="checkbox" id="checkbox"/>
+                                        <style>#{{ values['gridtype'] }}{opacity: 0;}</style>
+                                        <input type={{ values['gridtype'] }} id={{ values['gridtype'] }}>
                                     {% endif %}
                             {% endfor %}
                             <br>
