@@ -17,7 +17,7 @@
                     {% elif values['type'] == "grid" %}
                         {% for column in range(0,values['columns']) %}
                             {% for row in range(0,values['rows']) %}
-                                    {% if column|string+","+row|string not in values['skipdraw'] %}
+                                    {% if row|string+","+column|string not in values['skipdraw'] %}
                                         {% if values['gridtype'] == "radio" %}
                                             <input name="{{ key }}" type="{{ values['gridtype'] }}">
                                         {% else %}
