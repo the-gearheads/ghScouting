@@ -146,6 +146,9 @@ def advanced_post():
         shutil.copyfile(csvname, request.form['device'] + "/" + csvname)
         os.remove(csvname)
         return "Database successfully exported"
+    elif "delete" in request.form:
+        os.remove(request.form['database'])
+        return "Database deleted"
     elif "restart" in request.form:
         os.system('/usr/bin/sudo systemctl restart ghscouting')
         return "Restart failed!"
