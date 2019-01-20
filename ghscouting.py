@@ -116,7 +116,6 @@ def input_form_post():
                 db.add_queue(key, request.form[key])
 
     db.commit()
-    db.output_to_csv('testcsv')
     db.close()
     return "Successfully submitted!"  # TODO: refresh page with fancy message
 
@@ -148,7 +147,9 @@ def advanced_post():
         os.remove(csvname)
         return "Database successfully exported"
     elif "restart" in request.form:
-        os._exit(0)
+        os.system('/usr/bin/sudo systemctl restart ghscouting')
+        return "Restart failed!"
     elif "shutdown" in request.form:
-        os.system('shutdown now')
+        os.system('/usr/bin/sudo shutdown now')
+        return "Shutdown failed!"
     return "this could be my fault but you probably inspect elemented the site and that's not very cool of you"

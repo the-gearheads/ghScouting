@@ -71,7 +71,7 @@ class Database:
         return self.filename+".db"
 
     def output_to_csv(self, filename):
-        os.system("sqlite3 "+self.get_filename()+" < sqlite_to_csv.txt")
+        os.system("/usr/bin/sqlite3 "+self.get_filename()+" < sqlite_to_csv.txt")
         shutil.move("output.csv", filename+".csv")
 
     def commit(self):
