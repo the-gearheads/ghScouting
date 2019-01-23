@@ -63,9 +63,6 @@ def list_databases():
 
 yaml.add_constructor(_mapping_tag, dict_constructor)
 
-yamlCfg = load_config("config.yml")
-validate_config(yamlCfg)
-
 
 env = Environment(
     loader=FileSystemLoader('templates'),
@@ -78,6 +75,11 @@ advanced_template = env.get_template('advanced.html')
 
 @app.route('/')
 def input_form():
+    try:
+        yamlCfg = load_config("config.yml")
+        validate_config(yamlCfg)
+    except yaml.scanner.ScannerError:
+        return "Configuration syntax error"
     stylesheet = url_for('static', filename='style.css')
     photo = url_for('static', filename='gearheads.png')
     favicon = url_for('static', filename='favicon.ico')
@@ -86,6 +88,8 @@ def input_form():
 
 @app.route('/', methods=['POST'])
 def input_form_post():
+    yamlCfg = load_config("config.yml")
+    validate_config(yamlCfg)
     db = database.Database("database_test")
 
     if not db.verify_columns(yamlCfg):
