@@ -14,19 +14,24 @@ string:
     type: string
     display: epic
     metatype: field
+    skipdraw:
+        - 5,4
+        - 6,3
 checkgrid:
     type: grid
     display: Rocket
     gridtype: checkbox
-    columns: 4
+    columns: 3
     rows: 4
     metatype: display
+    skipdraw:
+        - 1,2
+        - 6,9
 counter_test:
     metatype: value
     type: counter
     counting: checkgrid
     selections:
-        - 0,2
-        - 1,2
-        - 4,2
-        - 5,2
+        - 0,0
+        - 1,0
+        - 2,0

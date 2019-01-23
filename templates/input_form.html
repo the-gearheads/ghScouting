@@ -15,13 +15,13 @@
                     {% if values['type'] != "grid" %}
                         <input name="{{ key }}" type="{{ values['type'] }}">
                     {% elif values['type'] == "grid" %}
-                        {% for column in range(0,values['columns']) %}
-                            {% for row in range(0,values['rows']) %}
-                                    {% if row|string+","+column|string not in values['skipdraw'] %}
+                        {% for row in range(0,values['rows']) %}
+                            {% for column in range(0,values['columns']) %}
+                                    {% if column|string+","+row|string not in values['skipdraw'] %}
                                         {% if values['gridtype'] == "radio" %}
                                             <input name="{{ key }}" type="{{ values['gridtype'] }}">
                                         {% else %}
-                                            <input name="{{ key }}_{{ row }}_{{ column }}" type="{{ values['gridtype'] }}">
+                                            <input name="{{ key }}_{{ column }}_{{ row }}" type="{{ values['gridtype'] }}">
                                         {% endif %}
                                     {% else %}
                                         <style>#{{ values['gridtype'] }}{opacity: 0;}</style>
