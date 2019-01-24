@@ -13,7 +13,13 @@
                     <label for="{{ key }}">{{ values['display'] }}</label>
                     <br>
                     {% if values['type'] != "grid" %}
-                        <input name="{{ key }}" type="{{ values['type'] }}">
+                        {% if values['type'] == "textarea" %}
+                            <textarea rows="{{ values['rows'] }}" cols="{{ values['cols'] }}"></textarea>
+                        {% elif values['type'] == "number" and values['min'] %}
+                            <input name="{{ key }}" type="{{ values['type'] }}" min="{{ values['min'] }}" max="{{ values['max'] }}">
+                        {% else %}
+                            <input name="{{ key }}" type="{{ values['type'] }}">
+                        {% endif %}
                     {% elif values['type'] == "grid" %}
                         {% for row in range(0,values['rows']) %}
                             {% for column in range(0,values['columns']) %}
