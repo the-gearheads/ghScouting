@@ -60,14 +60,16 @@ input[type=number] {
     font-weight: bold;
     font-size: 25px;
 }
-input[type=textarea] {
+textarea {
 
     box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
     border-color: #f4f4f4;
     border-radius: 10px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 25px;
+    text-align: left;
+    font-weight: lighter;
+    font-size: 15px;
+    width: 50px;
+    height: 4px;
 }
 
 
