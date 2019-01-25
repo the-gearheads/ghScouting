@@ -121,7 +121,7 @@ def input_form_post():
 
     db.commit()
     db.close()
-    return "Successfully submitted!"  # TODO: refresh page with fancy message
+    return "Successfully submitted!<br><form method='get' action='/'><button type='submit'>Submit another entry</button></form>"  # TODO: refresh page with fancy message
 
 
 @app.route('/advanced')
