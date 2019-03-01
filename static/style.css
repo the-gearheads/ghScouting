@@ -62,6 +62,8 @@ input[type=number] {
 }
 
 textarea {
+    font-family: 'Open Sans', sans-serif;
+    padding: .75vw;
     box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
     border-color: #f4f4f4;
     border-radius: 10px;

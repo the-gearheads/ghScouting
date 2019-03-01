@@ -58,7 +58,7 @@ class Database:
 
     def create_columns(self, config):
         for key, values in config.items():
-            if not self.__check_column_exist__(key) and config[key]["metatype"] != "display":
+            if not self.__check_column_exist__(key) and config[key].get("metatype") != "display":
                 print("Creating column " + key)
                 self.cursor.execute('ALTER TABLE matches ADD COLUMN %s' % key)
 

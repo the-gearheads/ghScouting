@@ -104,16 +104,12 @@ def input_form_post():
     db.set_team(request.form['team'])
 
     for key in yamlCfg.keys():
-        if key != "matchnum" and key != "team" and yamlCfg[key]["metatype"] != "display":
+        if key != "matchnum" and key != "team" and yamlCfg[key].get("metatype") != "display":
             if yamlCfg[key]['type'] == 'counter':
                 count = 0
                 for selection in yamlCfg[key]['selections']:
-                    try:
-                        counting = yamlCfg[key]["counting"]
-                        request.form[counting+"_"+selection[0]+"_"+selection[2]]  # TODO: make this less dumb
-                    except KeyError:
-                        pass
-                    else:
+                    counting = yamlCfg[key]["counting"]
+                    if request.form.get(counting + "_" + selection[0] + "_" + selection[2]):  # TODO: make this better
                         count = count + 1
                 db.add_queue(key, count)
             if key in request.form and request.form[key] != "":  # "" to not record empty strings
