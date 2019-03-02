@@ -6,3 +6,74 @@ team:
     type: number
     display: Team Number
     min: 0
+hcselect:
+    type: grid
+    gridtype: radio
+    display: Preloaded Piece
+    rows: 1
+    columns: 2
+    labels:
+        0,0: Hatch Panel
+        0,1: Cargo
+habpoints:
+    type: grid
+    gridtype: radio
+    display: HAB Points
+    rows: 1
+    columns: 3
+    labels:
+        0,0: 0
+        0,1: 3
+        0,2: 6
+carss:
+    type: number
+    display: Cargo in Sandstorm
+    min: 0
+hpss:
+    type: number
+    display: Hatch in Sandstorm
+    min: 0
+cargo:
+    type: number
+    display: Cargo
+    min: 0
+hp:
+    type: number
+    display: Hatch Panel
+    min: 0
+carh:
+    type: grid
+    gridtype: checkbox
+    display: Cargo Heights
+    rows: 1
+    columns: 4
+    labels:
+        0,0: Low
+        0,1: Medium
+        0,2: High
+        0,3: None
+hph:
+    type: grid
+    gridtype: checkbox
+    display: Hatch Panel Heights
+    rows: 1
+    columns: 4
+    labels:
+        0,0: Low
+        0,1: Medium
+        0,2: High
+        0,3: None
+hcs:
+    type: grid
+    gridtype: radio
+    display: Climb Score
+    rows: 1
+    columns: 4
+    labels:
+        0,0: 0
+        0,1: 3
+        0,2: 6
+        0,3: 12
+comments:
+    type: textarea
+    display: Comments
