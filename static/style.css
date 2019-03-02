@@ -52,7 +52,7 @@ input[type=checkbox] {
 }
 
 input[type=number] {
-
+    width: 5em;
     box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
     border-color: #f4f4f4;
     border-radius: 10px;

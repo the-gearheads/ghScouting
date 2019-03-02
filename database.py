@@ -47,20 +47,17 @@ class Database:
         self.cursor.execute("PRAGMA table_info(matches);")
         return self.cursor.fetchall()
 
-    def verify_columns(self, config):
-        for line in self.list_columns():  # Iterates over lines in pragma output
-            if line[1] in config:  # Checks if second element (column name) is equal to the provided column name
-                    pass
-            else:
-                print('ERROR: Config must contain existing values in database! Either add config entry for value "' + line[1] + '" or delete the current database.')
-                return False
-        return True
-
     def create_columns(self, config):
         for key, values in config.items():
             if not self.__check_column_exist__(key) and config[key].get("metatype") != "display":
                 print("Creating column " + key)
-                self.cursor.execute('ALTER TABLE matches ADD COLUMN %s' % key)
+                self.cursor.execute('ALTER TABLE matches ADD COLUMN {}'.format(key))
+            if config[key].get('labels') and config[key].get('gridtype') == 'checkbox':
+                for label in config[key]['labels']:
+                    column_name = '{}_{}'.format(key, config[key]['labels'][label])
+                    if not self.__check_column_exist__(column_name):
+                        print("Creating column " + column_name)
+                        self.cursor.execute('ALTER TABLE matches ADD COLUMN {}'.format(column_name))
 
     def get_number(self):
         if not self.__check_values_exist__():
@@ -77,16 +74,20 @@ class Database:
     def commit(self):
         for key, value in self.queue.items():  # Iterate through queue
             if not self.__check_values_exist__():
-                print("Creating row with matchnum and team: " + self.match + " " + self.team)
+                print("Creating row with matchnum and team: {} {}".format(self.match, self.team))
                 self.cursor.execute(
                     'INSERT INTO matches (matchnum,team) VALUES (?,?)',
                     (self.match, self.team,)
                 )
-                self.cursor.execute('SELECT team FROM matches WHERE matchnum = %s' % self.match)
+                self.cursor.execute('SELECT team FROM matches WHERE matchnum = {}'.format(self.match))
 
             print("Setting " + key + " to " + str(value))
-            self.cursor.execute(  # TODO: currently only works when row already exists
-                'UPDATE matches SET %s = ? WHERE team = ? and matchnum = ?' % key,
+
+            if value is True:
+                value = "true"
+
+            self.cursor.execute(
+                'UPDATE matches SET {} = ? WHERE team = ? and matchnum = ?'.format(key),
                 (value, self.team, self.match)
             )
 

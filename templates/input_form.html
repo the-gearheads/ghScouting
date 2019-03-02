@@ -2,7 +2,7 @@
 
 <head>
     <title>Gearheads Scouting</title>
-    <link rel="shortcut icon" type="image/png" href="{{ favicon }}" />
+    <link rel="shortcut icon" type="image/png" href='static/favicon.ico' />
     <link rel="stylesheet" href="{{ stylesheet }}">
     <body>
         <img src="{{ photo }}" alt="Gearheads Logo">
@@ -24,9 +24,13 @@
                         {% for row in range(0,values['rows']) %}
                             {% for column in range(0,values['columns']) %}
                                     {% if column|string+","+row|string not in values['skipdraw'] %}
-                                        {% if values['gridtype'] == "radio" and values.get('labels') %}
-                                            <input name="{{ key }}" type="{{ values['gridtype'] }}" value="{{ values['labels'].get("{},{}".format(row,column)) }}">
-                                            {{ values['labels'].get("{},{}".format(row,column)) }}
+                                        {% if values.get('labels') %}
+                                            {% if values['labels'].get("{},{}".format(row,column)) is not none  %}
+                                                <input name="{{ key }}" type="{{ values['gridtype'] }}" value="{{ values['labels'].get("{},{}".format(row,column)) }}">
+                                                {{ values['labels'].get("{},{}".format(row,column)) }}
+                                            {% else %}
+                                                <input name="{{ key }}" type="{{ values['gridtype'] }}">
+                                            {% endif %}
                                         {% else %}
                                             <input name="{{ key }}_{{ row }}_{{ column }}" type="{{ values['gridtype'] }}">
                                         {% endif %}

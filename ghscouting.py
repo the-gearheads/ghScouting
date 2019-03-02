@@ -24,12 +24,8 @@ def load_config(config):
 
 
 def validate_config(config):
-    try:  # Use try instead of if so that it can output error message
-        config['matchnum']
-        config['team']
-    except KeyError:
-        print("ERROR: matchnum and team fields must be present in config")
-        exit(1)
+    if not config.get('matchnum') or not config.get('team'):
+        raise KeyError("ERROR: matchnum and team fields must be present in config")
 
 
 _mapping_tag = yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG
@@ -78,8 +74,10 @@ def input_form():
     try:
         yamlCfg = load_config("config.yml")
         validate_config(yamlCfg)
-    except yaml.scanner.ScannerError:
-        return "Configuration syntax error"
+    except yaml.scanner.ScannerError as e:
+        return "Configuration syntax error:<br>{}".format(e)
+    except KeyError:
+        return "Configuration syntax error: matchnum and team fields must be present in config"
     stylesheet = url_for('static', filename='style.css')
     photo = url_for('static', filename='gearheads.png')
     favicon = url_for('static', filename='favicon.ico')
@@ -91,10 +89,6 @@ def input_form_post():
     yamlCfg = load_config("config.yml")
     validate_config(yamlCfg)
     db = database.Database("database_test")
-
-    if not db.verify_columns(yamlCfg):
-        return "FATAL ERROR! No further data will be recorded until config fixed!"
-
     db.create_columns(yamlCfg)
 
     if not request.form['matchnum'] or not request.form['team']:
@@ -112,12 +106,17 @@ def input_form_post():
                     if request.form.get(counting + "_" + selection[0] + "_" + selection[2]):  # TODO: make this better
                         count = count + 1
                 db.add_queue(key, count)
-            if key in request.form and request.form[key] != "":  # "" to not record empty strings
+            if yamlCfg[key]['type'] == 'grid' and yamlCfg[key].get('gridtype') == 'checkbox':
+                for selection in request.form.getlist(key):
+                    column_name = '{}_{}'.format(key, selection)
+                    db.add_queue(column_name, True)
+            elif request.form.get(key):
                 db.add_queue(key, request.form[key])
 
     db.commit()
     db.close()
-    return "Successfully submitted!<br><form method='get' action='/'><button type='submit'>Submit another entry</button></form>"  # TODO: refresh page with fancy message
+    return "Successfully submitted!<br><form method='get' action='/'>" \
+           "<button type='submit'>Submit another entry</button></form>"  # TODO: refresh page with fancy message
 
 
 @app.route('/advanced')
