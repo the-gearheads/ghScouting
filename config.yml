@@ -6,10 +6,18 @@ team:
     type: number
     display: Team Number
     min: 0
-hcselect:
+hcselect1:
     type: grid
     gridtype: radio
-    display: Preloaded Piece
+    display: Preloaded Pieces
+    rows: 1
+    columns: 2
+    labels:
+        0,0: Hatch Panel
+        0,1: Cargo
+hcselect2:
+    type: grid
+    gridtype: radio
     rows: 1
     columns: 2
     labels:
