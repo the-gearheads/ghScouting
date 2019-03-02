@@ -23,10 +23,6 @@ def load_config(config):
     return yaml.load(stream)
 
 
-def validate_config(config):
-    if not config.get('matchnum') or not config.get('team'):
-        raise KeyError("ERROR: matchnum and team fields must be present in config")
-
 
 _mapping_tag = yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG
 
@@ -73,7 +69,6 @@ advanced_template = env.get_template('advanced.html')
 def input_form():
     try:
         yamlCfg = load_config("config.yml")
-        validate_config(yamlCfg)
     except yaml.scanner.ScannerError as e:
         return "Configuration syntax error:<br>{}".format(e)
     except KeyError:
@@ -87,7 +82,6 @@ def input_form():
 @app.route('/', methods=['POST'])
 def input_form_post():
     yamlCfg = load_config("config.yml")
-    validate_config(yamlCfg)
     db = database.Database("database_test")
     db.create_columns(yamlCfg)
 
@@ -96,7 +90,7 @@ def input_form_post():
 
     db.set_match(request.form['matchnum'])
     db.set_team(request.form['team'])
-
+    
     for key in yamlCfg.keys():
         if key != "matchnum" and key != "team" and yamlCfg[key].get("metatype") != "display":
             if yamlCfg[key]['type'] == 'counter':

@@ -40,7 +40,7 @@ input {
     font-size: 25px;
 }
 
-input[type=checkbox] {  
+input[type=checkbox] {
     background-color: #f4f4f4;
     -ms-transform: scale(2);
     -moz-transform: scale(2);
@@ -86,4 +86,15 @@ input[type=submit] {
     margin-top: 10px;
     padding: 5px;
     box-shadow: rgba(0,0,0,0.2) 0px 0px 50px;
+}
+.matchdata {
+  float: left;
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  background-color: #f4f4f4;
+  padding: 15px;
+  padding-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: rgba(0,0,0,0.2) 0px 0px 50px;
 }
