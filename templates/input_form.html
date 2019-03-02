@@ -9,9 +9,11 @@
         <form method="POST">
             {% for key, values in config.items() %}
                 {% if values.get('metatype') != "value" %}
-                    <br>
-                    <label for="{{ key }}">{{ values['display'] }}</label>
-                    <br>
+                    {% if values.get('display') %}
+                        <br>
+                        <label for="{{ key }}">{{ values['display'] }}</label>
+                        <br>
+                    {% endif %}
                     {% if values['type'] != "grid" %}
                         {% if values['type'] == "textarea" %}
                             <textarea name="{{ key }}" rows="{{ values['rows'] }}" cols="{{ values['cols'] }}"></textarea>
