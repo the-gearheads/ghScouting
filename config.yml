@@ -1,11 +1,3 @@
-matchnum:
-    type: number
-    display: Match Number
-    min: 0
-team:
-    type: number
-    display: Team Number
-    min: 0
 hcselect1:
     type: grid
     gridtype: radio
@@ -82,6 +74,24 @@ hcs:
         0,1: 3
         0,2: 6
         0,3: 12
+brickbot:
+    type: grid 
+    gridtype: radio
+    display: Brick Bot
+    rows: 1
+    columns: 2
+    labels:
+        0,0: 'Yes'
+        0,1: 'No'
+defensive_attempt:
+    type: grid
+    gridtype: radio
+    display: Defensive Attempt
+    rows: 1
+    columns: 2
+    labels:
+        0,0: 'Yes'
+        0,1: 'No'
 comments:
     type: textarea
     display: Comments
