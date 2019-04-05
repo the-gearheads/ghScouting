@@ -2,6 +2,7 @@ import sqlite3
 import os
 import shutil
 
+import scouting.Field
 
 class Database:
 
@@ -52,7 +53,7 @@ class Database:
             if not self.__check_column_exist__(key) and config[key].get("metatype") != "display":
                 print("Creating column " + key)
                 self.cursor.execute('ALTER TABLE matches ADD COLUMN {}'.format(key))
-            if config[key].get('labels') and config[key].get('gridtype') == 'checkbox':
+            if config[key].get('options')  'checkbox':
                 for label in config[key]['labels']:
                     column_name = '{}_{}'.format(key, config[key]['labels'][label])
                     if not self.__check_column_exist__(column_name):

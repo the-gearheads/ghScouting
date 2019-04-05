@@ -1,30 +1,44 @@
-from flask import Flask, request, url_for
+from flask import Flask, request, redirect, render_template, send_from_directory
 from flask_basicauth import BasicAuth
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+import werkzeug.wrappers
 import yaml
+import yaml.scanner
 import collections
 import pyudev
 import psutil
 import shutil
 import os
 
-import database
+import scouting.Database
+import scouting.Field
 
-app = Flask(__name__)
-
-app.config['BASIC_AUTH_USERNAME'] = 'ghscouting'
-app.config['BASIC_AUTH_PASSWORD'] = 'password'
-
-basic_auth = BasicAuth(app)
+# Constant variables
+FIELD_TYPES = {
+               'number': scouting.Field.FieldNumber,
+               'radio': scouting.Field.FieldSelect,
+               'checkbox': scouting.Field.FieldSelect,
+               'textarea': scouting.Field.FieldTextarea
+               }
 
 
 def load_config(config):
-    stream = open(config)
-    return yaml.load(stream)
+    try:
+        stream = open(config + '.yml')
+    except FileNotFoundError as e:
+        return e
+    try:
+        return yaml.load(stream)
+    except yaml.scanner.ScannerError as e:
+        return e
 
 
-
-_mapping_tag = yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG
+def create_form(form_config):
+    scouting_form = []
+    for item, values in form_config.items():
+        field_type = (FIELD_TYPES.get(values['type']) or scouting.Field.FieldBase)
+        field = field_type(item, values)
+        scouting_form.append(field)
+    return scouting_form
 
 
 def dict_constructor(loader, node):
@@ -53,37 +67,59 @@ def list_databases():
     return databases
 
 
+_mapping_tag = yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG  # TODO: Seems kinda hacky but idk
 yaml.add_constructor(_mapping_tag, dict_constructor)
 
 
-env = Environment(
-    loader=FileSystemLoader('templates'),
-    autoescape=select_autoescape(['html', 'xml']),
-)
+app = Flask(__name__)
 
-input_template = env.get_template('input_form.html')
-advanced_template = env.get_template('advanced.html')
+app.config['BASIC_AUTH_USERNAME'] = 'ghscouting'
+app.config['BASIC_AUTH_PASSWORD'] = 'password'
+
+basic_auth = BasicAuth(app)
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @app.route('/')
-def input_form():
-    try:
-        yamlCfg = load_config("config.yml")
-    except yaml.scanner.ScannerError as e:
-        return "Configuration syntax error:<br>{}".format(e)
-    except KeyError:
-        return "Configuration syntax error: matchnum and team fields must be present in config"
-    stylesheet = url_for('static', filename='style.css')
-    photo = url_for('static', filename='gearheads.png')
-    favicon = url_for('static', filename='favicon.ico')
-    return input_template.render(config=yamlCfg, stylesheet=stylesheet, photo=photo, favicon=favicon)
+def root():
+    return redirect('/default')
 
 
-@app.route('/', methods=['POST'])
-def input_form_post():
-    yamlCfg = load_config("config.yml")
-    db = database.Database("database_test")
-    db.create_columns(yamlCfg)
+@app.route('/<config>')
+def form(config):
+    form_data = load_config(config)
+    if isinstance(form_data, Exception):  # Check if load_config threw an exception
+        response = werkzeug.wrappers.Response(
+            '<title>Gearheads Scouting</title>\n'
+            '<h2>The following error was encountered while processing form "{}":</h2>\n'
+            '<p>{}</p>'.format(config, form_data),
+            200, mimetype='text/html'
+        )
+        return response
+    app.config['form'] = create_form(form_data)  # Add requested form data to request-global flask config
+    return render_template("main.html")
+
+
+@app.route('/<config>', methods=['POST'])
+def form_post(config):
+    form_data = load_config(config)
+    if isinstance(form_data, Exception):  # Check if load_config threw an exception
+        response = werkzeug.wrappers.Response(
+            '<title>Gearheads Scouting</title>\n'
+            '<h2>The following error was encountered while processing form "{}":</h2>\n'
+            '<p>{}</p>'.format(config, form_data),
+            200, mimetype='text/html'
+        )
+        return response
+    app.config['form'] = create_form(form_data)  # Add requested form data to request-global flask config
+
+    db = scouting.Database.Database(config)
+    db.create_columns()
 
     if not request.form['matchnum'] or not request.form['team']:
         return "You must supply a match number and team number!"
@@ -91,16 +127,16 @@ def input_form_post():
     db.set_match(request.form['matchnum'])
     db.set_team(request.form['team'])
     
-    for key in yamlCfg.keys():
-        if key != "matchnum" and key != "team" and yamlCfg[key].get("metatype") != "display":
-            if yamlCfg[key]['type'] == 'counter':
+    for key in app.config['form'].keys():
+        if key != "matchnum" and key != "team" and app.config['form'][key].get("metatype") != "display":
+            if app.config['form'][key]['type'] == 'counter':
                 count = 0
-                for selection in yamlCfg[key]['selections']:
-                    counting = yamlCfg[key]["counting"]
+                for selection in app.config['form'][key]['selections']:
+                    counting = app.config['form'][key]["counting"]
                     if request.form.get(counting + "_" + selection[0] + "_" + selection[2]):  # TODO: make this better
                         count = count + 1
                 db.add_queue(key, count)
-            if yamlCfg[key]['type'] == 'grid' and yamlCfg[key].get('gridtype') == 'checkbox':
+            if app.config['form'][key]['type'] == 'grid' and app.config['form'][key].get('gridtype') == 'checkbox':
                 for selection in request.form.getlist(key):
                     column_name = '{}_{}'.format(key, selection)
                     db.add_queue(column_name, True)
@@ -109,14 +145,21 @@ def input_form_post():
 
     db.commit()
     db.close()
-    return "Successfully submitted!<br><form method='get' action='/'>" \
-           "<button type='submit'>Submit another entry</button></form>"  # TODO: refresh page with fancy message
+
+    response = werkzeug.wrappers.Response(
+        'Successfully submitted!\n'
+        '<form method="get" action="/">'
+        '<button type="submit">Submit another entry</button>'
+        '</form>',
+        200, mimetype='text/html'
+    )
+    return response
 
 
 @app.route('/advanced')
 @basic_auth.required
 def advanced():
-    return advanced_template.render(list_usb=list_usb(), list_db=list_databases())
+    return render_template('advanced.html')  # TODO: pass usb and database listings
 
 
 @app.route('/advanced', methods=['POST'])
@@ -133,7 +176,7 @@ def advanced_post():
     elif "export_database_csv" in request.form:
         dbname = request.form['database']
         csvname = dbname + ".csv"
-        db = database.Database(os.path.splitext(dbname)[0])
+        db = scouting.Database.Database(os.path.splitext(dbname)[0])
         db.output_to_csv(db.get_filename())
         db.close()
         shutil.copyfile(csvname, request.form['device'] + "/" + csvname)
@@ -148,4 +191,4 @@ def advanced_post():
     elif "shutdown" in request.form:
         os.system('/usr/bin/sudo shutdown now')
         return "Shutdown failed!"
-    return "this could be my fault but you probably inspect elemented the site and that's not very cool of you"
+    return "if you're seeing this, a BIG oopsie happened"
