@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, send_from_directory
+from flask import Flask, request, redirect, render_template, send_from_directory, flash
 from flask_basicauth import BasicAuth
 import werkzeug.wrappers
 import yaml
@@ -88,6 +88,7 @@ main_config = load_config("config")
 for key in main_config.keys():
     app.config[f"gh_{key}"] = main_config[key]
 
+app.secret_key = app.config["gh_secret_key"]
 app.config["BASIC_AUTH_USERNAME"] = app.config["gh_admin_username"]
 app.config["BASIC_AUTH_PASSWORD"] = app.config["gh_admin_password"]
 
@@ -156,43 +157,21 @@ def form_post(config):
         if value:
             db.add_queue(column, value)
 
-    #    for key in app.config["form"].keys():
-    #        if (
-    #            key != "matchnum"
-    #            and key != "team"
-    #            and app.config["form"][key].get("metatype") != "display"
-    #        ):
-    #            if app.config["form"][key]["type"] == "counter":
-    #                count = 0
-    #                for selection in app.config["form"][key]["selections"]:
-    #                    counting = app.config["form"][key]["counting"]
-    #                    if request.form.get(
-    #                        counting + "_" + selection[0] + "_" + selection[2]
-    #                    ):  # TODO: make this better
-    #                        count = count + 1
-    #                db.add_queue(key, count)
-    #            if (
-    #                app.config["form"][key]["type"] == "grid"
-    #                and app.config["form"][key].get("gridtype") == "checkbox"
-    #            ):
-    #                for selection in request.form.getlist(key):
-    #                    column_name = "{}_{}".format(key, selection)
-    #                    db.add_queue(column_name, True)
-    #            elif request.form.get(key):
-    #                db.add_queue(key, request.form[key])
-
     db.commit()
     db.close()
 
-    response = werkzeug.wrappers.Response(
-        "Successfully submitted!\n"
-        '<form method="get" action="/">'
-        '<button type="submit">Submit another entry</button>'
-        "</form>",
-        200,
-        mimetype="text/html",
+    flash(
+        f'✓ Successfully submitted entry for team {request.form["team"]}, match {request.form["matchnum"]}'
     )
-    return response
+    # response = werkzeug.wrappers.Response(
+    #    "Successfully submitted!\n"
+    #    '<form method="get" action="/">'
+    #    '<button type="submit">Submit another entry</button>'
+    #    "</form>",
+    #    200,
+    #    mimetype="text/html",
+    # )
+    return redirect("/" + app.config["gh_default"])
 
 
 @app.route("/advanced")

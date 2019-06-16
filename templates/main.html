@@ -3,20 +3,32 @@
     <title>Gearheads Scouting</title>
     <link rel="shortcut icon" type="image/png" href='{{ url_for('static', filename='favicon.ico') }}' />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='uikit.min.css') }}">
     <body>
-        <img src="{{ url_for('static', filename='gearheads.png') }}" alt="Gearheads Logo">
-        <form method="POST">
-            {% for item in config.form %}
-                {{ item.render() }}
-                <br>
-            {% endfor %}
-            <input type="submit">
-            <div class="matchdata">
-              <p>Match Number</p>
-              <input name="matchnum" type="number" min="0">
-              <p>Team Number</p>
-              <input name="team" type="number" min="0">
-            </div>
-        </form>
+        <div class="main_form"> 
+            <img src="{{ url_for('static', filename='gearheads.png') }}" alt="Gearheads Logo">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="message">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form>
+                {% for item in config.form %}
+                    {{ item.render() }}
+                    <br>
+                {% endfor %}
+                <button class="uk-button-primary" type="submit" formmethod="post">Submit Entry</button>
+                <div class="matchdata">
+                  <p>Match Number</p>
+                  <input class="uk-input" name="matchnum" type="number" min="0">
+                  <p>Team Number</p>
+                  <input class="uk-input" name="team" type="number" min="0">
+                </div>
+            </form>
+        </div>
     </body>
 </head>

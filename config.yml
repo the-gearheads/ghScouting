@@ -1,3 +1,4 @@
 default: test
 admin_username: admin
 admin_password: password
+secret_key: EiELef5WusGt

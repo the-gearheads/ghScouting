@@ -7,7 +7,9 @@ class FieldBase:
         self.args = args
 
     def get_line(self):
-        return '<input name="{}" type="{}"><br>'.format(self.name, self.args["type"])
+        return '<input class="uk-input" name="{}" type="{}"><br>'.format(
+            self.name, self.args["type"]
+        )
 
     def render(self):
         render_body = ""
@@ -24,12 +26,14 @@ class FieldBase:
 
 class FieldTextarea(FieldBase):
     def get_line(self):
-        return '<textarea name="{}"></textarea><br>'.format(self.name)
+        return '<textarea class="uk-textarea" name="{}"></textarea><br>'.format(
+            self.name
+        )
 
 
 class FieldNumber(FieldBase):
     def get_line(self):
-        return '<input name="{}" type="number" min="{}" max="{}"><br>'.format(
+        return '<input class="uk-input" name="{}" type="number" min="{}" max="{}"><br>'.format(
             self.name, self.args.get("min"), self.args.get("max")
         )
 
@@ -44,7 +48,7 @@ class FieldSelect(FieldBase):
         for option in self.args["options"]:
             render_body = (
                 render_body
-                + '<input name="{0}" value="{1}" type="{2}"> {1} '.format(
+                + '<input class="uk-{2}" name="{0}" value="{1}" type="{2}"> {1} '.format(
                     self.name, option, self.args["type"]
                 )
             )
@@ -57,4 +61,7 @@ class FieldSelect(FieldBase):
 
 class FieldCheckbox(FieldSelect):
     def process(self, form):
-        return f"{self.name}_{form.get(self.name)}", True
+        value = form.get(self.name)
+        if value:
+            return f"{self.name}_{value}", True
+        return self.name, None
