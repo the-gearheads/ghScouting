@@ -1,0 +1,73 @@
+hcselect1:
+  type: radio
+  display: Preloaded Pieces
+  options:
+    - Hatch Panel
+    - Cargo
+hcselect2:
+  type: radio
+  options:
+    - Hatch Panel
+    - Cargo
+habpoints:
+  type: radio
+  display: HAB Points
+  options:
+    - 0
+    - 3
+    - 6
+carss:
+  type: number
+  display: Cargo in Sandstorm
+  min: 0
+hpss:
+  type: number
+  display: Hatch in Sandstorm
+  min: 0
+cargo:
+  type: number
+  display: Cargo
+  min: 0
+hp:
+  type: number
+  display: Hatch Panel
+  min: 0
+carh:
+  type: checkbox
+  display: Cargo Heights
+  options:
+    - Low
+    - Medium
+    - High
+    - None
+hph:
+  type: checkbox
+  display: Hatch Panel Heights
+  options:
+    - Low
+    - Medium
+    - High
+    - None
+hcs:
+  type: radio
+  display: Climb Score
+  options:
+    - 0
+    - 3
+    - 6
+    - 12
+brickbot:
+  type: radio
+  display: Brick Bot
+  options:
+    - 'Yes'
+    - 'No'
+defensive_attempt:
+  type: radio
+  display: Defensive Attempt
+  options:
+    - 'Yes'
+    - 'No'
+comments:
+  type: textarea
+  display: Comments

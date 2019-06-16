@@ -1,11 +1,11 @@
 import sqlite3
 import os
-import shutil
+import csv
 
 import scouting.Field
 
-class Database:
 
+class Database:
     def __init__(self, filename: str):
 
         self.match = 0
@@ -15,11 +15,14 @@ class Database:
         self.filename = filename
         self.connection = sqlite3.connect(self.get_filename())
         self.cursor = self.connection.cursor()
-        self.cursor.execute('CREATE TABLE IF NOT EXISTS matches (matchnum, team)')
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS matches (matchnum, team)")
         self.connection.commit()
 
     def __check_values_exist__(self):
-        self.cursor.execute("SELECT team FROM matches WHERE team = ? AND matchnum = ?", (self.team, self.match))
+        self.cursor.execute(
+            "SELECT team FROM matches WHERE team = ? AND matchnum = ?",
+            (self.team, self.match),
+        )
         if self.cursor.fetchone() is None:
             return False
         return True
@@ -27,13 +30,19 @@ class Database:
     def __check_column_exist__(self, column):
         self.cursor.execute("PRAGMA table_info(matches);")  # Prints columns in table
         for line in self.cursor.fetchall():  # Iterates over lines in pragma output
-            if line[1] == column:  # Checks if second element (column name) is equal to the provided column name
+            if (
+                line[1] == column
+            ):  # Checks if second element (column name) is equal to the provided column name
                 return True
         return False
 
     def __get_column_count__(self):  # TODO: Merge with check column exist
         self.cursor.execute("PRAGMA table_info(matches);")
         return len(self.cursor.fetchall())
+
+    def __get_columns__(self):
+        self.cursor.execute("PRAGMA table_info(matches);")
+        return self.cursor.fetchall()
 
     def add_queue(self, column, value):
         self.queue[column] = value
@@ -50,37 +59,56 @@ class Database:
 
     def create_columns(self, config):
         for key, values in config.items():
-            if not self.__check_column_exist__(key) and config[key].get("metatype") != "display":
+            if (
+                not self.__check_column_exist__(key)
+                and config[key].get("metatype") != "display"
+            ):
                 print("Creating column " + key)
-                self.cursor.execute('ALTER TABLE matches ADD COLUMN {}'.format(key))
-            if config[key].get('options')  'checkbox':
-                for label in config[key]['labels']:
-                    column_name = '{}_{}'.format(key, config[key]['labels'][label])
+                self.cursor.execute("ALTER TABLE matches ADD COLUMN {}".format(key))
+            if values["type"] == "checkbox":
+                for option in config[key]["options"]:
+                    column_name = f"{key}_{option}"
                     if not self.__check_column_exist__(column_name):
                         print("Creating column " + column_name)
-                        self.cursor.execute('ALTER TABLE matches ADD COLUMN {}'.format(column_name))
+                        self.cursor.execute(
+                            "ALTER TABLE matches ADD COLUMN {}".format(column_name)
+                        )
 
     def get_number(self):
         if not self.__check_values_exist__():
-            self.cursor.execute('SELECT number FROM matches WHERE team = ? AND matchnum = ?', (self.team, self.match))
+            self.cursor.execute(
+                "SELECT number FROM matches WHERE team = ? AND matchnum = ?",
+                (self.team, self.match),
+            )
             return self.cursor.fetchone()[0]
 
     def get_filename(self):
-        return self.filename+".db"
+        return self.filename + ".db"
 
     def output_to_csv(self, filename):
-        os.system("/usr/bin/sqlite3 "+self.get_filename()+" < sqlite_to_csv.txt")
-        shutil.move("output.csv", filename+".csv")
+        with open(filename, "w") as f:
+            columns = list(map(lambda x: x[1], self.__get_columns__()))
+            self.cursor.execute("SELECT * FROM matches")
+            data = self.cursor.fetchall()
+            writer = csv.writer(f)
+            writer.writerow(columns)
+            writer.writerows(data)
 
     def commit(self):
         for key, value in self.queue.items():  # Iterate through queue
             if not self.__check_values_exist__():
-                print("Creating row with matchnum and team: {} {}".format(self.match, self.team))
-                self.cursor.execute(
-                    'INSERT INTO matches (matchnum,team) VALUES (?,?)',
-                    (self.match, self.team,)
+                print(
+                    "Creating row with matchnum and team: {} {}".format(
+                        self.match, self.team
+                    )
                 )
-                self.cursor.execute('SELECT team FROM matches WHERE matchnum = {}'.format(self.match))
+                self.cursor.execute(
+                    "INSERT INTO matches (matchnum,team) VALUES (?,?)",
+                    (self.match, self.team),
+                )
+                self.cursor.execute(
+                    "SELECT team FROM matches WHERE matchnum = {}".format(self.match)
+                )
 
             print("Setting " + key + " to " + str(value))
 
@@ -88,8 +116,8 @@ class Database:
                 value = "true"
 
             self.cursor.execute(
-                'UPDATE matches SET {} = ? WHERE team = ? and matchnum = ?'.format(key),
-                (value, self.team, self.match)
+                "UPDATE matches SET {} = ? WHERE team = ? and matchnum = ?".format(key),
+                (value, self.team, self.match),
             )
 
         self.connection.commit()

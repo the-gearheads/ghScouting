@@ -1,4 +1,0 @@
-.headers on
-.mode csv
-.output output.csv
-select * from matches

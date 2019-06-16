@@ -7,7 +7,7 @@
         Select device to perform action on:
         <br>
         <select name="device">
-            {% for partition in list_usb %}
+            {% for partition in list_usbs() %}
                 <option value="{{ partition }}">{{ partition }}</option>
             {% endfor %}
         </select>
@@ -15,7 +15,7 @@
         Select database to perform action on (if applicable):
         <br>
         <select name="database">
-            {% for database in list_db %}
+            {% for database in list_databases() %}
                 <option value="{{ database }}">{{ database }}</option>
             {% endfor %}
         </select>
