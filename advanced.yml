@@ -1,0 +1,19 @@
+page_type: menu
+username: admin
+password: password
+
+gearheads_banner:
+  type: image
+  filename: gearheads.png
+  position: top
+adv_text:
+  type: text
+  text: Welcome to the ghScouting Advanced Menu
+import_config:
+  type: submit
+  method: post
+  text: Import config from USB
+export_config:
+  type: submit
+  method: post
+  text: Export config from USB

@@ -1,8 +1,9 @@
 import sqlite3
 import os
 import csv
+import io
 
-import scouting.Field
+import scouting.Element
 
 
 class Database:
@@ -58,21 +59,34 @@ class Database:
         return self.cursor.fetchall()
 
     def create_columns(self, config):
-        for key, values in config.items():
-            if (
-                not self.__check_column_exist__(key)
-                and config[key].get("metatype") != "display"
-            ):
-                print("Creating column " + key)
-                self.cursor.execute("ALTER TABLE matches ADD COLUMN {}".format(key))
-            if values["type"] == "checkbox":
-                for option in config[key]["options"]:
-                    column_name = f"{key}_{option}"
-                    if not self.__check_column_exist__(column_name):
-                        print("Creating column " + column_name)
-                        self.cursor.execute(
-                            "ALTER TABLE matches ADD COLUMN {}".format(column_name)
-                        )
+        names = []
+        for item in config:
+            if not item.display:
+                if issubclass(type(item), scouting.Element.ElementCheckbox):
+                    for option in item.args["options"]:
+                        names.append(f"{item.name}_{option}")
+                else:
+                    names.append(item.name)
+        for name in names:
+            if not self.__check_column_exist__(name):
+                print("Creating column " + name)
+                self.cursor.execute(f"ALTER TABLE matches ADD COLUMN {name}")
+
+        # for key, values in config.items():
+        #     if (
+        #         not self.__check_column_exist__(key)
+        #         and config[key].get("metatype") != "display"
+        #     ):
+        #         print("Creating column " + key)
+        #         self.cursor.execute("ALTER TABLE matches ADD COLUMN {}".format(key))
+        #     if values["type"] == "checkbox":
+        #         for option in config[key]["options"]:
+        #             column_name = f"{key}_{option}"
+        #             if not self.__check_column_exist__(column_name):
+        #                 print("Creating column " + column_name)
+        #                 self.cursor.execute(
+        #                     "ALTER TABLE matches ADD COLUMN {}".format(column_name)
+        #                 )
 
     def get_number(self):
         if not self.__check_values_exist__():
@@ -85,14 +99,15 @@ class Database:
     def get_filename(self):
         return self.filename + ".db"
 
-    def output_to_csv(self, filename):
-        with open(filename, "w") as f:
-            columns = list(map(lambda x: x[1], self.__get_columns__()))
-            self.cursor.execute("SELECT * FROM matches")
-            data = self.cursor.fetchall()
-            writer = csv.writer(f)
-            writer.writerow(columns)
-            writer.writerows(data)
+    def gen_csv(self):
+        columns = list(map(lambda x: x[1], self.__get_columns__()))
+        self.cursor.execute("SELECT * FROM matches")
+        data = self.cursor.fetchall()
+        csv_data = io.StringIO(newline="")
+        writer = csv.writer(csv_data)
+        writer.writerow(columns)
+        writer.writerows(data)
+        return csv_data
 
     def commit(self):
         for key, value in self.queue.items():  # Iterate through queue

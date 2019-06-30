@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, render_template, send_from_directory, flash
-from flask_basicauth import BasicAuth
+import functools
 import werkzeug.wrappers
+import traceback
 import yaml
 import yaml.scanner
 import collections
@@ -10,14 +11,18 @@ import shutil
 import os
 
 import scouting.Database
-import scouting.Field
+import scouting.Element
 
 # Constant variables
-FIELD_TYPES = {
-    "number": scouting.Field.FieldNumber,
-    "radio": scouting.Field.FieldSelect,
-    "checkbox": scouting.Field.FieldCheckbox,
-    "textarea": scouting.Field.FieldTextarea,
+ELEMENT_TYPES = {
+    "number": scouting.Element.ElementNumber,
+    "radio": scouting.Element.ElementSelect,
+    "checkbox": scouting.Element.ElementCheckbox,
+    "textarea": scouting.Element.ElementTextarea,
+    "button": scouting.Element.ElementButton,
+    "submit": scouting.Element.ElementSubmit,
+    "image": scouting.Element.ElementImage,
+    "text": scouting.Element.ElementText,
 }
 
 
@@ -35,14 +40,59 @@ def load_config(config):
 def create_form(form_config):
     scouting_form = []
     for item, values in form_config.items():
-        field_type = FIELD_TYPES.get(values["type"]) or scouting.Field.FieldBase
-        field = field_type(item, values)
-        scouting_form.append(field)
+        if type(values) is dict:
+            element_type = (
+                ELEMENT_TYPES.get(values["type"]) or scouting.Element.ElementBase
+            )
+            element = element_type(item, values)
+            scouting_form.append(element)
     return scouting_form
+
+
+def parse_form(form_config):
+    app.config["page"] = create_form(form_config)
+    return render_template("main.html")
+
+
+def parse_menu(form_config):
+    if form_config.get("username") and form_config.get("password"):
+        auth_response = check_auth(
+            request, form_config["username"], form_config["password"]
+        )
+        if auth_response:
+            return auth_response
+    app.config["page"] = create_form(form_config)
+    return render_template("main.html")
+
+
+def parse_config(config):
+    types = {"form": parse_form, "menu": parse_menu}
+    if config["page_type"] in types:
+        return types[config["page_type"]](config)
+    else:
+        return return_error("form", f"Form type {config['page_type']} not found")
 
 
 def dict_constructor(loader, node):
     return collections.OrderedDict(loader.construct_pairs(node))
+
+
+# blatantly stolen from Flask snippets
+def authenticate():
+    """Sends a 401 response that enables basic auth"""
+
+    return werkzeug.wrappers.Response(
+        "Login to page failed",
+        401,
+        {"WWW-Authenticate": 'Basic realm="Login Required"'},
+    )
+
+
+def check_auth(request, username, password):
+    auth = request.authorization
+    if auth and (auth.username == username and auth.password == password):
+        return
+    return authenticate()
 
 
 def list_usbs():
@@ -76,6 +126,16 @@ def list_databases():
     return databases
 
 
+def return_error(name, page_data):
+    return werkzeug.wrappers.Response(
+        "<title>Gearheads Scouting</title>\n"
+        '<h2>The following error was encountered while processing "{}":</h2>\n'
+        "<span style='white-space: pre-line'>{}</span>".format(name, page_data),
+        200,
+        mimetype="text/html",
+    )
+
+
 _mapping_tag = (
     yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG
 )  # TODO: Seems kinda hacky but idk
@@ -89,10 +149,9 @@ for key in main_config.keys():
     app.config[f"gh_{key}"] = main_config[key]
 
 app.secret_key = app.config["gh_secret_key"]
-app.config["BASIC_AUTH_USERNAME"] = app.config["gh_admin_username"]
-app.config["BASIC_AUTH_PASSWORD"] = app.config["gh_admin_password"]
-
-basic_auth = BasicAuth(app)
+# jinja A E S T E T I C
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 
 
 @app.route("/favicon.ico")
@@ -112,74 +171,67 @@ def root():
 
 @app.route("/<config>")
 def form(config):
-    form_data = load_config(config)
-    if isinstance(form_data, Exception):  # Check if load_config threw an exception
-        response = werkzeug.wrappers.Response(
-            "<title>Gearheads Scouting</title>\n"
-            '<h2>The following error was encountered while processing form "{}":</h2>\n'
-            "<p>{}</p>".format(config, form_data),
-            200,
-            mimetype="text/html",
-        )
-        return response
-    app.config["form"] = create_form(
-        form_data
-    )  # Add requested form data to request-global flask config
-    return render_template("main.html")
+    page_data = load_config(config)
+    if isinstance(page_data, Exception):  # Check if load_config threw an exception
+        return return_error(config, page_data)
+
+    try:
+        return parse_config(page_data)
+        # app.config["page"] = parse_config(
+        #     page_data
+        # )  # Add requested form data to request-global flask config
+        # return render_template("main.html")
+    except Exception as e:
+        return return_error(config, traceback.format_exc())
 
 
 @app.route("/<config>", methods=["POST"])
 def form_post(config):
-    form_data = load_config(config)
-    if isinstance(form_data, Exception):  # Check if load_config threw an exception
-        response = werkzeug.wrappers.Response(
-            "<title>Gearheads Scouting</title>\n"
-            '<h2>The following error was encountered while processing form "{}":</h2>\n'
-            "<p>{}</p>".format(config, form_data),
-            200,
-            mimetype="text/html",
+    page_data = load_config(config)
+    if isinstance(page_data, Exception):  # Check if load_config threw an exception
+        return return_error(config, page_data)
+
+    try:
+        form = create_form(page_data)
+
+        db = scouting.Database.Database(config)
+        db.create_columns(form)
+
+        if not request.form["matchnum"] or not request.form["team"]:
+            return "You must supply a match number and team number!"
+
+        db.set_match(request.form["matchnum"])
+        db.set_team(request.form["team"])
+
+        for element in form:
+            if not element.display:
+                column, value = element.process(request.form)
+                if value:
+                    db.add_queue(column, value)
+
+        db.commit()
+        db.close()
+
+        flash(
+            f'✓ Successfully submitted entry for team {request.form["team"]}, match {request.form["matchnum"]}'
         )
-        return response
-
-    form = create_form(form_data)
-
-    db = scouting.Database.Database(config)
-    db.create_columns(form_data)
-
-    if not request.form["matchnum"] or not request.form["team"]:
-        return "You must supply a match number and team number!"
-
-    db.set_match(request.form["matchnum"])
-    db.set_team(request.form["team"])
-
-    for field in form:
-        column, value = field.process(request.form)
-        if value:
-            db.add_queue(column, value)
-
-    db.commit()
-    db.close()
-
-    flash(
-        f'✓ Successfully submitted entry for team {request.form["team"]}, match {request.form["matchnum"]}'
-    )
-    # response = werkzeug.wrappers.Response(
-    #    "Successfully submitted!\n"
-    #    '<form method="get" action="/">'
-    #    '<button type="submit">Submit another entry</button>'
-    #    "</form>",
-    #    200,
-    #    mimetype="text/html",
-    # )
-    return redirect("/" + app.config["gh_default"])
+        return redirect("/" + app.config["gh_default"])
+    except Exception as e:
+        return return_error(config, traceback.format_exc())
 
 
-@app.route("/advanced")
-@basic_auth.required
-def advanced():
-    return render_template(
-        "advanced.html", list_usbs=list_usbs, list_databases=list_databases
-    )
+@app.route("/<config>/csv")
+def gen_csv(config):
+    page_data = load_config(config)
+    if page_data["page_type"] == "form":
+        db = scouting.Database.Database(config)
+        return db.gen_csv().getvalue()
+    return return_error(config, "Cannot generate a csv for a non-form page")
+
+
+# @app.route("/advanced")
+def advanced(config):
+    return render_template("main.html")
 
 
 @app.route("/advanced", methods=["POST"])
@@ -200,7 +252,8 @@ def advanced_post():
         dbname = request.form["database"]
         csvname = dbname[:-3] + ".csv"
         db = scouting.Database.Database(os.path.splitext(dbname)[0])
-        db.output_to_csv(csvname)
+        with open(csvname, "w+") as f:
+            f.write(db.gen_csv())
         db.close()
         return "Database successfully exported"
     elif "delete" in request.form:

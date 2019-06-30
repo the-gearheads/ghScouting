@@ -93,12 +93,6 @@ textarea {
     height: 7em;
 }
 
-button { 
-    width: 8em;
-    height: 2.5em;
-    border-radius: .5em;
-}
-
 label {
     margin-bottom: .5em;
     display: inline-block;
@@ -109,7 +103,7 @@ input[type=radio] {
     margin-right: 7px;
 }
 
-.matchdata {
+div.float {
     float: left;
     position: fixed;
     left: 20px;
@@ -121,3 +115,17 @@ input[type=radio] {
     box-shadow: rgba(0,0,0,0.2) 0px 0px 50px;
 }
 
+.uk-button-primary { 
+    width: 8em;
+    height: 2.5em;
+    border-radius: .5em;
+    margin-top: 1.5em;
+}
+
+div.item {
+    padding: .35em;
+}
+
+div.item > label {
+    display: block;
+}

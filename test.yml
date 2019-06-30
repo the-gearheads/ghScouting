@@ -1,3 +1,16 @@
+page_type: form
+gearheads_banner:
+  type: image
+  filename: gearheads.png
+  position: top
+matchnum:
+  type: number
+  display: Match Number
+  position: float
+team:
+  type: number
+  display: Team Number
+  position: float
 hcselect1:
   type: radio
   display: Preloaded Pieces
@@ -71,3 +84,7 @@ defensive_attempt:
 comments:
   type: textarea
   display: Comments
+submit_button:
+  type: submit
+  method: post
+  text: Submit
