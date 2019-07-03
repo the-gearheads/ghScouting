@@ -16,6 +16,9 @@ body {
     font-size: 15px;
     text-align: center;
     font-weight: bold;
+    margin: auto;
+    width: 100%;
+    height: 100%;
 }
 
 div.main_form {
@@ -86,6 +89,16 @@ input[type=number] {
     font-size: 25px;
 }
 
+input[type=text] {
+    width: 15em;
+    box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
+    border-color: #f4f4f4;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
 textarea {
     font-family: 'Open Sans', sans-serif;
     padding: .75vw;
@@ -103,6 +116,13 @@ textarea {
 label {
     margin-bottom: .5em;
     display: inline-block;
+}
+
+#filepicker_button {
+    font-weight: normal;
+    font-size: unset;
+    border-radius: initial;
+    border-color: buttonface;
 }
 
 input[type=radio] {
@@ -123,10 +143,15 @@ div.float {
 }
 
 .uk-button-primary { 
-    width: 8em;
-    height: 2.5em;
+    width: auto;
+    height: auto;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    max-width: 15em;
     border-radius: .5em;
-    margin-top: 1.5em;
+    margin-top: .5em;
 }
 
 div.item {

@@ -44,7 +44,7 @@ class ElementBase:
     def __init__(self, name: str, args: dict):
         self.name = name
         self.args = args
-        self.display = self.args.get("display") or False
+        self.display_field = self.args.get("display_field") or False
         self.position = self.args.get("position") or None
 
     # allow to keep rest of class while only overloading one method minimum
@@ -119,7 +119,7 @@ class ElementButton(ElementBase):
     def __init__(self, name: str, args: dict):
         self.name = name
         self.args = args
-        self.display = self.args.get("display") or True
+        self.display_field_field = self.args.get("display_field") or True
         self.position = self.args.get("position") or None
 
     def line_base(self):
@@ -128,7 +128,15 @@ class ElementButton(ElementBase):
         )
 
     def process(self, form):
-        process = subprocess.run(self.args["action"].split(" "))
+        command = next(d for i, d in enumerate(self.args["action"]) if "command" in d)[
+            "command"
+        ]
+        args = next(d for i, d in enumerate(self.args["action"]) if "args" in d)["args"]
+        for argnum in range(0, len(args)):
+            command = command.replace(f"{{{argnum}}}", form[args[argnum]])
+        process = subprocess.run(command.split(" "), capture_output=True)
+        if process.returncode != 0:
+            return process.stderr
         return process.returncode
 
 
@@ -164,16 +172,25 @@ class ElementDatabasesDropdown(ElementDropdown):
 
 class ElementSubmit(ElementButton):
     def line_base(self):
-        return '<button class="uk-button-primary" name="{}" type="submit" formmethod="{}">{}</button>'.format(
-            self.name, self.args["method"], self.args["text"]
+        return '<button class="uk-button-primary" name="{}" type="submit" formmethod="post">{}</button>'.format(
+            self.name, self.args["text"]
         )
+
+
+# incomplete
+# class ElementFilePicker(ElementBase):
+#     def line_base(self):
+#         return '<input type="file" id="filepicker_{0}" name="{0}" style="display: none;" /> \
+#     <input type="button" value="Choose File" id="filepicker_button" onclick="document.getElementById(\'filepicker_{0}\').click();" />'.format(
+#             self.name
+#         )
 
 
 class ElementImage(ElementBase):
     def __init__(self, name: str, args: dict):
         self.name = name
         self.args = args
-        self.display = self.args.get("display") or True
+        self.display_field = self.args.get("display_field") or True
         self.position = self.args.get("position") or None
 
     def line_base(self):
@@ -184,6 +201,6 @@ class ElementImage(ElementBase):
         )
 
 
-class ElementText(ElementBase):
+class ElementDisplayText(ElementBase):
     def line_base(self):
         return f'<p>{self.args["text"]}</p>'

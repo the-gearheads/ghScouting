@@ -21,8 +21,10 @@ ELEMENT_TYPES = {
     "button": scouting.Element.ElementButton,
     "submit": scouting.Element.ElementSubmit,
     "image": scouting.Element.ElementImage,
-    "text": scouting.Element.ElementText,
+    "display_text": scouting.Element.ElementDisplayText,
     "dropdown": scouting.Element.ElementDropdown,
+    # incomplete
+    # "filepicker": scouting.Element.ElementFilePicker,
     "removeables_dropdown": scouting.Element.ElementRemoveablesDropdown,
     "databases_dropdown": scouting.Element.ElementDatabasesDropdown,
 }
@@ -93,7 +95,7 @@ def form_post(form_data, config):
     db.set_team(request.form["team"])
 
     for element in form:
-        if not element.display:
+        if not element.display_field:
             column, value = element.process(request.form)
             if value:
                 db.add_queue(column, value)
@@ -120,17 +122,18 @@ def menu_post(form_data, config):
             # only used button is in form, so if it is in the button dict keys set pressed to the corresponding button obj
             pressed = button_dict[element[0]]
 
-    if not pressed.args.get("action"):
+    if not pressed.args.get("action") and "commands" not in pressed.args.get("action"):
         flash("No pressed action found!")
         return redirect(request.path)
     try:
-        exitcode = pressed.process(request.form)
-        flash(
-            "Button action completed successfully."
-            if exitcode == 0
-            else "Button action failed with exit code " + exitcode
-        )
+        returned = pressed.process(request.form)
+        if returned == 0:
+            flash(f"{pressed.args['text']} action completed successfully.")
+        else:
+            flash(f"{pressed.args['text']} action failed with the following error")
+            flash(returned.decode("utf-8"))
     except Exception as e:
+        print(traceback.format_exc())
         flash("Button action failed with error " + type(e).__name__)
     return redirect(request.path)
 
@@ -257,23 +260,6 @@ def advanced(config):
 #     elif "import_config" in request.form:
 #         shutil.copyfile(request.form["device"] + "/config.yml", "config.yml")
 #         return "Config successfully imported"
-#     elif "export_database_db" in request.form:
-#         shutil.copyfile(
-#             request.form["database"],
-#             request.form["device"] + "/" + request.form["database"],
-#         )
-#         return "Database successfully exported"
-#     elif "export_database_csv" in request.form:
-#         dbname = request.form["database"]
-#         csvname = dbname[:-3] + ".csv"
-#         db = scouting.Database.Database(os.path.splitext(dbname)[0])
-#         with open(csvname, "w+") as f:
-#             f.write(db.gen_csv())
-#         db.close()
-#         return "Database successfully exported"
-#     elif "delete" in request.form:
-#         os.remove(request.form["database"])
-#         return "Database deleted"
 #     elif "restart" in request.form:
 #         os.system("/usr/bin/sudo systemctl restart ghscouting")
 #         return "Restart failed!"
