@@ -1,5 +1,6 @@
 from flask import url_for
 import jinja2
+import subprocess
 
 
 class ElementBase:
@@ -9,9 +10,18 @@ class ElementBase:
         self.display = self.args.get("display") or False
         self.position = self.args.get("position") or None
 
-    def get_line(self):
+    # allow to keep rest of class while only overloading one method minimum
+    def line_base(self):
         return '<input class="uk-input" name="{}" type="{}">'.format(
             self.name, self.args["type"]
+        )
+
+    # allows easy global modifications
+    def get_line(self):
+        return (
+            self.line_base()[:-1] + " required>"
+            if self.args.get("required")
+            else self.line_base()
         )
 
     def render(self):
@@ -28,12 +38,12 @@ class ElementBase:
 
 
 class ElementTextarea(ElementBase):
-    def get_line(self):
+    def line_base(self):
         return '<textarea class="uk-textarea" name="{}"></textarea>'.format(self.name)
 
 
 class ElementNumber(ElementBase):
-    def get_line(self):
+    def line_base(self):
         return '<input class="uk-input" name="{}" type="number" min="{}" max="{}">'.format(
             self.name, self.args.get("min"), self.args.get("max")
         )
@@ -75,14 +85,18 @@ class ElementButton(ElementBase):
         self.display = self.args.get("display") or True
         self.position = self.args.get("position") or None
 
-    def get_line(self):
+    def line_base(self):
         return '<button class="uk-button-default" name="{}" type="{}">{}</button>'.format(
             self.name, self.args["type"], self.args["text"]
         )
 
+    def process(self, form):
+        process = subprocess.run(self.args["action"].split(" "))
+        return process.returncode
+
 
 class ElementSubmit(ElementButton):
-    def get_line(self):
+    def line_base(self):
         return '<button class="uk-button-primary" name="{}" type="submit" formmethod="{}">{}</button>'.format(
             self.name, self.args["method"], self.args["text"]
         )
@@ -95,7 +109,7 @@ class ElementImage(ElementBase):
         self.display = self.args.get("display") or True
         self.position = self.args.get("position") or None
 
-    def get_line(self):
+    def line_base(self):
         return (
             '<img src="'
             + url_for("static", filename=self.args["filename"])
@@ -104,5 +118,5 @@ class ElementImage(ElementBase):
 
 
 class ElementText(ElementBase):
-    def get_line(self):
+    def line_base(self):
         return f'<p>{self.args["text"]}</p>'

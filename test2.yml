@@ -3,6 +3,9 @@ gearheads_banner:
   type: image
   filename: gearheads.png
   position: top
+test2:
+  type: text
+  text: this is the test2 page
 matchnum:
   type: number
   display: Match Number

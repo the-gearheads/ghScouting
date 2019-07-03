@@ -13,6 +13,7 @@ import_config:
   type: submit
   method: post
   text: Import config from USB
+  action: touch /home/steveoy132ikl/yeet_file
 export_config:
   type: submit
   method: post
