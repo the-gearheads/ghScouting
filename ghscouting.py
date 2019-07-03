@@ -22,6 +22,9 @@ ELEMENT_TYPES = {
     "submit": scouting.Element.ElementSubmit,
     "image": scouting.Element.ElementImage,
     "text": scouting.Element.ElementText,
+    "dropdown": scouting.Element.ElementDropdown,
+    "removeables_dropdown": scouting.Element.ElementRemoveablesDropdown,
+    "databases_dropdown": scouting.Element.ElementDatabasesDropdown,
 }
 
 
@@ -152,37 +155,6 @@ def check_auth(request, username, password):
     if auth and (auth.username == username and auth.password == password):
         return
     return authenticate()
-
-
-def list_usbs():
-    usbs = []
-    context = pyudev.Context()
-    removable = [
-        device
-        for device in context.list_devices(subsystem="block", DEVTYPE="disk")
-        if device.attributes.asstring("removable") == "1"
-    ]
-    for device in removable:
-        partitions = [
-            device.device_node
-            for device in context.list_devices(
-                subsystem="block", DEVTYPE="partition", parent=device
-            )
-        ]
-        for p in psutil.disk_partitions():
-            if p.device in partitions:
-                usbs.append("{}".format(p.mountpoint))
-    usbs.sort()
-    return usbs
-
-
-def list_databases():
-    databases = []
-    for file in os.listdir(os.getcwd()):
-        if file.endswith(".db"):
-            databases.append(file)
-    databases.sort()
-    return databases
 
 
 def return_error(name, page_data):

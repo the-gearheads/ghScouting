@@ -1,6 +1,43 @@
 from flask import url_for
 import jinja2
 import subprocess
+import pyudev
+import psutil
+import os
+
+
+# uh i should probably put this somewhere else but whatever
+def list_removeable():
+    usbs = []
+    context = pyudev.Context()
+    removable = [
+        device
+        for device in context.list_devices(subsystem="block", DEVTYPE="disk")
+        if device.attributes.asstring("removable") == "1"
+    ]
+    for device in removable:
+        partitions = [
+            device.device_node
+            for device in context.list_devices(
+                subsystem="block", DEVTYPE="partition", parent=device
+            )
+        ]
+        for p in psutil.disk_partitions():
+            if p.device in partitions:
+                usbs.append("{}".format(p.mountpoint))
+    usbs.sort()
+    return usbs
+
+
+def list_databases():
+    databases_ext = []
+    # kinda hacky but whatever™
+    for file in os.listdir(os.getcwd()):
+        if file.endswith(".db"):
+            databases_ext.append(file)
+    databases = list(map(lambda x: os.path.splitext(x)[0], databases_ext))
+    databases.sort()
+    return databases
 
 
 class ElementBase:
@@ -93,6 +130,36 @@ class ElementButton(ElementBase):
     def process(self, form):
         process = subprocess.run(self.args["action"].split(" "))
         return process.returncode
+
+
+class ElementDropdown(ElementBase):
+    def line_base(self):
+        line = "<select name={}>".format(self.name)
+        for option in self.args["options"]:
+            line += "\n<option value='{0}'>{0}</option>".format(option)
+        line += "\n</select>"
+        return line
+
+    def get_line(self):
+        return (
+            self.line_base()[:8] + "required "
+            if self.args.get("required")
+            else self.line_base()
+        )
+
+
+class ElementRemoveablesDropdown(ElementDropdown):
+    def __init__(self, name: str, args: dict):
+        self.name = name
+        self.args = args
+        self.args["options"] = list_removeable()
+
+
+class ElementDatabasesDropdown(ElementDropdown):
+    def __init__(self, name: str, args: dict):
+        self.name = name
+        self.args = args
+        self.args["options"] = list_databases()
 
 
 class ElementSubmit(ElementButton):
