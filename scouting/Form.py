@@ -1,4 +1,5 @@
 from flask import render_template, request, flash, redirect
+import werkzeug
 import traceback
 import scouting.Page
 import scouting.Element
@@ -63,6 +64,16 @@ class Form:
 
 
 class Menu(Form):
+    def get_page(self, app):
+        if self.config.config.get("username") and self.config.config.get("password"):
+            auth_response = self.__check_auth__(
+                self.config.config["username"], self.config.config["password"]
+            )
+        if auth_response:
+            return auth_response
+        app.config["page"] = self.form
+        return render_template("form.html")
+
     def process_post(self):
         buttons = list(
             filter(
@@ -92,3 +103,13 @@ class Menu(Form):
             print(traceback.format_exc())
             flash("Button action failed with error " + type(e).__name__)
         return redirect(request.path)
+
+    def __check_auth__(self, username, password):
+        auth = request.authorization
+        if auth and (auth.username == username and auth.password == password):
+            return
+        return werkzeug.wrappers.Response(
+            "Login to page failed",
+            401,
+            {"WWW-Authenticate": 'Basic realm="Login Required"'},
+        )
