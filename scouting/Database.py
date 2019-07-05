@@ -61,7 +61,7 @@ class Database:
     def create_columns(self, config):
         names = []
         for item in config:
-            if not item.display:
+            if not item.display_field:
                 if issubclass(type(item), scouting.Element.ElementCheckbox):
                     for option in item.args["options"]:
                         names.append(f"{item.name}_{option}")

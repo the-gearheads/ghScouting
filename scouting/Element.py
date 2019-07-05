@@ -117,10 +117,8 @@ class ElementCheckbox(ElementSelect):
 
 class ElementButton(ElementBase):
     def __init__(self, name: str, args: dict):
-        self.name = name
-        self.args = args
-        self.display_field_field = self.args.get("display_field") or True
-        self.position = self.args.get("position") or None
+        super(ElementButton, self).__init__(name, args)
+        self.display_field = self.args.get("display_field") or True
 
     def line_base(self):
         return '<button class="uk-button-default" name="{}" type="{}">{}</button>'.format(
@@ -131,9 +129,12 @@ class ElementButton(ElementBase):
         command = next(d for i, d in enumerate(self.args["action"]) if "command" in d)[
             "command"
         ]
-        args = next(d for i, d in enumerate(self.args["action"]) if "args" in d)["args"]
-        for argnum in range(0, len(args)):
-            command = command.replace(f"{{{argnum}}}", form[args[argnum]])
+        if "args" in self.args["action"]:
+            args = next(d for i, d in enumerate(self.args["action"]) if "args" in d)[
+                "args"
+            ]
+            for argnum in range(0, len(args)):
+                command = command.replace(f"{{{argnum}}}", form[args[argnum]])
         process = subprocess.run(command.split(" "), capture_output=True)
         if process.returncode != 0:
             return process.stderr
@@ -158,15 +159,13 @@ class ElementDropdown(ElementBase):
 
 class ElementRemoveablesDropdown(ElementDropdown):
     def __init__(self, name: str, args: dict):
-        self.name = name
-        self.args = args
+        super(ElementRemoveablesDropdown, self).__init__(name, args)
         self.args["options"] = list_removeable()
 
 
 class ElementDatabasesDropdown(ElementDropdown):
     def __init__(self, name: str, args: dict):
-        self.name = name
-        self.args = args
+        super(ElementDatabasesDropdown, self).__init__(name, args)
         self.args["options"] = list_databases()
 
 
@@ -177,21 +176,10 @@ class ElementSubmit(ElementButton):
         )
 
 
-# incomplete
-# class ElementFilePicker(ElementBase):
-#     def line_base(self):
-#         return '<input type="file" id="filepicker_{0}" name="{0}" style="display: none;" /> \
-#     <input type="button" value="Choose File" id="filepicker_button" onclick="document.getElementById(\'filepicker_{0}\').click();" />'.format(
-#             self.name
-#         )
-
-
 class ElementImage(ElementBase):
     def __init__(self, name: str, args: dict):
-        self.name = name
-        self.args = args
+        super(ElementImage, self).__init__(name, args)
         self.display_field = self.args.get("display_field") or True
-        self.position = self.args.get("position") or None
 
     def line_base(self):
         return (
@@ -202,5 +190,9 @@ class ElementImage(ElementBase):
 
 
 class ElementDisplayText(ElementBase):
+    def __init__(self, name: str, args: dict):
+        super(ElementDisplayText, self).__init__(name, args)
+        self.display_field = True
+
     def line_base(self):
         return f'<p>{self.args["text"]}</p>'

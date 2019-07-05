@@ -7,13 +7,27 @@
     <body>
         <div class="main_form"> 
             <form>
-                <div class="top">
-                    {% for item in config.page|selectattr("position", "equalto", "top") %}
+                {% set float_config = config.page|selectattr("position", "equalto", "float")| list %}
+                {% set top_config = config.page|selectattr("position", "equalto", "top") | list %}
+                {% set main_config = config.page|rejectattr("position") | list %}
+                {% if float_config %}
+                <div class="float">
+                    {% for item in float_config %}
                     <div class="item">
                         {{ item.render() }}
                     </div>
                     {% endfor %}
                 </div>
+                {% endif %}
+                {% if top_config %}
+                <div class="top">
+                    {% for item in top_config %}
+                    <div class="item">
+                        {{ item.render() }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 {% for message in messages %}
@@ -23,20 +37,15 @@
                 {% endfor %}
                 {% endif %}
                 {% endwith %}
+                {% if main_config %}
                 <div class="main">
-                    {% for item in config.page|rejectattr("position") %}
+                    {% for item in main_config %}
                     <div class="item">
                         {{ item.render() }}
                     </div>
                     {% endfor %}
                 </div>
-                <div class="float">
-                    {% for item in config.page|selectattr("position", "equalto", "float") %}
-                    <div class="item">
-                        {{ item.render() }}
-                    </div>
-                    {% endfor %}
-                </div>
+                {% endif %}
             </form>
         </div>
     </body>
