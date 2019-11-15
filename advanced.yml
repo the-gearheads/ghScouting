@@ -21,7 +21,7 @@ export_database:
   type: submit
   text: Export database file to USB
   action:
-    - command: 'cp {0}.db {1}/'
+    - command: '/bin/cp {0}.db {1}/'
     - args:
         - databases
         - removeables
@@ -29,7 +29,7 @@ export_csv:
   type: submit
   text: Export csv file to USB
   action:
-    - command: 'curl -o {0}/{1}.csv localhost:5000/{1}/csv'
+    - command: '/bin/curl -o {0}/{1}.csv localhost:5000/{1}/csv'
     - args:
         - removeables
         - databases
@@ -37,7 +37,7 @@ delete_database:
   type: submit
   text: Delete database
   action:
-    - command: 'rm {0}.db'
+    - command: '/bin/rm {0}.db'
     - args:
       - databases
 conf_text:
@@ -47,7 +47,7 @@ export_conf:
   type: submit
   text: Export Config to USB
   action:
-    - command: 'cp {0}.yml {1}/{0}.yml'
+    - command: '/bin/cp {0}.yml {1}/{0}.yml'
     - args:
       - conf_name
       - removeables
@@ -55,7 +55,7 @@ import_conf:
   type: submit
   text: Import Config from USB
   action:
-    - command: 'cp {1}/{0}.yml {0}.yml'
+    - command: '/bin/cp {1}/{0}.yml {0}.yml'
     - args:
       - conf_name
       - removeables
@@ -66,9 +66,9 @@ shutdown:
   type: submit
   text: Shutdown System
   action:
-    - command: 'shutdown now'
+    - command: '/bin/shutdown now'
 restart:
   type: submit
   text: Restart ghScouting
   action:
-    - command: 'sudo systemctl restart ghscouting'
+    - command: '/bin/systemctl restart ghscouting'

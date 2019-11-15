@@ -98,8 +98,8 @@ def page_post(config):
 
 @app.route("/<config>/csv")
 def gen_csv(config):
-    page_data = load_config(config)
-    if page_data["page_type"] == "form":
+    page = scouting.Page.Page(config)
+    if page.type == "form":
         db = scouting.Database.Database(config)
         return db.gen_csv().getvalue()
     return return_error(config, "Cannot generate a csv for a non-form page")

@@ -126,13 +126,12 @@ class ElementButton(ElementBase):
         )
 
     def process(self, form):
-        command = next(d for i, d in enumerate(self.args["action"]) if "command" in d)[
-            "command"
-        ]
-        if "args" in self.args["action"]:
-            args = next(d for i, d in enumerate(self.args["action"]) if "args" in d)[
-                "args"
-            ]
+        action = {}
+        for d in self.args["action"]:
+            action.update(d)
+        command = action["command"]
+        if "args" in action:
+            args = action["args"]
             for argnum in range(0, len(args)):
                 command = command.replace(f"{{{argnum}}}", form[args[argnum]])
         process = subprocess.run(command.split(" "), capture_output=True)
