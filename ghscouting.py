@@ -5,7 +5,6 @@ import traceback
 import yaml
 import yaml.scanner
 import collections
-import pyudev
 import psutil
 import shutil
 import os

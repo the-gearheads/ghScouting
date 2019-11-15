@@ -1,13 +1,19 @@
 from flask import url_for
 import jinja2
 import subprocess
-import pyudev
+try:
+    import pyudev
+    UDEV_AVAIL = True
+except ImportError:
+    UDEV_AVAIL = False
 import psutil
 import os
 
 
 # uh i should probably put this somewhere else but whatever
 def list_removeable():
+    if not UDEV_AVAIL:
+        return []
     usbs = []
     context = pyudev.Context()
     removable = [
