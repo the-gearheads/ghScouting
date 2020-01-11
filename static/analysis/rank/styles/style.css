@@ -1,0 +1,85 @@
+body{
+	background-color: white;
+}
+
+.rank {
+	height : 145px;
+	width : 100%;
+	border: 1px solid #4CAF50;
+	padding-left: 10px;
+	
+}
+
+#mySidebar {
+	background-color: lightgrey;
+	width: 150px;
+	height: 100%;
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	text-align: center;
+	z-index: 2;
+	display: none;
+}
+
+#open_sidebar {
+	border: none;
+	width: 50px;
+	height: 25px;
+	float: right;
+	position:relative;
+	z-index: 2;
+	top: 0px;
+	
+}
+
+#close_sidebar {
+	border: none;
+	width: 50px;
+	height: 25px;
+	
+
+}
+.drag {
+	width: 100px;
+	height:50px;
+	position: absolute;
+	z-index: 9;
+	background-color: #f1f1f1;
+	border: 1px solid #d3d3d3;
+	text-align: center;
+}
+ .header {
+	width: 100px;
+	height:50px;
+	cursor: grab;
+	z-index: 9;
+	background-color: lightblue;
+	border: 1px solid #d3d3d3;
+	text-align: center;
+ }
+ 
+ .expand {
+	background-color: #f1f1f1;
+	width: 100%;
+	border: none;
+	cursor: pointer;
+ }
+ 
+ .expand:after {
+	content: '\002B';
+	color: black;
+	font-weight: bold;
+	
+	margin-left: 5px;
+ }
+ 
+ .active:after {
+	  content: '\2212';
+ }
+ 
+ .content {
+	 display: none;
+	 overflow: hidden;
+	 background-color: #f1f1f1;
+ }

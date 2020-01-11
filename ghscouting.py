@@ -9,11 +9,11 @@ import psutil
 import shutil
 import os
 
+import scouting
 import scouting.Database
 import scouting.Element
 import scouting.Form
 import scouting.Page
-
 
 # blatantly stolen from Flask snippets
 def authenticate():
@@ -102,3 +102,20 @@ def gen_csv(config):
         db = scouting.Database.Database(config)
         return db.gen_csv().getvalue()
     return return_error(config, "Cannot generate a csv for a non-form page")
+
+
+### RANK STUFF (MOVE)
+
+@app.route("/<config>/analysis/rank")
+def rank_server(config):
+    message = "Rank"
+    return render_template('analysis/rank.html', message=message)
+    
+@app.route("/<config>/analysis/post", methods=['POST'])
+def post_server(config):
+    message = "Post"
+    print(request.form)
+    return render_template('analysis/post.html', message=message)
+#@app.route("/<config>/analysis/test")
+#def rank_test(config):
+    

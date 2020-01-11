@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='analysis/rank/styles/style.css') }}"></link>
+	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-3.4.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
+	<script type="text/javascript" href="{{ url_for('static',filename='analysis/rank/scripts/script.js')}}" defer></script>
+	<body>
+
+		<div id="rank_S" class="rank">
+			<h1>S</h1>
+			
+		</div>
+		<div id="rank_A" class="rank">
+			<h1>A</h1>
+			
+		</div>
+		<div id="rank_B" class="rank">
+			<h1>B</h1>
+			
+		</div>
+		<div id="rank_C" class="rank">
+			<h1>C</h1>
+			
+		</div>
+		<button type="button" id="open_sidebar" onclick="openNav()" >☰</button>
+		<button type="button" onclick="submit()" >Submit</button>
+		<div id="mySidebar">
+			<button onclick="closeNav()" id="close_sidebar">Close</button>
+			<div id="drag" class="drag">
+				<div id="header" class="header" onclick="check()">Click here to morewrweve</div>
+				<button type="button" class="expand"></button>
+				<div id="content" class="content">Bruh</div>
+			</div>
+		</div>
+	</body>
+</html>
