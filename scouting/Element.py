@@ -1,8 +1,10 @@
 from flask import url_for
 import jinja2
 import subprocess
+
 try:
     import pyudev
+
     UDEV_AVAIL = True
 except ImportError:
     UDEV_AVAIL = False

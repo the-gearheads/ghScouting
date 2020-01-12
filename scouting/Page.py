@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import yaml
 
 import scouting
@@ -33,10 +35,8 @@ class Config:
 
     def __create_config__(self, name):
         try:
-            stream = open(name + ".yml")
-        except FileNotFoundError as e:
-            return e
-        try:
-            return yaml.load(stream)
-        except yaml.scanner.ScannerError as e:
+            form = Path("config")
+            with open(form / f"{name}.yml") as stream:
+                return yaml.load(stream)
+        except (FileNotFoundError, yaml.scanner.ScannerError) as e:
             return e
