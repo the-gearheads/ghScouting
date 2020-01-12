@@ -1,0 +1,57 @@
+page_type: form
+matchnum:
+  type: number
+  display: Match Number
+  position: float
+  required: true
+team:
+  type: number
+  display: Team Number
+  position: float
+  required: true
+radio:
+  type: radio
+  display: Radio
+  options:
+    - a
+    - b
+    - c
+checkbox:
+  display: Checkbox
+  type: checkbox
+  options:
+    - a
+    - b
+    - c
+textarea:
+  display: Textarea
+  type: textarea
+button:
+  display: Regular Button
+  text: Button
+  type: button
+submit:
+  display: Submit Button
+  text: Submit
+  type: submit
+image:
+  display: Image
+  type: image
+  filename: gearheads.png
+display_text:
+  type: display_text
+  display: Text
+  text: this is some text
+dropdown:
+  display: Dropdown
+  type: dropdown
+  options:
+    - a
+    - b
+    - c
+removeables_dropdown:
+  display: Removeables Dropdown
+  type: removeables_dropdown
+databases_dropdown:
+  display: Databases Dropdown
+  type: databases_dropdown

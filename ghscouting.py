@@ -1,151 +1,104 @@
-from flask import Flask, request, url_for
-from flask_basicauth import BasicAuth
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+from flask import Flask, request, redirect, render_template, send_from_directory, flash
+import functools
+import werkzeug.wrappers
+import traceback
 import yaml
+import yaml.scanner
 import collections
-import pyudev
 import psutil
 import shutil
 import os
 
-import database
+import scouting.Database
+import scouting.Element
+import scouting.Form
+import scouting.Page
+
+
+# blatantly stolen from Flask snippets
+def authenticate():
+    """Sends a 401 response that enables basic auth"""
+
+    return werkzeug.wrappers.Response(
+        "Login to page failed",
+        401,
+        {"WWW-Authenticate": 'Basic realm="Login Required"'},
+    )
+
+
+def check_auth(request, username, password):
+    auth = request.authorization
+    if auth and (auth.username == username and auth.password == password):
+        return
+    return authenticate()
+
+
+def return_error(name, page_data):
+    return werkzeug.wrappers.Response(
+        f"<title>Gearheads Scouting</title>\n"
+        f"<h2>The following error was encountered while processing {name}:</h2>\n"
+        f"<span style='white-space: pre-line'>{page_data}</span>",
+        200,
+        mimetype="text/html",
+    )
+
 
 app = Flask(__name__)
 
-app.config['BASIC_AUTH_USERNAME'] = 'ghscouting'
-app.config['BASIC_AUTH_PASSWORD'] = 'password'
+main_config = scouting.Page.Config("config")
+gh_config = {f"gh_{k}": v for k, v in main_config.config.items()}
+app.config.update(gh_config)
 
-basic_auth = BasicAuth(app)
-
-
-def load_config(config):
-    stream = open(config)
-    return yaml.load(stream)
+app.secret_key = app.config["gh_secret_key"]
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 
 
-
-_mapping_tag = yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG
-
-
-def dict_constructor(loader, node):
-    return collections.OrderedDict(loader.construct_pairs(node))
-
-
-def list_usb():
-    usbs = []
-    context = pyudev.Context()
-    removable = [device for device in context.list_devices(subsystem='block', DEVTYPE='disk') if device.attributes.asstring('removable') == "1"]
-    for device in removable:
-        partitions = [device.device_node for device in context.list_devices(subsystem='block', DEVTYPE='partition', parent=device)]
-        for p in psutil.disk_partitions():
-            if p.device in partitions:
-                usbs.append("{}".format(p.mountpoint))
-    usbs.sort()
-    return usbs
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(
+        os.path.join(app.root_path, "static"),
+        "favicon.ico",
+        mimetype="image/vnd.microsoft.icon",
+    )
 
 
-def list_databases():
-    databases = []
-    for file in os.listdir(os.getcwd()):
-        if file.endswith(".db"):
-            databases.append(file)
-    databases.sort()
-    return databases
+@app.route("/")
+def root():
+    # Get default form from config
+    return redirect("/" + app.config["gh_default"])
 
 
-yaml.add_constructor(_mapping_tag, dict_constructor)
+@app.route("/<config>")
+def display_page(config):
+    page = scouting.Page.Page(config)
 
+    if isinstance(page.config, Exception):  # Check config threw an exception
+        return return_error(page)
 
-env = Environment(
-    loader=FileSystemLoader('templates'),
-    autoescape=select_autoescape(['html', 'xml']),
-)
-
-input_template = env.get_template('input_form.html')
-advanced_template = env.get_template('advanced.html')
-
-
-@app.route('/')
-def input_form():
     try:
-        yamlCfg = load_config("config.yml")
-    except yaml.scanner.ScannerError as e:
-        return "Configuration syntax error:<br>{}".format(e)
-    except KeyError:
-        return "Configuration syntax error: matchnum and team fields must be present in config"
-    stylesheet = url_for('static', filename='style.css')
-    photo = url_for('static', filename='gearheads.png')
-    favicon = url_for('static', filename='favicon.ico')
-    return input_template.render(config=yamlCfg, stylesheet=stylesheet, photo=photo, favicon=favicon)
+        return page.get_page(app)
+    except Exception as e:
+        return return_error(config, traceback.format_exc())
 
 
-@app.route('/', methods=['POST'])
-def input_form_post():
-    yamlCfg = load_config("config.yml")
-    db = database.Database("database_test")
-    db.create_columns(yamlCfg)
+@app.route("/<config>", methods=["POST"])
+def page_post(config):
+    page = scouting.Page.Page(config)
 
-    if not request.form['matchnum'] or not request.form['team']:
-        return "You must supply a match number and team number!"
+    if isinstance(page.config, Exception):  # Check config threw an exception
+        return return_error(page)
 
-    db.set_match(request.form['matchnum'])
-    db.set_team(request.form['team'])
-    
-    for key in yamlCfg.keys():
-        if key != "matchnum" and key != "team" and yamlCfg[key].get("metatype") != "display":
-            if yamlCfg[key]['type'] == 'counter':
-                count = 0
-                for selection in yamlCfg[key]['selections']:
-                    counting = yamlCfg[key]["counting"]
-                    if request.form.get(counting + "_" + selection[0] + "_" + selection[2]):  # TODO: make this better
-                        count = count + 1
-                db.add_queue(key, count)
-            if yamlCfg[key]['type'] == 'grid' and yamlCfg[key].get('gridtype') == 'checkbox':
-                for selection in request.form.getlist(key):
-                    column_name = '{}_{}'.format(key, selection)
-                    db.add_queue(column_name, True)
-            elif request.form.get(key):
-                db.add_queue(key, request.form[key])
-
-    db.commit()
-    db.close()
-    return "Successfully submitted!<br><form method='get' action='/'>" \
-           "<button type='submit'>Submit another entry</button></form>"  # TODO: refresh page with fancy message
+    try:
+        return page.process_post()
+    except Exception as e:
+        return return_error(config, traceback.format_exc())
 
 
-@app.route('/advanced')
-@basic_auth.required
-def advanced():
-    return advanced_template.render(list_usb=list_usb(), list_db=list_databases())
-
-
-@app.route('/advanced', methods=['POST'])
-def advanced_post():
-    if "export_config" in request.form:
-        shutil.copyfile("config.yml", request.form['device']+"/config.yml")
-        return "Config successfully exported"
-    elif "import_config" in request.form:
-        shutil.copyfile(request.form['device'] + "/config.yml", "config.yml")
-        return "Config successfully imported"
-    elif "export_database_db" in request.form:
-        shutil.copyfile(request.form['database'], request.form['device'] + "/" + request.form['database'])
-        return "Database successfully exported"
-    elif "export_database_csv" in request.form:
-        dbname = request.form['database']
-        csvname = dbname + ".csv"
-        db = database.Database(os.path.splitext(dbname)[0])
-        db.output_to_csv(db.get_filename())
-        db.close()
-        shutil.copyfile(csvname, request.form['device'] + "/" + csvname)
-        os.remove(csvname)
-        return "Database successfully exported"
-    elif "delete" in request.form:
-        os.remove(request.form['database'])
-        return "Database deleted"
-    elif "restart" in request.form:
-        os.system('/usr/bin/sudo systemctl restart ghscouting')
-        return "Restart failed!"
-    elif "shutdown" in request.form:
-        os.system('/usr/bin/sudo shutdown now')
-        return "Shutdown failed!"
-    return "this could be my fault but you probably inspect elemented the site and that's not very cool of you"
+@app.route("/<config>/csv")
+def gen_csv(config):
+    page = scouting.Page.Page(config)
+    if page.type == "form":
+        db = scouting.Database.Database(config)
+        return db.gen_csv().getvalue()
+    return return_error(config, "Cannot generate a csv for a non-form page")

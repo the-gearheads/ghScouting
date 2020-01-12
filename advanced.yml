@@ -1,0 +1,74 @@
+page_type: menu
+username: admin
+password: password
+gearheads_banner:
+  type: image
+  filename: gearheads.png
+  position: top
+databases:
+  type: databases_dropdown
+  display: Databases
+removeables:
+  type: removeables_dropdown
+  display: Mounted Removeable Devices
+conf_name:
+  type: text
+  display: Config name
+db_text:
+  type: display_text
+  text: <br>Database options
+export_database:
+  type: submit
+  text: Export database file to USB
+  action:
+    - command: '/bin/cp {0}.db {1}/'
+    - args:
+        - databases
+        - removeables
+export_csv:
+  type: submit
+  text: Export csv file to USB
+  action:
+    - command: '/bin/curl -o {0}/{1}.csv localhost:5000/{1}/csv'
+    - args:
+        - removeables
+        - databases
+delete_database:
+  type: submit
+  text: Delete database
+  action:
+    - command: '/bin/rm {0}.db'
+    - args:
+      - databases
+conf_text:
+  type: display_text
+  text: <br>Config options
+export_conf:
+  type: submit
+  text: Export Config to USB
+  action:
+    - command: '/bin/cp {0}.yml {1}/{0}.yml'
+    - args:
+      - conf_name
+      - removeables
+import_conf:
+  type: submit
+  text: Import Config from USB
+  action:
+    - command: '/bin/cp {1}/{0}.yml {0}.yml'
+    - args:
+      - conf_name
+      - removeables
+sys_text:
+  type: display_text
+  text: <br>System Options
+shutdown:
+  type: submit
+  text: Shutdown System
+  action:
+    - command: '/bin/shutdown now'
+restart:
+  type: submit
+  text: Restart ghScouting
+  action:
+    - command: '/bin/systemctl restart ghscouting'

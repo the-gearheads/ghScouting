@@ -1,0 +1,163 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans Regular'), local('OpenSans-Regular'), url("/static/OpenSans-Regular.ttf");
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+html {
+    background-color: white;
+}
+
+body {
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+div.main_form {
+    box-shadow: rgba(0,0,0,0.5) 0px 0px 50px;
+    border-radius: 5em;
+    max-width: 55em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+div.message {
+    display: block;
+    border-radius: .75em;
+    padding: .8em;
+    color: #333;
+    background-color: #f1f1f1;
+    border: 1px solid #333;
+    margin-left: 10em;
+    margin-right: 10em;
+    margin-bottom: 2em;
+}
+
+h1 {
+    text-shadow: rgba(0,0,0,0.2) 0px 0px 10px;
+}
+
+p {
+    text-shadow: rgba(0,0,0,0.2) 0px 0px 10px;
+}
+
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+}
+
+input {
+    box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
+    border-color: #f4f4f4;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+input[type=checkbox] {
+    background-color: #f4f4f4;
+    -ms-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+input[type=number] {
+    width: 5em;
+    box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
+    border-color: #f4f4f4;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+input[type=text] {
+    width: 15em;
+    box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
+    border-color: #f4f4f4;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+textarea {
+    font-family: 'Open Sans', sans-serif;
+    padding: .75vw;
+    box-shadow: rgba(0,0,0,0.2) 0px 1px 10px;
+    border-color: #f4f4f4;
+    border-radius: 10px;
+    text-align: left;
+    font-weight: lighter;
+    font-size: 15px;
+    max-width: 500px;
+    width: 40em !important;
+    height: 7em;
+}
+
+label {
+    margin-bottom: .5em;
+    display: inline-block;
+}
+
+#filepicker_button {
+    font-weight: normal;
+    font-size: unset;
+    border-radius: initial;
+    border-color: buttonface;
+}
+
+input[type=radio] {
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+div.float {
+    float: left;
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    padding-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: rgba(0,0,0,0.2) 0px 0px 50px;
+}
+
+.uk-button-primary { 
+    width: auto;
+    height: auto;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    max-width: 15em;
+    border-radius: .5em;
+    margin-top: .5em;
+}
+
+div.item {
+    padding: .35em;
+}
+
+div.item > label {
+    display: block;
+}

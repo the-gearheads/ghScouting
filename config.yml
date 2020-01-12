@@ -1,8 +1,2 @@
-matchnum:
-    type: number
-    display: Match Number
-    min: 0
-team:
-    type: number
-    display: Team Number
-    min: 0
+default: girls-comp
+secret_key: EiELef5WusGt
