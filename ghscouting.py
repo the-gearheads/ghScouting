@@ -8,6 +8,7 @@ import collections
 import psutil
 import shutil
 import os
+import json
 
 import scouting
 import scouting.Database
@@ -114,7 +115,9 @@ def rank_server(config):
 @app.route("/<config>/analysis/post", methods=['POST'])
 def post_server(config):
     message = "Post"
-    print(request.form)
+    print(request.form['data'])
+    result = json.loads(request.form['data'])
+    print(result['S'])
     return render_template('analysis/post.html', message=message)
 #@app.route("/<config>/analysis/test")
 #def rank_test(config):
