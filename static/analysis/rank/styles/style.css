@@ -80,6 +80,7 @@ body{
  
  .content {
 	 display: none;
-	 overflow: hidden;
+	 overflow: auto;
+	 z-index: 10;
 	 background-color: #f1f1f1;
  }

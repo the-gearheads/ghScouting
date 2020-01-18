@@ -12,6 +12,7 @@ import json
 
 import scouting
 import scouting.Database
+import scouting.Module_Database
 import scouting.Element
 import scouting.Form
 import scouting.Page
@@ -115,9 +116,14 @@ def rank_server(config):
 @app.route("/<config>/analysis/post", methods=['POST'])
 def post_server(config):
     message = "Post"
-    print(request.form['data'])
+    db = scouting.Module_Database.Database(config)
     result = json.loads(request.form['data'])
-    print(result['S'])
+    for rank, teams in result.items():
+        for team in teams:
+            db.add(team, rank)
+    print(result)
+    db.commit()
+    db.close()
     return render_template('analysis/post.html', message=message)
 #@app.route("/<config>/analysis/test")
 #def rank_test(config):
