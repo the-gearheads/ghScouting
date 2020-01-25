@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
+	<link rel="shortcut icon" type="image/png" href='{{ url_for('static', filename='favicon.ico') }}' />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='analysis/rank/styles/style.css') }}"></link>
 	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-3.4.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-csv-master/src/jquery.csv.js')}}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-csv-master/src/jquery.csv.min.js')}}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/help.js')}}" defer></script>
-	
+	<script>
+		window.data='{{ data }}'; 
+		window.ranks='{{ ranks }}';
+	</script>
+	<title>Gearheads Analysis/Ranking Module</title>
 	<body>
-		
+		<div id="gearheads">
+			<img id="image" src='{{ url_for("static", filename="gearheads.png") }}'></img>
+		</div>
 		<div id="sweetmotherofpearl">
 			<div id="rank_S" class="rank">
 				<h1>S</h1>

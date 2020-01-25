@@ -16,12 +16,12 @@ class Database:
         self.filename = filename
         self.connection = sqlite3.connect(self.get_filename())
         self.cursor = self.connection.cursor()
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS rank (team, rank)")
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS analysis_rank (team, rank)")
         self.connection.commit()
 
     def __check_values_exist__(self, team):
         self.cursor.execute(
-            "SELECT team FROM rank WHERE team = ?",
+            "SELECT team FROM analysis_rank WHERE team = ?",
             (team, ),
         )
         if self.cursor.fetchone() is None:
@@ -30,6 +30,18 @@ class Database:
     
     def get_filename(self):
         return self.filename + ".db"
+    
+    def get_all(self, table):
+        self.connection.row_factory = dict_factory
+        self.cursor.execute(f"SELECT * FROM {table}") 
+        data = self.cursor.fetchall()
+        d = {}
+        for item in data:
+            d[item[0]] = item[1:]
+        return d
+    
+    
+        
 
     def commit(self):
         for team, rank in self.queue.items():  # Iterate through queue
@@ -41,13 +53,14 @@ class Database:
                     )
                 )
                 self.cursor.execute(
-                    "INSERT INTO ranks (?) VALUES (?)",
-                    (team, rank),
+                    "INSERT INTO analysis_rank(team, rank) VALUES (?, ?)",
+                    (team, rank)
                 )
+                self.connection.commit()
                 
             self.cursor.execute(
-                "UPDATE ranks SET rank = ? WHERE team = ?".format(key),
-                (value, team),
+                "UPDATE analysis_rank SET rank = ? WHERE team = ?",
+                (rank, team),
             )
         self.connection.commit()
         print("Values set!")
@@ -56,3 +69,9 @@ class Database:
         
     def close(self):
         self.connection.close()
+        
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d

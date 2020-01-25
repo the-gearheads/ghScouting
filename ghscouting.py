@@ -9,6 +9,7 @@ import psutil
 import shutil
 import os
 import json
+from markupsafe import Markup
 
 import scouting
 import scouting.Database
@@ -110,8 +111,11 @@ def gen_csv(config):
 
 @app.route("/<config>/analysis/rank")
 def rank_server(config):
-    message = "Rank"
-    return render_template('analysis/rank.html', message=message)
+    db = scouting.Module_Database.Database(config)
+    data = json.dumps((db.get_all("matches")))
+    ranks = json.dumps((db.get_all("analysis_rank")))
+    print(data, ranks)
+    return render_template('analysis/rank.html', ranks=Markup(ranks), data=Markup(data))
     
 @app.route("/<config>/analysis/post", methods=['POST'])
 def post_server(config):
@@ -122,6 +126,7 @@ def post_server(config):
         for team in teams:
             db.add(team, rank)
     print(result)
+    print(db.get_all("analysis_rank"))
     db.commit()
     db.close()
     return render_template('analysis/post.html', message=message)
