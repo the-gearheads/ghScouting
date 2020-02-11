@@ -11,6 +11,7 @@ import os
 import json
 from markupsafe import Markup
 
+
 import scouting
 import scouting.Database
 import scouting.Module_Database
@@ -75,7 +76,6 @@ def root():
 @app.route("/<config>")
 def display_page(config):
     page = scouting.Page.Page(config)
-
     if isinstance(page.config, Exception):  # Check config threw an exception
         return return_error(page)
 
@@ -84,7 +84,70 @@ def display_page(config):
     except Exception as e:
         return return_error(config, traceback.format_exc())
 
-
+def transfer(config):
+    page = scouting.Page.Page(config)
+    foo = page.content.form
+    
+    db = scouting.Database.Database(config)
+    con = scouting.Page.Config(config).config
+    #print(foo) 
+    keys = []
+    d = {}
+    hork = db.get_all("matches")
+    keys = db.get_columns()[1:]
+    
+   
+    #print(hork)
+    for i in hork:
+        team = i[1]
+        try:
+            d[team] 
+        except KeyError:
+            d[team] = {}
+        for x in range(1, len(keys)):
+            try:
+                d[team][keys[x]]
+            except (KeyError):
+                d[team][keys[x]] = []
+            d[team][keys[x]].append(i[x+1])
+    #print(d)
+    b = {}
+    
+    for team, values in d.items():
+        b[team] = {}
+        columns = []
+        for i in foo:
+            #print(values[i.name])
+            if issubclass(type(i), scouting.Element.ElementCheckbox):
+                w = con[i.name]["options"]
+                o = {}
+                for y in w:
+                    
+                    #print(y)
+                    #print(values[f"{i.name}_{y}"])
+                    o[y] = values[f"{i.name}_{y}"]
+                    #print(o[y])
+                    try:
+                        columns.append(i.args["display"])
+                    except KeyError:
+                        columns.append(i.name)
+                    b[team][i.name] = i.processor(o)
+                    
+                continue
+            if issubclass(type(i), scouting.Element.ElementButton):
+                continue
+            if issubclass(type(i), scouting.Element.ElementSubmit):
+                continue
+            if issubclass(type(i), scouting.Element.ElementImage):
+                continue
+            if i.name == "matchnum" or i.name == "team":
+                continue
+            try:
+                columns.append(i.args["display"])
+            except KeyError:
+                columns.append(i.name)
+            b[team][i.name] = i.processor(values[i.name])
+    return b, columns
 @app.route("/<config>", methods=["POST"])
 def page_post(config):
     page = scouting.Page.Page(config)
@@ -108,14 +171,29 @@ def gen_csv(config):
 
 
 ### RANK STUFF (MOVE)
-
+@app.route("/<config>/display")
+def display(config):
+    con = scouting.Page.Config(config)
+    db = scouting.Database.Database(config)
+    keys = []
+    for value in db.get_columns():
+        try:
+            keys.append(con.config[value]["display"])
+        except KeyError:
+            keys.append(value)
+            
+    return str(keys)
+    
 @app.route("/<config>/analysis/rank")
 def rank_server(config):
     db = scouting.Module_Database.Database(config)
-    data = json.dumps((db.get_all("matches")))
+    #transfer(config)
+    x, y = transfer(config) 
+    data = json.dumps(x)
+    col = json.dumps(y)
     ranks = json.dumps((db.get_all("analysis_rank")))
-    print(data, ranks)
-    return render_template('analysis/rank.html', ranks=Markup(ranks), data=Markup(data))
+    #print(data, ranks)
+    return render_template('analysis/rank.html', ranks=Markup(ranks), data=Markup(data), col=Markup(col))
     
 @app.route("/<config>/analysis/post", methods=['POST'])
 def post_server(config):
@@ -125,11 +203,13 @@ def post_server(config):
     for rank, teams in result.items():
         for team in teams:
             db.add(team, rank)
-    print(result)
-    print(db.get_all("analysis_rank"))
+    #print(result)
+    #print(db.get_all("analysis_rank"))
     db.commit()
     db.close()
     return render_template('analysis/post.html', message=message)
 #@app.route("/<config>/analysis/test")
 #def rank_test(config):
+
+    
     

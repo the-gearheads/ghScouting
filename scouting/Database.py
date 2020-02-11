@@ -28,6 +28,12 @@ class Database:
             return False
         return True
 
+    def get_all(self, table):
+        self.connection.row_factory = dict_factory
+        self.cursor.execute(f"SELECT * FROM {table}") 
+        data = self.cursor.fetchall()
+        return data
+        
     def __check_column_exist__(self, column):
         self.cursor.execute("PRAGMA table_info(matches);")  # Prints columns in table
         for line in self.cursor.fetchall():  # Iterates over lines in pragma output
@@ -98,14 +104,19 @@ class Database:
 
     def get_filename(self):
         return self.filename + ".db"
-
+        
+    def get_columns(self):
+        return list(map(lambda x: x[1], self.__get_columns__()))
+        
     def gen_csv(self):
-        columns = list(map(lambda x: x[1], self.__get_columns__()))
+        columns = self.get_columns()
         self.cursor.execute("SELECT * FROM matches")
         data = self.cursor.fetchall()
         csv_data = io.StringIO(newline="")
+        
         writer = csv.writer(csv_data)
         writer.writerow(columns)
+        print(columns[2]);
         writer.writerows(data)
         return csv_data
 
@@ -137,6 +148,13 @@ class Database:
 
         self.connection.commit()
         print("Values set!")
+        
 
     def close(self):
         self.connection.close()
+        
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d

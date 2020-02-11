@@ -1,4 +1,5 @@
 var all_el = [];
+var all_el_names = [];
 var set = [];
 var teamNum = "";
 var json;
@@ -6,6 +7,13 @@ var attr = [];
 var attr_content = [];
 	
 document.addEventListener("pointerup", getTierList);
+
+var currentRank = {
+	"S": [],
+	"A": [],
+	"B": [],
+	"C": [],
+};
 	
 var teams = {
 	"S": [],
@@ -67,6 +75,18 @@ function getTierList() {
 function setParent(el, newParent) {
 	newParent.appendChild(el);
 }
+
+String.prototype.insert = function (index, string) {
+      if (index > 0)
+        return this.substring(0, index) + string + this.substring(index, this.length);
+      
+      return string + this;
+};
+
+function ReplaceContentInContainer(div, content) {
+    var container = div;
+    container.innerHTML = content;
+}
 		
 $(document).ready(function(){	
 	var website = window.location.href;
@@ -74,55 +94,134 @@ $(document).ready(function(){
 	var part_1 = partial.substring(0, 32);
 	var part_2 = partial.substring(33, 37);
 	var full = part_1 + part_2;
-	//var _data = JSON.parse(window.data);
-	var _ranks = JSON.parse(window.ranks);
+	var _left = 75;
+	var _top = 0;
+	var indexStorage = [];
+	var w = 0;
 	
-	//console.log(_data, _ranks);
+	var _data = JSON.parse(window.data);
+	var _ranks = JSON.parse(window.ranks);
+	var _col = JSON.parse(window.col);
+	
+	
 	$.ajax({
 		url: full,
 		async: false,
 		success: function (csvd) {
 			json = $.csv.toObjects(csvd);
-			
 		},
 		dataType: "text"
 	});
 	
-	for (i = 0; i < json.length; i++) {
+	for (i = 0; i < json.length; i++, w++) {
 		teamNum = json[i].team;
 		attr.length = 0;
+		delete json[i]["matchnum"];
+		delete json[i]["team"];
+		var string;
 		var data = Object.values(json[i]);
-		var name = Object.getOwnPropertyNames(json[i]);
-		for(y = 2; y < data.length; y++){
-			attr.push('<b>'+name[y]+'</b>'+ ': ' + data[y]);
-			string = attr.join('<br/>');
+		for(y = 0; y < _col.length; y++){
+			var name = _col[y]
+			var _team = $($('div:contains('+teamNum+')').parent());
+			if (all_el_names.indexOf(teamNum) != -1) {
+				attr.push('<i>'+name+'</i>'+ ': ' + "<font color = 'red'>"+data[y]+"</font>");
+				string = attr.join('<br/>');
+				//console.log(_team);
+				_team[2].childNodes[2].remove();
+				$(_team).append('<div id="content_'+i+'" class="content">'+string+'</div>');
+				
+			} else {
+				attr.push('<i>'+name+'</i>'+ ': ' + "<font color = 'red'>"+data[y]+"</font>");
+				string = attr.join('<br/>');
+			//var regex = /[:-<]/g;
+			}
 		}
-	
-		console.log(json[i]);
-		console.log(Object.values(json[i]));
-		console.log(name);
-		console.log(attr);
+		if(all_el_names.indexOf(teamNum) != -1) {
+			//console.log($($('div:contains('+teamNum+')').parent()[2].childNodes[1]).text());//.childNodes[1]);
+			console.log("Duplicate found");
+		} else {
 		var dragId = "drag_"+i;
 		var element = document.getElementById('header_'+i);
 		$('#mySidebar').append('<div id="drag_'+i+'" class="drag";></div>');
 		var div = document.getElementById(dragId);
+		var previous_div;
+		var pre_offset;
 		$(div).append('<div id="header_'+i+'" class="header"; onclick=check();>'+teamNum+'</div>');
 		$(div).append('<button type="button" class="expand" ></button>');
 		$(div).append('<div id="content_'+i+'" class="content">'+string+'</div>');
-		$(div).offset({top: 75 * (i + 1), left: 10});
-		all_el.push(div);
-		$.each(_ranks, function(index, value) {
-		if($('#' + div.childNodes[0].id).text() == index){
-			$(document.getElementById("sweetmotherofpearl")).append(div);
-			$(div).position({
-				my: "center",
-				of: $("#rank_"+value)
-			}); 
-		}		
-	})
-			
-	}
 		
+		$('#mySidebar').append(div);
+		
+		var num = i/16;
+		var _top = 5;
+		if(Number.isInteger(num)) {
+			_left = _left + 5;
+			w = 0;
+			//_top = 5;
+			//console.log(w);
+			$(div).offset({top: 25, left: _left+'%'});
+		} else {	
+			//console.log(w);
+			//_top = -5 * w;
+			$(div).offset({top: 25 * (w + 1), left: _left+'%'});
+			//console.log($(div).position());
+		}
+		all_el.push(div);
+		all_el_names.push($('#' + div.childNodes[0].id).text());
+		
+		$.each(_ranks, function(index, value) {
+			
+			if($('#' + div.childNodes[0].id).text() == index){
+				$(document.getElementById("sweetmotherofpearl")).append(div);
+				currentRank[value].push(div);
+				$(div).position({
+					of: $("#rank_"+value)
+				});
+			}	
+		});
+		}
+	}
+	//console.log(currentRank.length);
+	var result = Object.keys(currentRank).map(function(key) {
+		return [String(key), currentRank[key]];
+	});
+	console.log(currentRank);
+	var _top_ = 0;
+	for (i = 0; i < result.length; i++){
+		//console.log(result[i][1]);
+		//_top_ = 0;
+		for (y = 0; y < result[i][1].length; y++) {
+			if (previous_div == null) {
+				//console.log($(result[i][1][y]));
+				var OffsetTop = $(result[i][1][y]).offset.top;
+				$(result[i][1][y]).offset({top: OffsetTop, left: 0});
+				previous_div = result[i][1][y];
+				pre_offset = $(previous_div).offset().left;
+			} else {
+				//console.log(y);
+				var num_ = (y/16);
+				//console.log(num_);
+				for (z = 0; z < 4; z++){
+					if(	div.left >= $("#rank_"+currentRank[z]).right || div.top >= $("#rank_"+currentRank[z]).bottom || 
+						div.right <= $("#rank_"+currentRank[z]).left || div.bottom <= $("#rank_"+currentRank[z]).top) {
+						//console.log(num_);
+						console.log($(result[i][1][y]).offset().top + 25);
+						$(result[i][1][y]).offset({top: $(result[i][1][y]).offset().top + 50, left: 0})
+						previous_div = result[i][1][y];
+					} else {
+						console.log(_top_);
+						pre_offset = $(previous_div).offset().left;
+						$(result[i][1][y]).offset({top: $(previous_div).offset().top + _top_, left: pre_offset + 60})
+						//console.log(pre_offset + 50);
+						previous_div = result[i][1][y];
+					}
+				}
+			}
+		}
+		previous_div = null;
+		//_top_ = 0;
+		
+	}
 	$( ".drag" ).draggable({containment: "#sweetmotherofpearl", scroll: false });
 	$( "#sweetmotherofpearl" ).droppable({
 		drop: function( event, ui ) {
@@ -154,13 +253,13 @@ $(document).ready(function(){
 		});
 	}
 	//console.log(div)
-	
+	//console.log(currentRank);
 });
 
-	
-document.getElementById('open_sidebar').addEventListener("click", function(){
+	document.getElementById('mySidebar').style.display = "block"; 
+/*document.getElementById('open_sidebar').addEventListener("click", function(){
 	document.getElementById('mySidebar').style.display = "block"; 
 });
 document.getElementById('close_sidebar').addEventListener("click", function(){
 	document.getElementById('mySidebar').style.display = "none"; 
-});
+});*/

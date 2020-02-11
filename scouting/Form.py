@@ -50,9 +50,13 @@ class Form:
 
         for element in self.form:
             if not element.display_field:
-                column, value = element.process(request.form)
-                if value:
-                    db.add_queue(column, value)
+                processed = element.process(request.form)
+                if type(processed) is tuple and len(processed) == 2:
+                    db.add_queue(processed[0], processed[1])
+                elif type(processed) is list:
+                    for column, value in processed:
+                        print(processed)
+                        db.add_queue(column, value)
 
         db.commit()
         db.close()

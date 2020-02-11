@@ -40,7 +40,6 @@ class Database:
             d[item[0]] = item[1:]
         return d
     
-    
         
 
     def commit(self):

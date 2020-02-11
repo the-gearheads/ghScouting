@@ -10,13 +10,15 @@
 	<script>
 		window.data='{{ data }}'; 
 		window.ranks='{{ ranks }}';
+		window.col='{{ col }}';
 	</script>
 	<title>Gearheads Analysis/Ranking Module</title>
 	<body>
-		<div id="gearheads">
-			<img id="image" src='{{ url_for("static", filename="gearheads.png") }}'></img>
-		</div>
+
 		<div id="sweetmotherofpearl">
+			<div id="gearheads">
+				<img id="image" src='{{ url_for("static", filename="gearheads.png") }}'></img>
+			</div>
 			<div id="rank_S" class="rank">
 				<h1>S</h1>
 				
@@ -33,10 +35,14 @@
 				<h1>C</h1>
 				
 			</div>
+			<div id="mySidebar">
+			<!--<button onclick="closeNav()" id="close_sidebar">Close</button>-->
+				<div id="column_A"></div>
+				<div id="column_B"></div>
+				<div id="column_C"></div>
+			</div>
 		</div>
-		<button type="button" id="open_sidebar">☰</button>
-		<div id="mySidebar">
-			<button onclick="closeNav()" id="close_sidebar">Close</button>
-		</div>
+		<!--<button type="button" id="open_sidebar">☰</button>-->
+		
 	</body>
 </html>
