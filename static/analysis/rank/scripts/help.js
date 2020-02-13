@@ -87,6 +87,20 @@ function ReplaceContentInContainer(div, content) {
     var container = div;
     container.innerHTML = content;
 }
+function getIndexes(array) {
+	for (var i = 0; i < array.length; i++) {
+			if (array.indexOf(array[i]) == -1) {
+				console.log("Nothing");
+			} else {
+				delete array[i];
+			}
+		}
+		return array;
+}
+
+function removeDuplicates(array) {
+  return array.filter((a, b) => array.indexOf(a) === b)
+};
 		
 $(document).ready(function(){	
 	var website = window.location.href;
@@ -94,8 +108,11 @@ $(document).ready(function(){
 	var part_1 = partial.substring(0, 32);
 	var part_2 = partial.substring(33, 37);
 	var full = part_1 + part_2;
-	var _left = 75;
+	var _left = 0;
 	var _top = 0;
+	
+	var sideWidth = screen.width - $("#mySidebar").width();
+	var width = sideWidth;
 	var indexStorage = [];
 	var w = 0;
 	
@@ -103,7 +120,7 @@ $(document).ready(function(){
 	var _ranks = JSON.parse(window.ranks);
 	var _col = JSON.parse(window.col);
 	
-	
+	//console.log(_col);
 	$.ajax({
 		url: full,
 		async: false,
@@ -112,32 +129,34 @@ $(document).ready(function(){
 		},
 		dataType: "text"
 	});
-	
+	console.log(_col);
+	var valueArr = removeDuplicates(_col);
+	console.log(valueArr);
 	for (i = 0; i < json.length; i++, w++) {
 		teamNum = json[i].team;
 		attr.length = 0;
 		delete json[i]["matchnum"];
 		delete json[i]["team"];
 		var string;
-		var data = Object.values(json[i]);
-		for(y = 0; y < _col.length; y++){
-			var name = _col[y]
-			var _team = $($('div:contains('+teamNum+')').parent());
-			if (all_el_names.indexOf(teamNum) != -1) {
-				attr.push('<i>'+name+'</i>'+ ': ' + "<font color = 'red'>"+data[y]+"</font>");
-				string = attr.join('<br/>');
-				//console.log(_team);
-				_team[2].childNodes[2].remove();
-				$(_team).append('<div id="content_'+i+'" class="content">'+string+'</div>');
-				
-			} else {
-				attr.push('<i>'+name+'</i>'+ ': ' + "<font color = 'red'>"+data[y]+"</font>");
-				string = attr.join('<br/>');
+		//var name;
+		//var data = Object.values(json[i]);
+		//console.log(_data);
+		
+		for(y = 0; y < valueArr.length; y++){
+			var name = valueArr[y]
+			var data = Object.values(_data[teamNum]);
+			//if (_col.indexOf() ) 
+			attr.push('<i>'+name+'</i>'+ ': ' + "<font color = 'red'>"+data[y]+"</font>");
+			string = attr.join('<br/>');
 			//var regex = /[:-<]/g;
-			}
+			
 		}
 		if(all_el_names.indexOf(teamNum) != -1) {
 			//console.log($($('div:contains('+teamNum+')').parent()[2].childNodes[1]).text());//.childNodes[1]);
+			var _team = $($('div:contains('+teamNum+')').parent());
+			//console.log(_team);
+			_team[2].childNodes[2].remove();
+			$(_team).append('<div id="content_'+i+'" class="content">'+string+'</div>');
 			console.log("Duplicate found");
 		} else {
 		var dragId = "drag_"+i;
@@ -153,17 +172,23 @@ $(document).ready(function(){
 		$('#mySidebar').append(div);
 		
 		var num = i/16;
-		var _top = 5;
+		var _top = 0;
+		//var previous_div = document.getElementById("drag_"+i-1);
+		var height =  $(div).height();
 		if(Number.isInteger(num)) {
-			_left = _left + 5;
+			width = width + $(div).width();
 			w = 0;
-			//_top = 5;
+			height = 0;
 			//console.log(w);
-			$(div).offset({top: 25, left: _left+'%'});
+			
+			$(div).offset({top: height, left: width});
+			
+			//$(div).position.left = _left+'%';
 		} else {	
-			//console.log(w);
-			//_top = -5 * w;
-			$(div).offset({top: 25 * (w + 1), left: _left+'%'});
+			//console.log(w)
+			height = height * w;
+			$(div).offset({top: height, left: width});
+			
 			//console.log($(div).position());
 		}
 		all_el.push(div);
@@ -185,12 +210,15 @@ $(document).ready(function(){
 	var result = Object.keys(currentRank).map(function(key) {
 		return [String(key), currentRank[key]];
 	});
-	console.log(currentRank);
+	console.log(result);
 	var _top_ = 0;
+	var height = $(div).height();
+	var width = $(div).width();
+	var w = 0;
 	for (i = 0; i < result.length; i++){
 		//console.log(result[i][1]);
 		//_top_ = 0;
-		for (y = 0; y < result[i][1].length; y++) {
+		for (y = 0; y < result[i][1].length; y++, w++) {
 			if (previous_div == null) {
 				//console.log($(result[i][1][y]));
 				var OffsetTop = $(result[i][1][y]).offset.top;
@@ -206,12 +234,12 @@ $(document).ready(function(){
 						div.right <= $("#rank_"+currentRank[z]).left || div.bottom <= $("#rank_"+currentRank[z]).top) {
 						//console.log(num_);
 						console.log($(result[i][1][y]).offset().top + 25);
-						$(result[i][1][y]).offset({top: $(result[i][1][y]).offset().top + 50, left: 0})
+						$(result[i][1][y]).offset({top: height + height, left: 0})
 						previous_div = result[i][1][y];
 					} else {
-						console.log(_top_);
+						console.log(width);
 						pre_offset = $(previous_div).offset().left;
-						$(result[i][1][y]).offset({top: $(previous_div).offset().top + _top_, left: pre_offset + 60})
+						$(result[i][1][y]).offset({top: $(previous_div).offset().top + _top_, left: pre_offset + width - 37})
 						//console.log(pre_offset + 50);
 						previous_div = result[i][1][y];
 					}

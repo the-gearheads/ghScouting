@@ -101,6 +101,7 @@ class ElementNumber(ElementBase):
                 h.append(int(data[i]))
             except ValueError:
                 h.append(0)
+        
         return statistics.mean(h)
         
 
