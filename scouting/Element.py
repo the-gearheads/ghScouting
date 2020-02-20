@@ -60,7 +60,6 @@ class ElementBase:
         )
     
     def processor(self, data):
-        print(self.name)
         pass
     # allows easy global modifications
     def get_line(self):
@@ -138,7 +137,6 @@ class ElementCheckbox(ElementSelect):
         returns = []
         x = form.to_dict(flat=False)
         for key, values in x.items():
-            print(key, values)
             for value in values:
                 if key == self.name:
                     returns.append((f"{self.name}_{value}", True))

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='analysis/rank/styles/filter_style.css') }}"></link>
+	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-3.4.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-csv-master/src/jquery.csv.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-csv-master/src/jquery.csv.min.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/filter.js')}}" defer></script>
+	<script>
+		window.data='{{ data }}';
+		window.col='{{ col }}';
+	</script>
+	<body>
+	<div id="#sweetmotherofpearl">
+		<div id="bank">
+			<!--<div class="tile"></div>-->
+		</div>
+		<button id="but" onclick="checkSlot()"></button>
+		<div id="whole">
+			<div class="slot" id="slot_1">1</div>
+			<div class="slot" id="slot_2">2</div>
+			<div class="slot" id="slot_3">3</div>
+			<div class="slot" id="slot_4">4</div>
+			<div class="slot" id="slot_5">5</div>
+			<div class="slot" id="slot_6">6</div>
+		</div>
+		<div id ="list"></div>
+	</div>
+	</body>
+</html>
