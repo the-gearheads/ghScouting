@@ -155,9 +155,13 @@ class ElementCheckbox(ElementSelect):
                     
                 except KeyError:
                     a[key] = None
+            #print(a)
             max_value = max(a.values())  # maximum value
             max_keys = [k for k, v in a.items() if v == max_value]
+            #print(max_keys)
             return max_keys[0]
+            
+            #print(max_keys[0])
                # return statistics.mode(data[i])
         except statistics.StatisticsError:
             return None

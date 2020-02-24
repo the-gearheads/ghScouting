@@ -115,11 +115,12 @@ def transfer(config):
     z = {}
     p = set()
     s = {}
-    
+    #print(d)
     for team, values in d.items():
         b[team] = {}
         z[team] = {}
         columns = []
+        newColumns = []
         for i in foo:
             #print(values[i.name])
             if issubclass(type(i), scouting.Element.ElementCheckbox):
@@ -130,23 +131,41 @@ def transfer(config):
                 except KeyError:
                     s[i.name] = w
                 o = {}
+                #print(s)
                 for y in w:
                     value = str(y)
                     #print(y)
                     #print(values[f"{i.name}_{y}"])
+                    #o[y] = values[y]
                     o[y] = values[f"{i.name}_{y}"]
+                    #print(i.name)
+                    #for name, item in o.items():
+                     #   if item[0] == "true":
+                      #      o[y] = name
+                       # elif item[0] == None:
+                        #    o[y] = "None"
+                    #print(o)
                     #print(o[y])
                     try:
-                        columns.append(i.args["display"])
+                        #olumns.append(i.args["display"])
+                        newColumns.append(i.args["display"])
                         p.add(i.args["display"]+"_"+value)
                     except KeyError:
-                        columns.append(i.name)
+                        newColumns.append(i.name)
                         p.add(i.name+"_"+value)
                     b[team][i.name] = i.processor(o)
                     try:
-                        z[team][i.args["display"]+"_"+value] = i.processor(o)
+                        #print(i.processor(o))
+                        #print(i.name, i.processor(o))
+                        if value == i.processor(o):
+                            z[team][i.args["display"]+"_"+value] = i.processor(o)
+                        else:
+                            z[team][i.args["display"]+"_"+value] = None
                     except KeyError:
-                        z[team][i.name+"_"+value] = i.processor(o)
+                        if value == i.processor(o):
+                            z[team][i.name+"_"+value] = i.processor(o)
+                        else:
+                            z[team][i.name+"_"+value] = None
                         
                         
                     
@@ -163,20 +182,30 @@ def transfer(config):
                 for y in w:
                     value = str(y)
                     try:
-                        columns.append(i.args["display"])
+                        newColumns.append(i.args["display"])
+                        #columns.append(i.args["display"])
                         p.add(i.args["display"]+"_"+value)
                     except KeyError:
-                        columns.append(i.name)
+                        newColumns.append(i.name)
+                        #columns.append(i.name)
                         p.add(i.name+"_"+value)
                     b[team][i.name] = i.processor(values[i.name])
                     try:
-                        z[team][i.args["display"]+"_"+value] = i.processor(values[i.name])
+                        if value == i.processor(values[i.name]):
+                            z[team][i.args["display"]+"_"+value] = i.processor(values[i.name])
+                        else:
+                            z[team][i.args["display"]+"_"+value] = None
                     except KeyError:
-                        z[team][i.name+"_"+value] = i.processor(values[i.name])
+                        if value == i.processor(values[i.name]):
+                            z[team][i.name+"_"+value] = i.processor(values[i.name])
+                        else:
+                            z[team][i.name+"_"+value] = None
                         
                         
                     
                     
+                continue
+            if issubclass(type(i), scouting.Element.ElementTextarea):
                 continue
             if issubclass(type(i), scouting.Element.ElementButton):
                 continue
@@ -187,18 +216,19 @@ def transfer(config):
             if i.name == "matchnum" or i.name == "team":
                 continue
             try:
-                #print(con[i.name]["options"])
-                columns.append(i.args["display"])
+                if con[i.name]["options"] == None:
+                    columns.append(i.args["display"])
+                else:
+                    pass
             except KeyError:
-                columns.append(i.name)
-                pass
+                 columns.append(i.args["display"])
             b[team][i.name] = i.processor(values[i.name])
             try:
                 z[team][i.args["display"]] = i.processor(values[i.name])
             except KeyError:
                 z[team][i.name] = i.processor(values[i.name])
-
-    return b, columns, z, p, s
+    #print(z)
+    return b, columns, z, p, s, newColumns
 @app.route("/<config>", methods=["POST"])
 def page_post(config):
     page = scouting.Page.Page(config)
@@ -239,9 +269,9 @@ def display(config):
 def rank_server(config):
     db = scouting.Module_Database.Database(config)
     #transfer(config)
-    x, y = transfer(config) 
+    x, y, z, p, s, new = transfer(config) 
     data = json.dumps(x)
-    col = json.dumps(y)
+    col = json.dumps(new)
     ranks = json.dumps((db.get_all("analysis_rank")))
     #print(data, ranks)
     return render_template('analysis/rank.html', ranks=Markup(ranks), data=Markup(data), col=Markup(col))
@@ -250,11 +280,11 @@ def rank_server(config):
 def filter_server(config):
     db = scouting.Module_Database.Database(config)
     #transfer(config)
-    x, y, z, p, s = transfer(config)
+    x, y, z, p, s, new = transfer(config)
     w = set(y + list(p))
     data = json.dumps(x)
     col = json.dumps(list(w))
-    print(list(w))
+    #print(list(w))
     return render_template('analysis/filter.html', data=Markup(data), col=Markup(col))
     
 @app.route("/<config>/analysis/post", methods=['POST'])
@@ -276,8 +306,8 @@ def post_filter_server(config):
     message = "Post"
     db = scouting.Module_Database.Database(config)
     result = json.loads(request.form['data'])
-    #print(result)
-    x, y, z, p, s  = transfer(config)
+      #print(result)
+    data, columns_old, columns_data, p, s, new  = transfer(config)
     #print(d)
     #print(z)
     d = {}
@@ -285,7 +315,10 @@ def post_filter_server(config):
     team_values = {}
     f = []
     g= []
+    
+    
     #print(p)
+    
     for item in result:
         try:
             newName, newValue = item.split("_")
@@ -298,57 +331,71 @@ def post_filter_server(config):
             #b[newName[i]] = newValue[i]
     #print(p)
     teams_scores= {}
-    for team, values in z.items():
+    #print(s)
+    #print(result)
+    for team, values in columns_data.items():
+        j = 0
         scores = []
         properties = []
         score = 0
         weight = 0 
-        j = 0
-        for key, value in s.items():
-            for name in values.keys():
-                for i in result:
-                    if i == name:
-                        weight = len(result) - result.index(i)
-                       # print(weight)
-                    else:
-                        pass
-                    continue
-                for x, y in b.items():
-                    if name.split("_")[0] == x:
-                        for val in values.values():
-                            if y == val:
-                                j = 1      
-                
-                
-                
-                            
-        for key in values.keys():
+        for val_key in values.keys():
+            #print(values.values())
             for datapoint in result:
+                #print(val_key, datapoint)
                 
-                if datapoint == key:
-                    value = values[key]
+                if val_key == datapoint:
+                    weight = len(result) - result.index(datapoint)
+                    #print(weight)
+                    #print(value)
+                    leng = len(val_key)
+                    #print(type(val_key[leng - 1]))
+                    
+                        
+                    if "_" in val_key and val_key[leng - 1].isdigit() == True and values[val_key] != None:
+                        #print(end)
+                        value = 1
+                        #print(value)
+                    else:
+                        #print(end)
+                        value = values[val_key]
+                        #print(value)
                     properties.insert(0, value)
                     try :
-                        print(value)
+                        
                         score = float(value) * weight
+                        #print(score)
                     except (TypeError, ValueError):
-                        print(j)
-                        score = j * weight
+                        #print(j)
+                        if value == None:
+                            #print("NONE")
+                            score = 0
+                         #   print(score)
+                            pass
+                        else:
+                            j = 1
+                           # print(j, weight)
+                            score = j * weight
+                          #  print(score)
                     #weight.pop(0)
                     scores.insert(0, score)
-                    teams_scores[team] = scores
+                    #print(scores)
+                    teams_scores[team] = sum(scores)
                 else:
                     #print("no")
-                    pass
+                    pass   
         d[team] = properties
         team_values[team] = properties
-            
-    #print(d)
     print(teams_scores)
     print(team_values)
+    ts = json.dumps(teams_scores)
+    with open("json.txt", "w") as outfile: 
+        outfile.write(ts)
+    return ts
     db.commit()
     db.close()
     return render_template('analysis/post_filter.html', message=message)
+    
 #@app.route("/<config>/analysis/test")
 #def rank_test(config):
 

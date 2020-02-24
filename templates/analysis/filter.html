@@ -9,13 +9,18 @@
 	<script>
 		window.data='{{ data }}';
 		window.col='{{ col }}';
+		//window.ts='{{ ts }}';
+		
 	</script>
 	<body>
 	<div id="#sweetmotherofpearl">
 		<div id="bank">
 			<!--<div class="tile"></div>-->
 		</div>
-		<button id="but" onclick="checkSlot()"></button>
+		<button id="but" onclick="checkSlot()">
+			<P>Send</p>
+		</button>
+		<button id="but2" onclick="getData()"></button>
 		<div id="whole">
 			<div class="slot" id="slot_1">1</div>
 			<div class="slot" id="slot_2">2</div>

@@ -1,23 +1,30 @@
 var all = [];
 var _priorities = [];
-
-var found = {};
-
-var dataPoints = [];
-
+//console.log(_priorities);
+var found = {
+	"slot_1": [],
+	"slot_2": [],
+	"slot_3": [],
+	"slot_4": [],
+	"slot_5": [],
+	"slot_6": [],
+};
+var json;
 var raw = JSON.parse(window.data);
-var _col = JSON.parse(window.col);
+var _col = JSON.parse(window.col);	
 
 $(document).ready(function() {
 	
+	//console.log(ts)
 	var data = raw
 	var w = 0;
-	var h = 0;
+	var h = 0.5;
 	var height = 25;
 	var sideWidth = screen.width - $("#bank").width() + 10;
 	//console.log(_col);
 	for (i = 0; i < _col.length; i++, w++) {
-		$("#bank").append("<div class='tile' id='tile_"+i+"'><p>"+_col[i]+"</p></div>");
+		
+		$("#bank").append("<div class='tile' id='tile_"+i+"'>"+_col[i]+"</div>");
 		var div = '#tile_'+i;
 		//console.log(div.width);
 		var threshold = i/16;
@@ -57,6 +64,7 @@ $(document).ready(function() {
 	});	
 });
 
+
 function gatherData(array, array2) {//, array2, obj) {
 	for (team in array) {
 		var properties = _col;
@@ -89,55 +97,54 @@ function gatherSlot(el) {
             result += $(item).text() + "";
         });
         if (result != '') {
-			_priorities.splice(result, 0, $(el).text());
+			if (result.length > 1) {
+				result = result[1];
+			}
+			//console.log(found["slot_"+result]);
+			console.log(result);
+			found["slot_"+result].push($(el).text());
 				//console.log(priorities['slot_'+i]);
 		}
     }
-	/*var snapped = $(element).data('uiDraggable').snapElements;
-       
-	var snappedTo = $.map(snapped, function(element) {
-		return element.snapping ? element.item : null;
-	});
-       
-	/* Display the results: 
-	var result= '';
-	$.each(snappedTo, function(idx, item) {
-		result += $(item).text() + "";
-	});
-	//console.log(result);
-	//console.log(result);
-	if (result != "") {
-		priorities["slot_"+result].push(element);
-		//_priorities.push(element[0].innerHTML);
-		var length = priorities["slot_"+result].length;
-		for (y = 0; y < length - 1; y++) {
-			priorities["slot_"+result].pop();
-		}
-		console.log(priorities["slot_"+i].length);
-		for (i = 1; i <= 6; i++) {
-			if (priorities["slot_"+i].length == 0) {
-				console.log("bruh");
-			}
-		}
-			
-				
-	} else {
-		return null;
-	}
 	
-}*/
+function getData(handleData) {
+	$.ajax({
+		url:"post_filter",  
+		success:function(ts) {
+		data = JSON.parsets;
+		console.log(data)
+		}
+	});
+}
+
+function handleData(data) {
+	console.log(data);
+}
 
 function checkSlot() {
 	_priorities.length = 0;
+	found["slot_1"].length = 0;
+	found["slot_2"].length = 0;
+	found["slot_3"].length = 0;
+	found["slot_4"].length = 0;
+	found["slot_5"].length = 0;
+	found["slot_6"].length = 0;
 	for (i = 0; i < all.length; i++) {
 		//console.log(priorities[key].length);
 		gatherSlot(all[i]);
+	}
+	for (slot in found) {
+		if (found[slot].length != 0) {
+			_priorities.push(found[slot][0]);
+		} 
 	}
 	$.ajax({
 		method: "POST",
 		url: "post_filter",
 		data: {'data': JSON.stringify(_priorities)}
 	});
-	console.log(_priorities)
+	console.log(_priorities);
+	//var text = readTextFile("file:///C:/Users/noahs/Desktop/ghscouting/json.txt");
+	//console.log(text);
 	//console.log(gatherData(raw, priorities));
 }
