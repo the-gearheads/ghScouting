@@ -2,6 +2,9 @@
 <html>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='analysis/rank/styles/filter_style.css') }}"></link>
 	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-3.4.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/underscore-min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/bootstrap.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery.collapse.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-csv-master/src/jquery.csv.js')}}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='analysis/rank/scripts/jquery-csv-master/src/jquery.csv.min.js')}}"></script>
@@ -20,7 +23,7 @@
 		<button id="but" onclick="checkSlot()">
 			<P>Send</p>
 		</button>
-		<button id="but2" onclick="getData()"></button>
+		
 		<div id="whole">
 			<div class="slot" id="slot_1">1</div>
 			<div class="slot" id="slot_2">2</div>
@@ -30,6 +33,7 @@
 			<div class="slot" id="slot_6">6</div>
 		</div>
 		<div id ="list"></div>
+		<div id="content_corner"></div>
 	</div>
 	</body>
 </html>

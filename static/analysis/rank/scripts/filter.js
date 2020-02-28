@@ -9,10 +9,12 @@ var found = {
 	"slot_5": [],
 	"slot_6": [],
 };
+
 var json;
+var data;
 var raw = JSON.parse(window.data);
 var _col = JSON.parse(window.col);	
-
+console.log(raw);
 $(document).ready(function() {
 	
 	//console.log(ts)
@@ -64,6 +66,9 @@ $(document).ready(function() {
 	});	
 });
 
+function setParent(el, newParent) {
+	newParent.appendChild(el);
+}
 
 function gatherData(array, array2) {//, array2, obj) {
 	for (team in array) {
@@ -105,21 +110,107 @@ function gatherSlot(el) {
 			found["slot_"+result].push($(el).text());
 				//console.log(priorities['slot_'+i]);
 		}
-    }
-	
-function getData(handleData) {
-	$.ajax({
-		url:"post_filter",  
-		success:function(ts) {
-		data = JSON.parsets;
-		console.log(data)
-		}
-	});
 }
 
-function handleData(data) {
-	console.log(data);
+function getKeyByValue(object, value) {
+	return Object.keys(object).find(key => object[key] === value);
+	
+	/*for (key in object) {
+		console.log(key, object[key], value)
+		if (object[key] == value) {
+			return key;
+		}
+	}*/
 }
+
+function createContent(key) {
+	var string;
+	var attr = [];
+	for (team in raw) {
+		if (team == key) {
+			//var names = Object.keys(raw[team]);
+			var values = Object.values(raw[team]);
+			//console.log(names.length, values);
+			for (i = 0; i < values.length; i++) {
+				var div =  "#list_tile_"+key;
+				//console.log(names[i], i);
+				attr.push('<i>'+_col[i]+'</i>'+ ': ' + "<font color = 'red'>"+values[i]+"</font>");
+				string = attr.join('<br/>');
+				
+			}
+			$(div).append("<div class='content'>"+string+"</div>");
+		}
+	}
+}
+
+function Populate(data) {
+	//console.log("wack");
+	$("#list").empty()
+	var w = 0;
+	var y = 1;
+	var width = screen.width - $("#list").width() + 10;
+	var height = 250;
+	let array = Object.values(data);
+	//console.log(array.length);
+	for (i = 0; i < array.length + 1; i++, w++) {
+		var max = Math.max(...array);
+		var key = getKeyByValue(data, max);
+		//console.log(key, max);
+		if (key == null) {
+			//console.log("true");
+			var key = Object.keys(data)[0];
+			var max = Object.values(data)[0];
+			//console.log(key, max)
+		}
+		//console.log(key);
+		$("#list").append("<div class='list_tile' id='list_tile_"+key+"'>"+ key + ': ' + max+"</div>");
+		var div =  "#list_tile_"+key;
+		$(div).append("<button type='button' onclick='go("+key+")' class='list_button'>+</button>");
+		//$(div).append("<div class='content'></div>");
+		
+		
+		
+		if (Number.isInteger(w/6) && w != 0) {
+			w = 0;
+			height = 250;
+			width = width + $(div).width() + 10;
+			$(div).offset({top: height + 50 + 10, left: width});
+		} else {
+			height =  height + $(div).height() + 10;			
+			$(div).offset({top: height, left: width});
+		}
+		
+		data = _.omit(data, key);
+		array.splice(array.indexOf(max), 1);
+		i = 0;
+		
+		
+		//console.log(data);
+	}
+	
+	//console.log(max);
+	/*for (team in data) {
+		//console.log(data[team], array[0])
+		for (item in array) {
+			if (data[team] == array[item]) {
+				w = array.indexOf(array[item]);
+				
+			}
+		}
+	
+		$("#list").append("<div class='list_tile' id='list_tile_"+team+"'><p>"+ team + ': ' + data[team]+"</p></div>");
+		var div = "#list_tile_"+team;
+		console.log(w);
+		$(div).offset({top: $(div).height() * w, left: 10});
+	}*/
+}
+	
+	/*for (team in data) {
+		score = data[team];
+		
+		//$("#list").append("<div class='list_tile'><p>"+ team + ': ' + score+"</p></div>");
+	}*/
+
 
 function checkSlot() {
 	_priorities.length = 0;
@@ -141,10 +232,32 @@ function checkSlot() {
 	$.ajax({
 		method: "POST",
 		url: "post_filter",
-		data: {'data': JSON.stringify(_priorities)}
+		data: {'data': JSON.stringify(_priorities)},
+		success: function(data) {
+			data = JSON.parse(data);
+			console.log(data);
+			Populate(data);
+		}
 	});
 	console.log(_priorities);
 	//var text = readTextFile("file:///C:/Users/noahs/Desktop/ghscouting/json.txt");
 	//console.log(text);
 	//console.log(gatherData(raw, priorities));
+}
+
+function go(key) {
+	$("#content_corner").empty();
+	var div = "#list_tile_"+key;
+	//console.log($(div)[0]);
+	createContent(key);
+	$(div)[0].childNodes[2].style.display = "inline-block";
+	//$(div)[0].childNodes[2].style.position = "absolute";
+	setParent($(div)[0].childNodes[2], $("#content_corner")[0]);
+	
+	//$($(div)[0].childNodes[2]).position() ==  $("#content_corner").position();
+	//console.log($($(div)[0].childNodes[2]).position());
+	/*$($(div)[0].childNodes[2]).position({
+		of: $("#content_corner")
+	});*/
+	
 }

@@ -44,6 +44,21 @@
 #but {
 	height: 50px;
 	width: 150px;
+	background-color: #f1f1f1;
+	border: none;
+	box-shadow: rgba(0,0,0,0.5) 0px 0px 10px;
+}
+
+#content_corner {
+	width: 100px;
+	height: 50px;
+	margin-left: 20px;
+	margin-top: 30px;
+	position: absolute;
+	top: 250px;
+	right: 75px;
+	box-shadow: 1px 1px 5px #555 inset;
+	z-index: 3;
 }
 
 .slot {
@@ -62,4 +77,45 @@
 	border: 2px solid black;
 	margin: 10px;
 	z-index: 3;
+}
+
+.list_tile {
+	width: 100px;
+	height: 50px;
+	background-color: lightblue;
+	border: 2px solid black;
+	margin: 10px;
+	text-align: center;
+	overflow: auto;
+	z-index: 3;
+}
+
+.text {
+	z-index: 4;
+}
+
+.list_button {
+	height: 100%;
+	width: 20%;
+	float: right;
+	background-color: #f1f1f1;
+	border: none;
+	z-index: 5;
+}
+
+.content {
+	/*display: none;*/
+	display: none;
+	position: relative;
+	overflow: visible;
+	width: 135%;
+	height: 1000%;
+	max-height: 2000%;
+	top: -10px;
+	left: -15px;
+	z-index: 4;
+	background-color: lightblue;
+	border: 2px solid black;
+	margin: 10px;
+	text-align: center;
 }

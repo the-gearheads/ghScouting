@@ -373,7 +373,7 @@ def post_filter_server(config):
                          #   print(score)
                             pass
                         else:
-                            j = 1
+                            j = 8
                            # print(j, weight)
                             score = j * weight
                           #  print(score)
