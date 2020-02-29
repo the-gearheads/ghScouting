@@ -1,5 +1,5 @@
 var all = [];
-var _priorities = [];
+var _priorities = {};
 //console.log(_priorities);
 var found = {
 	"slot_1": [],
@@ -27,7 +27,7 @@ $(document).ready(function() {
 	//console.log(_col);
 	for (i = 0; i < _col.length; i++, w++) {
 		
-		$("#bank").append("<div class='tile' id='tile_"+i+"'>"+_col[i]+"</div>");
+		$("#bank").append("<div class='tile' id='tile_"+i+"'>"+_col[i]+"<form><input type='number' id='input_"+i+"'></form></div>");
 		var div = '#tile_'+i;
 		//console.log(div.width);
 		var threshold = i/16;
@@ -73,6 +73,16 @@ function removeDuplicates(array) {
 
 function setParent(el, newParent) {
 	newParent.appendChild(el);
+}
+
+function getInput(el) {
+	//console.log(el[0].childNodes[1]);
+	var usrInput = el[0].childNodes[1].childNodes[0].value;
+	if (usrInput == "") {
+		usrInput = 0;
+	}
+	//console.log(usrInput);
+	return usrInput;
 }
 
 function gatherData(array, array2) {//, array2, obj) {
@@ -194,22 +204,6 @@ function Populate(data) {
 		
 		//console.log(data);
 	}
-	
-	//console.log(max);
-	/*for (team in data) {
-		//console.log(data[team], array[0])
-		for (item in array) {
-			if (data[team] == array[item]) {
-				w = array.indexOf(array[item]);
-				
-			}
-		}
-	
-		$("#list").append("<div class='list_tile' id='list_tile_"+team+"'><p>"+ team + ': ' + data[team]+"</p></div>");
-		var div = "#list_tile_"+team;
-		console.log(w);
-		$(div).offset({top: $(div).height() * w, left: 10});
-	}*/
 }
 	
 	/*for (team in data) {
@@ -230,11 +224,25 @@ function checkSlot() {
 	for (i = 0; i < all.length; i++) {
 		//console.log(priorities[key].length);
 		gatherSlot(all[i]);
+		//console.log(value);
 	}
 	for (slot in found) {
 		if (found[slot].length != 0) {
-			_priorities.push(found[slot][0]);
-		} 
+			//console.log(_priorities[found[slot]])
+			for (i = 0; i < all.length; i++) {
+				var arr = found[slot];
+				console.log(arr[0], $(all[i][0]).text());
+				if (arr[0] == $(all[i][0]).text()) {
+					_priorities[arr[0]] = getInput(all[i]);
+				} else {
+					console.log("hoobastank");
+				}
+			}
+				
+		}
+		if (_priorities["length"] == 0) {
+			delete _priorities["length"];
+		}
 	}
 	$.ajax({
 		method: "POST",

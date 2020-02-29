@@ -148,11 +148,11 @@ def transfer(config):
                     #print(o[y])
                     try:
                         #olumns.append(i.args["display"])
-                        print("Work_Che")
+                       # print("Work_Che")
                         newColumns.append(i.args["display"])
                         p.add(i.args["display"]+"_"+value)
                     except KeyError:
-                        print("Work_Che_1")
+                        #print("Work_Che_1")
                         newColumns.append(i.name)
                         p.add(i.name+"_"+value)
                     b[team][i.name] = i.processor(o)
@@ -184,12 +184,12 @@ def transfer(config):
                 for y in w:
                     value = str(y)
                     try:
-                        print("Work_Sel")
+                        #print("Work_Sel")
                         newColumns.append(i.args["display"])
                         #columns.append(i.args["display"])
                         p.add(i.args["display"]+"_"+value)
                     except KeyError:
-                        print("Work_Sel_1")
+                        #print("Work_Sel_1")
                         newColumns.append(i.name)
                         #columns.append(i.name)
                         p.add(i.name+"_"+value)
@@ -324,11 +324,15 @@ def post_filter_server(config):
     team_values = {}
     f = []
     g= []
-    
-    
+    nameArr = []
+    inputArr = []
+    print(result)
+    for name, value in result.items():
+        nameArr.append(name)
+        inputArr.append(value)
     #print(p)
-    
-    for item in result:
+    print(nameArr, inputArr)
+    for item in nameArr:
         try:
             newName, newValue = item.split("_")
             f.append(newName)
@@ -350,20 +354,23 @@ def post_filter_server(config):
         weight = 0 
         for val_key in values.keys():
             #print(values.values())
-            for datapoint in result:
+            for datapoint in nameArr:
                 #print(val_key, datapoint)
                 
                 if val_key == datapoint:
-                    weight = len(result) - result.index(datapoint)
+                    weight = len(result) - nameArr.index(datapoint)
+                    print(datapoint, weight)
                     #print(weight)
+                    j = inputArr[nameArr.index(datapoint)]
                     #print(value)
+                    print(int(j))
                     leng = len(val_key)
                     #print(type(val_key[leng - 1]))
                     
                         
                     if "_" in val_key and val_key[leng - 1].isdigit() == True and values[val_key] != None:
                         #print(end)
-                        value = 1
+                        value = int(j)
                         #print(value)
                     else:
                         #print(end)
@@ -382,10 +389,13 @@ def post_filter_server(config):
                          #   print(score)
                             pass
                         else:
-                            j = 8
+                            
+                            
                            # print(j, weight)
-                            score = j * weight
-                          #  print(score)
+                            score = int(j) * weight
+                            
+                    #print(score)    
+                    #  print(score)
                     #weight.pop(0)
                     scores.insert(0, score)
                     #print(scores)
