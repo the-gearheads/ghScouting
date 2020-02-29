@@ -14,7 +14,8 @@ var json;
 var data;
 var raw = JSON.parse(window.data);
 var _col = JSON.parse(window.col);	
-console.log(raw);
+var newCol = JSON.parse(window.newCol);
+console.log(newCol);
 $(document).ready(function() {
 	
 	//console.log(ts)
@@ -65,6 +66,10 @@ $(document).ready(function() {
 		}
 	});	
 });
+
+function removeDuplicates(array) {
+  return array.filter((a, b) => array.indexOf(a) === b)
+};
 
 function setParent(el, newParent) {
 	newParent.appendChild(el);
@@ -130,11 +135,13 @@ function createContent(key) {
 		if (team == key) {
 			//var names = Object.keys(raw[team]);
 			var values = Object.values(raw[team]);
+			var valueArr = removeDuplicates(newCol);
 			//console.log(names.length, values);
 			for (i = 0; i < values.length; i++) {
 				var div =  "#list_tile_"+key;
 				//console.log(names[i], i);
-				attr.push('<i>'+_col[i]+'</i>'+ ': ' + "<font color = 'red'>"+values[i]+"</font>");
+				var name = valueArr[i];
+				attr.push('<i>'+name+'</i>'+ ': ' + "<font color = 'red'>"+values[i]+"</font>");
 				string = attr.join('<br/>');
 				
 			}

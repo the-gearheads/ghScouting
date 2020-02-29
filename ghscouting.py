@@ -148,9 +148,11 @@ def transfer(config):
                     #print(o[y])
                     try:
                         #olumns.append(i.args["display"])
+                        print("Work_Che")
                         newColumns.append(i.args["display"])
                         p.add(i.args["display"]+"_"+value)
                     except KeyError:
+                        print("Work_Che_1")
                         newColumns.append(i.name)
                         p.add(i.name+"_"+value)
                     b[team][i.name] = i.processor(o)
@@ -182,10 +184,12 @@ def transfer(config):
                 for y in w:
                     value = str(y)
                     try:
+                        print("Work_Sel")
                         newColumns.append(i.args["display"])
                         #columns.append(i.args["display"])
                         p.add(i.args["display"]+"_"+value)
                     except KeyError:
+                        print("Work_Sel_1")
                         newColumns.append(i.name)
                         #columns.append(i.name)
                         p.add(i.name+"_"+value)
@@ -217,17 +221,21 @@ def transfer(config):
                 continue
             try:
                 if con[i.name]["options"] == None:
+                    
                     columns.append(i.args["display"])
                 else:
                     pass
+                newColumns.append(i.args["display"])
             except KeyError:
-                 columns.append(i.args["display"])
+                newColumns.append(i.args["display"])
+                columns.append(i.args["display"])
             b[team][i.name] = i.processor(values[i.name])
             try:
                 z[team][i.args["display"]] = i.processor(values[i.name])
             except KeyError:
                 z[team][i.name] = i.processor(values[i.name])
     #print(z)
+    print(columns)
     return b, columns, z, p, s, newColumns
 @app.route("/<config>", methods=["POST"])
 def page_post(config):
@@ -284,8 +292,9 @@ def filter_server(config):
     w = set(y + list(p))
     data = json.dumps(x)
     col = json.dumps(list(w))
+    newCol = json.dumps(new)
     #print(list(w))
-    return render_template('analysis/filter.html', data=Markup(data), col=Markup(col))
+    return render_template('analysis/filter.html', data=Markup(data), col=Markup(col), newCol=Markup(newCol))
     
 @app.route("/<config>/analysis/post", methods=['POST'])
 def post_server(config):
@@ -389,8 +398,6 @@ def post_filter_server(config):
     print(teams_scores)
     print(team_values)
     ts = json.dumps(teams_scores)
-    with open("json.txt", "w") as outfile: 
-        outfile.write(ts)
     return ts
     db.commit()
     db.close()
