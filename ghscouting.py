@@ -90,15 +90,11 @@ def transfer(config):
     
     db = scouting.Database.Database(config)
     con = scouting.Page.Config(config).config
-    #print(foo) 
     keys = []
     d = {}
-    hork = db.get_all("matches")
+    data = db.get_all("matches")
     keys = db.get_columns()[1:]
-    
-   
-    #print(hork)
-    for i in hork:
+    for i in data:
         team = i[1]
         try:
             d[team] 
@@ -110,64 +106,43 @@ def transfer(config):
             except (KeyError):
                 d[team][keys[x]] = []
             d[team][keys[x]].append(i[x+1])
-    #print(d)
-    b = {}
-    z = {}
-    p = set()
-    s = {}
-    #print(d)
+    raw_data = {}
+    col_data = {}
+    col_wth_value = set()
+    special_col = {}
     for team, values in d.items():
-        b[team] = {}
-        z[team] = {}
+        raw_data[team] = {}
+        col_data[team] = {}
         columns = []
         newColumns = []
         for i in foo:
-            #print(values[i.name])
             if issubclass(type(i), scouting.Element.ElementCheckbox):
                 w = con[i.name]["options"]
-               # print(w)
                 try: 
-                    s[i.args["display"]] = w
+                    special_col[i.args["display"]] = w
                 except KeyError:
-                    s[i.name] = w
+                    special_col[i.name] = w
                 o = {}
-                #print(s)
                 for y in w:
                     value = str(y)
-                    #print(y)
-                    #print(values[f"{i.name}_{y}"])
-                    #o[y] = values[y]
                     o[y] = values[f"{i.name}_{y}"]
-                    #print(i.name)
-                    #for name, item in o.items():
-                     #   if item[0] == "true":
-                      #      o[y] = name
-                       # elif item[0] == None:
-                        #    o[y] = "None"
-                    #print(o)
-                    #print(o[y])
                     try:
-                        #olumns.append(i.args["display"])
-                       # print("Work_Che")
                         newColumns.append(i.args["display"])
-                        p.add(i.args["display"]+"_"+value)
+                        col_wth_value.add(i.args["display"]+"_"+value)
                     except KeyError:
-                        #print("Work_Che_1")
                         newColumns.append(i.name)
-                        p.add(i.name+"_"+value)
-                    b[team][i.name] = i.processor(o)
+                        col_wth_value.add(i.name+"_"+value)
+                    raw_data[team][i.name] = i.processor(o)
                     try:
-                        #print(i.processor(o))
-                        #print(i.name, i.processor(o))
                         if value == i.processor(o):
-                            z[team][i.args["display"]+"_"+value] = i.processor(o)
+                            col_data[team][i.args["display"]+"_"+value] = i.processor(o)
                         else:
-                            z[team][i.args["display"]+"_"+value] = None
+                            col_data[team][i.args["display"]+"_"+value] = None
                     except KeyError:
                         if value == i.processor(o):
-                            z[team][i.name+"_"+value] = i.processor(o)
+                            col_data[team][i.name+"_"+value] = i.processor(o)
                         else:
-                            z[team][i.name+"_"+value] = None
+                            col_data[team][i.name+"_"+value] = None
                         
                         
                     
@@ -176,34 +151,29 @@ def transfer(config):
                 continue
             if issubclass(type(i), scouting.Element.ElementSelect):
                 w = con[i.name]["options"]
-                #print(w)
                 try: 
-                    s[i.args["display"]] = w
+                    special_col[i.args["display"]] = w
                 except KeyError:
-                    s[i.name] = w
+                    special_col[i.name] = w
                 for y in w:
                     value = str(y)
                     try:
-                        #print("Work_Sel")
                         newColumns.append(i.args["display"])
-                        #columns.append(i.args["display"])
-                        p.add(i.args["display"]+"_"+value)
+                        col_wth_value.add(i.args["display"]+"_"+value)
                     except KeyError:
-                        #print("Work_Sel_1")
                         newColumns.append(i.name)
-                        #columns.append(i.name)
-                        p.add(i.name+"_"+value)
-                    b[team][i.name] = i.processor(values[i.name])
+                        col_wth_value.add(i.name+"_"+value)
+                    raw_data[team][i.name] = i.processor(values[i.name])
                     try:
                         if value == i.processor(values[i.name]):
-                            z[team][i.args["display"]+"_"+value] = i.processor(values[i.name])
+                            col_data[team][i.args["display"]+"_"+value] = i.processor(values[i.name])
                         else:
-                            z[team][i.args["display"]+"_"+value] = None
+                            col_data[team][i.args["display"]+"_"+value] = None
                     except KeyError:
                         if value == i.processor(values[i.name]):
-                            z[team][i.name+"_"+value] = i.processor(values[i.name])
+                            col_data[team][i.name+"_"+value] = i.processor(values[i.name])
                         else:
-                            z[team][i.name+"_"+value] = None
+                            col_data[team][i.name+"_"+value] = None
                         
                         
                     
@@ -229,14 +199,13 @@ def transfer(config):
             except KeyError:
                 newColumns.append(i.args["display"])
                 columns.append(i.args["display"])
-            b[team][i.name] = i.processor(values[i.name])
+            raw_data[team][i.name] = i.processor(values[i.name])
             try:
-                z[team][i.args["display"]] = i.processor(values[i.name])
+                col_data[team][i.args["display"]] = i.processor(values[i.name])
             except KeyError:
-                z[team][i.name] = i.processor(values[i.name])
-    #print(z)
+                col_data[team][i.name] = i.processor(values[i.name])
     print(columns)
-    return b, columns, z, p, s, newColumns
+    return raw_data, columns, col_data, col_wth_value, special_col, newColumns
 @app.route("/<config>", methods=["POST"])
 def page_post(config):
     page = scouting.Page.Page(config)
@@ -276,24 +245,20 @@ def display(config):
 @app.route("/<config>/analysis/rank")
 def rank_server(config):
     db = scouting.Module_Database.Database(config)
-    #transfer(config)
-    x, y, z, p, s, new = transfer(config) 
+    x, y, col_data, col_wth_value, special_col, new = transfer(config) 
     data = json.dumps(x)
     col = json.dumps(new)
     ranks = json.dumps((db.get_all("analysis_rank")))
-    #print(data, ranks)
     return render_template('analysis/rank.html', ranks=Markup(ranks), data=Markup(data), col=Markup(col))
     
 @app.route("/<config>/analysis/filter")
 def filter_server(config):
     db = scouting.Module_Database.Database(config)
-    #transfer(config)
-    x, y, z, p, s, new = transfer(config)
-    w = set(y + list(p))
+    x, y, col_data, col_wth_value, special_col, new = transfer(config)
+    w = set(y + list(col_wth_value))
     data = json.dumps(x)
     col = json.dumps(list(w))
     newCol = json.dumps(new)
-    #print(list(w))
     return render_template('analysis/filter.html', data=Markup(data), col=Markup(col), newCol=Markup(newCol))
     
 @app.route("/<config>/analysis/post", methods=['POST'])
@@ -304,8 +269,6 @@ def post_server(config):
     for rank, teams in result.items():
         for team in teams:
             db.add(team, rank)
-    #print(result)
-    #print(db.get_all("analysis_rank"))
     db.commit()
     db.close()
     return render_template('analysis/post.html', message=message)
@@ -315,93 +278,59 @@ def post_filter_server(config):
     message = "Post"
     db = scouting.Module_Database.Database(config)
     result = json.loads(request.form['data'])
-      #print(result)
-    data, columns_old, columns_data, p, s, new  = transfer(config)
-    #print(d)
-    #print(z)
+    data, columns_old, columns_data, col_wth_value, special_col, new  = transfer(config)
     d = {}
-    b = {}
+    raw_data = {}
     team_values = {}
-    f = []
-    g= []
+    keyNames = []
+    keyValues= []
     nameArr = []
     inputArr = []
     print(result)
     for name, value in result.items():
         nameArr.append(name)
         inputArr.append(value)
-    #print(p)
     print(nameArr, inputArr)
     for item in nameArr:
         try:
             newName, newValue = item.split("_")
-            f.append(newName)
-            g.append(newValue)
-            for i in range(0, len(f)):
-                b[f[i]] = g[i]
+            keyNames.append(newName)
+            keyValues.append(newValue)
+            for i in range(0, len(keyNames)):
+                raw_data[keyNames[i]] = keyValues[i]
         except ValueError:
             continue
-            #b[newName[i]] = newValue[i]
-    #print(p)
     teams_scores= {}
-    #print(s)
-    #print(result)
     for team, values in columns_data.items():
-        j = 0
+        unique_weight = 0
         scores = []
         properties = []
         score = 0
         weight = 0 
         for val_key in values.keys():
-            #print(values.values())
             for datapoint in nameArr:
-                #print(val_key, datapoint)
-                
                 if val_key == datapoint:
                     weight = len(result) - nameArr.index(datapoint)
-                    print(datapoint, weight)
-                    #print(weight)
-                    j = inputArr[nameArr.index(datapoint)]
-                    #print(value)
-                    print(int(j))
+                    unique_weight = inputArr[nameArr.index(datapoint)]
                     leng = len(val_key)
-                    #print(type(val_key[leng - 1]))
-                    
-                        
                     if "_" in val_key and val_key[leng - 1].isdigit() == True and values[val_key] != None:
-                        #print(end)
-                        value = int(j)
-                        #print(value)
+                        value = int(unique_weight)
                     else:
-                        #print(end)
                         value = values[val_key]
-                        #print(value)
                     properties.insert(0, value)
                     try :
-                        
-                        score = float(value) * weight
+                        #print(unique_weight * int(value) * weight)
+                        score = int(unique_weight) * float(value) * weight 
                         #print(score)
                     except (TypeError, ValueError):
-                        #print(j)
                         if value == None:
-                            #print("NONE")
                             score = 0
-                         #   print(score)
                             pass
                         else:
-                            
-                            
-                           # print(j, weight)
-                            score = int(j) * weight
-                            
-                    #print(score)    
-                    #  print(score)
-                    #weight.pop(0)
+                            score = int(unique_weight) * weight
                     scores.insert(0, score)
-                    #print(scores)
                     teams_scores[team] = sum(scores)
                 else:
-                    #print("no")
                     pass   
         d[team] = properties
         team_values[team] = properties
@@ -412,9 +341,4 @@ def post_filter_server(config):
     db.commit()
     db.close()
     return render_template('analysis/post_filter.html', message=message)
-    
-#@app.route("/<config>/analysis/test")
-#def rank_test(config):
-
-    
-    
+  

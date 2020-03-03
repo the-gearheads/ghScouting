@@ -55,8 +55,6 @@ function getTierList() {
 				var _team = $('#' + all_el[i].childNodes[0].id).text();
 				var o_array = Object.values(overlap);
 				if(o_array[1] >= $(all_el[i]).height() / 2) {
-				//if(set.indexOf(_team) == -1){
-					//set.push(_team);
 					teams[key].push(_team);
 					$.ajax({
 						method: "POST",
@@ -120,7 +118,6 @@ $(document).ready(function(){
 	var _ranks = JSON.parse(window.ranks);
 	var _col = JSON.parse(window.col);
 	
-	//console.log(_col);
 	$.ajax({
 		url: full,
 		async: false,
@@ -138,23 +135,16 @@ $(document).ready(function(){
 		delete json[i]["matchnum"];
 		delete json[i]["team"];
 		var string;
-		//var name;
-		//var data = Object.values(json[i]);
-		//console.log(_data);
 		
 		for(y = 0; y < valueArr.length; y++){
 			var name = valueArr[y]
 			var data = Object.values(_data[teamNum]);
-			//if (_col.indexOf() ) 
 			attr.push('<i>'+name+'</i>'+ ': ' + "<font color = 'red'>"+data[y]+"</font>");
 			string = attr.join('<br/>');
-			//var regex = /[:-<]/g;
 			
 		}
 		if(all_el_names.indexOf(teamNum) != -1) {
-			//console.log($($('div:contains('+teamNum+')').parent()[2].childNodes[1]).text());//.childNodes[1]);
 			var _team = $($('div:contains('+teamNum+')').parent());
-			//console.log(_team);
 			_team[2].childNodes[2].remove();
 			$(_team).append('<div id="content_'+i+'" class="content">'+string+'</div>');
 			console.log("Duplicate found");
@@ -173,23 +163,17 @@ $(document).ready(function(){
 		
 		var num = i/16;
 		var _top = 0;
-		//var previous_div = document.getElementById("drag_"+i-1);
 		var height =  $(div).height();
 		if(Number.isInteger(num)) {
 			width = width + $(div).width();
 			w = 0;
 			height = 0;
-			//console.log(w);
 			
 			$(div).offset({top: height, left: width});
 			
-			//$(div).position.left = _left+'%';
 		} else {	
-			//console.log(w)
 			height = height * w;
 			$(div).offset({top: height, left: width});
-			
-			//console.log($(div).position());
 		}
 		all_el.push(div);
 		all_el_names.push($('#' + div.childNodes[0].id).text());
@@ -206,7 +190,6 @@ $(document).ready(function(){
 		});
 		}
 	}
-	//console.log(currentRank.length);
 	var result = Object.keys(currentRank).map(function(key) {
 		return [String(key), currentRank[key]];
 	});
@@ -215,24 +198,18 @@ $(document).ready(function(){
 	var height = $(div).height();
 	var width = $(div).width();
 	var w = 0;
-	for (i = 0; i < result.length; i++){
-		//console.log(result[i][1]);
-		//_top_ = 0;
+	for (i = 0; i < result.length; i++) {
 		for (y = 0; y < result[i][1].length; y++, w++) {
 			if (previous_div == null) {
-				//console.log($(result[i][1][y]));
 				var OffsetTop = $(result[i][1][y]).offset.top;
 				$(result[i][1][y]).offset({top: OffsetTop, left: 0});
 				previous_div = result[i][1][y];
 				pre_offset = $(previous_div).offset().left;
 			} else {
-				//console.log(y);
 				var num_ = (y/16);
-				//console.log(num_);
 				for (z = 0; z < 4; z++){
 					if(	div.left >= $("#rank_"+currentRank[z]).right || div.top >= $("#rank_"+currentRank[z]).bottom || 
 						div.right <= $("#rank_"+currentRank[z]).left || div.bottom <= $("#rank_"+currentRank[z]).top) {
-						//console.log(num_);
 						console.log($(result[i][1][y]).offset().top + 25);
 						$(result[i][1][y]).offset({top: height + height, left: 0})
 						previous_div = result[i][1][y];
@@ -240,14 +217,12 @@ $(document).ready(function(){
 						console.log(width);
 						pre_offset = $(previous_div).offset().left;
 						$(result[i][1][y]).offset({top: $(previous_div).offset().top + _top_, left: pre_offset + width - 37})
-						//console.log(pre_offset + 50);
 						previous_div = result[i][1][y];
 					}
 				}
 			}
 		}
 		previous_div = null;
-		//_top_ = 0;
 		
 	}
 	$( ".drag" ).draggable({containment: "#sweetmotherofpearl", scroll: false });
@@ -280,14 +255,6 @@ $(document).ready(function(){
 			}
 		});
 	}
-	//console.log(div)
-	//console.log(currentRank);
 });
 
-	document.getElementById('mySidebar').style.display = "block"; 
-/*document.getElementById('open_sidebar').addEventListener("click", function(){
-	document.getElementById('mySidebar').style.display = "block"; 
-});
-document.getElementById('close_sidebar').addEventListener("click", function(){
-	document.getElementById('mySidebar').style.display = "none"; 
-});*/
+document.getElementById('mySidebar').style.display = "block"; 
