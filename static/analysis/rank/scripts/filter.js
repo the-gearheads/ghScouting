@@ -14,6 +14,8 @@ var data;
 var raw = JSON.parse(window.data);
 var _col = JSON.parse(window.col);	
 var newCol = JSON.parse(window.newCol);
+console.log(raw);
+console.log(_col);
 console.log(newCol);
 $(document).ready(function() {
 	

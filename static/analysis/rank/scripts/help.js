@@ -102,10 +102,13 @@ function removeDuplicates(array) {
 		
 $(document).ready(function(){	
 	var website = window.location.href;
-	var partial = website.split("/analysis/rank", 2) + "/csv";
-	var part_1 = partial.substring(0, 32);
+	
+	var partial = website.split("/analysis/rank", 1) + "/csv";
+	console.log(partial);
+	var part_1 = partial.substring(0, 29);
 	var part_2 = partial.substring(33, 37);
 	var full = part_1 + part_2;
+	console.log(full);
 	var _left = 0;
 	var _top = 0;
 	
@@ -119,7 +122,7 @@ $(document).ready(function(){
 	var _col = JSON.parse(window.col);
 	
 	$.ajax({
-		url: full,
+		url: partial,
 		async: false,
 		success: function (csvd) {
 			json = $.csv.toObjects(csvd);
