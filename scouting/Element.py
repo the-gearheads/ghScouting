@@ -1,15 +1,20 @@
-from flask import url_for
-import jinja2
-import sys
-import subprocess
+import os
 import statistics
+import subprocess
+import sys
+
+import jinja2
+
+import psutil
+from flask import url_for
+
 try:
     import pyudev
+
     UDEV_AVAIL = True
 except ImportError:
     UDEV_AVAIL = False
-import psutil
-import os
+
 
 def list_removeable():
     if not UDEV_AVAIL:
@@ -58,9 +63,10 @@ class ElementBase:
         return '<input class="uk-input" name="{}" type="{}">'.format(
             self.name, self.args["type"]
         )
-    
+
     def processor(self, data):
         pass
+
     # allows easy global modifications
     def get_line(self):
         return (
@@ -92,17 +98,17 @@ class ElementNumber(ElementBase):
         return '<input class="uk-input" name="{}" type="number" min="{}" max="{}">'.format(
             self.name, self.args.get("min"), self.args.get("max")
         )
+
     def processor(self, data):
-        #print(data)
+        # print(data)
         h = []
         for i in range(0, len(data)):
             try:
                 h.append(int(data[i]))
             except ValueError:
                 h.append(0)
-        
+
         return statistics.mean(h)
-        
 
 
 class ElementSelect(ElementBase):
@@ -124,13 +130,15 @@ class ElementSelect(ElementBase):
 
     def process(self, form):
         return self.name, form.get(self.name)
+
     def processor(self, data):
-        #print(data)
+        # print(data)
         try:
             return statistics.mode(data)
         except statistics.StatisticsError:
-            return data[len(data)-1]
-        #print(data)
+            return data[len(data) - 1]
+        # print(data)
+
 
 class ElementCheckbox(ElementSelect):
     def process(self, form):
@@ -141,30 +149,31 @@ class ElementCheckbox(ElementSelect):
                 if key == self.name:
                     returns.append((f"{self.name}_{value}", True))
         return returns
-    
+
     def processor(self, data):
         try:
             a = {}
-            #print(data.items())
+            # print(data.items())
             for key, value in data.items():
                 try:
                     var = value.count("true")
                     a[key] = var
-                    
-                    #print(max_value, max_keys)
-                    
+
+                    # print(max_value, max_keys)
+
                 except KeyError:
                     a[key] = None
-            #print(a)
+            # print(a)
             max_value = max(a.values())  # maximum value
             max_keys = [k for k, v in a.items() if v == max_value]
-            #print(max_keys)
+            # print(max_keys)
             return max_keys[0]
-            
-            #print(max_keys[0])
-               # return statistics.mode(data[i])
+
+            # print(max_keys[0])
+            # return statistics.mode(data[i])
         except statistics.StatisticsError:
             return None
+
 
 class ElementButton(ElementBase):
     def __init__(self, name: str, args: dict):

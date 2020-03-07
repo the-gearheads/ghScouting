@@ -1,12 +1,9 @@
 from flask import Flask, request, redirect, render_template, send_from_directory, flash
-import functools
 import werkzeug.wrappers
 import traceback
 import yaml
 import yaml.scanner
-import collections
 import psutil
-import shutil
 import os
 import json
 from markupsafe import Markup
