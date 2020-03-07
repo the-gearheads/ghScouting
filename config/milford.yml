@@ -1,0 +1,86 @@
+page_type: form
+gearheads_banner:
+  type: image
+  filename: gearheads.png
+  position: top
+matchnum:
+  type: number
+  display: Match Number
+  position: float
+  required: true
+team:
+  type: number
+  display: Team Number
+  position: float
+  required: true
+offense:
+  type: display_text
+  text: Offense
+autonline:
+  type: radio
+  options:
+    - "Yes"
+    - "No"
+  display: Crossed Initiation Line
+autoncells:
+  type: number
+  display: Power Cells (Auton)
+telopcells:
+  type: number
+  display: Power Cells
+cellupdown:
+  type: checkbox
+  display: Where can they shoot power cells?
+  options:
+    - Top
+    - Bottom
+hang:
+  type: radio
+  display: Endgame
+  options:
+    - No Hang
+    - Attempted Hang
+    - Hanged
+    - Buddy Hang
+defense:
+  type: display_text
+  text: Defense
+manuver:
+  type: radio
+  display: Manuverability
+  options:
+    - 0
+    - 1
+    - 2
+push:
+  type: radio
+  display: Can push other bots?
+  options:
+    - "Yes"
+    - "No"
+foul:
+  type: radio
+  display: Could cause a foul?
+  options:
+    - "Yes"
+    - "No"
+foul2:
+  type: radio 
+  display: Able to prevent a foul?
+  options:
+    - "Yes"
+    - "No"
+durability:
+  type: radio
+  display: Robot durability
+  options:
+    - 0
+    - 1
+    - 2
+comments:
+  type: textarea
+  display: Comments
+submit_button:
+  type: submit
+  method: post
+  text: Submit

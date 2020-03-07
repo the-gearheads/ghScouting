@@ -45,8 +45,10 @@ div.message {
     margin-bottom: 2em;
 }
 
-h1 {
+h1, h3 {
     text-shadow: rgba(0,0,0,0.2) 0px 0px 10px;
+    line-height: 0.4 !important;
+    margin-top: 0;
 }
 
 p {

@@ -254,4 +254,4 @@ class ElementDisplayText(ElementBase):
         self.display_field = True
 
     def line_base(self):
-        return f'<p>{self.args["text"]}</p>'
+        return f'<h3>{self.args["text"]}</h3>'
