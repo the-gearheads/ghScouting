@@ -90,4 +90,4 @@ ex. `min: 0`
 ex. `default: my_cool_config_file`
 
 ## Usage
-Once this project is installed on all scouting devices, run the wsgi.py file to start the app. Then, open http://localhost:5000/[config file name without yaml extension] on a browser to log the data. Once matches are over, open http://localhost:5000/[config file name without yaml extension]/csv to recieve a csv file in string format containing the logged data. It also generates a csv file in the root directory called `eggs.csv` that contains the logged data.
+Once this project is installed on all scouting devices, run the wsgi.py file to start the app. Then, open [http://localhost:5000/\[config file name without yaml extension\]](http://localhost:5000/%5Bconfig%20file%20name%20without%20yaml%20extension%5D) on a browser to log the data. Once matches are over, open [http://localhost:5000/\[config file name without yaml extension\]/csv](http://localhost:5000/%5Bconfig%20file%20name%20without%20yaml%20extension%5D/csv) to recieve a csv file in string format containing the logged data. It also generates a csv file in the root directory called `eggs.csv` that contains the logged data.
