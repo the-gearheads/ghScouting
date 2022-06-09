@@ -3,8 +3,7 @@
   
 
 ## Introduction
-ghScouting is Team 1189's scouting app. The purpose of this app is to provide a seamless method of logging the performance of FRC teams during matches. Teams must create a config file following the syntax explained below in order to configure the particular data that will be logged. Then, this app runs a flask server on port 5000, where scouters can input information regarding the performance of a team in a specific match. The data is then saved to a DB file, which can easily be converted to a .csv to view the data more easily. The data of several scouters can then be compounded and analyzed by the scouting team to make informed decisions during alliance selection.
-
+ghScouting is the scouting app used by Team 1189. It hosts a flask server (on port 5000), and logs data into an Sqlite database, which can be converted to a CSV file for easy manipulation. It's configured using a YAML config file, specifying which data you wish to log. Once you've collected your scouting data, you can merge the data from your scouters and analyze it to help make informed decisions during alliance selection.
   
 
 ## Setup
