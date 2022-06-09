@@ -106,6 +106,10 @@ class Database:
         writer = csv.writer(csv_data)
         writer.writerow(columns)
         writer.writerows(data)
+        with open('eggs.csv', 'w', newline='') as csvfile:
+            spamwriter = csv.writer(csvfile)
+            spamwriter.writerow(columns)
+            spamwriter.writerows(data)
         return csv_data
 
     def commit(self):

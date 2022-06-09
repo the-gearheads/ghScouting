@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from pathlib import Path
 
 import yaml
@@ -37,6 +38,6 @@ class Config:
         try:
             form = Path("config")
             with open(form / f"{name}.yml") as stream:
-                return yaml.load(stream)
+                return yaml.full_load(stream)
         except (FileNotFoundError, yaml.scanner.ScannerError) as e:
             return e
