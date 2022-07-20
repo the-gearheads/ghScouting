@@ -42,6 +42,7 @@ class Form:
         return render_template("form.html")
 
     def process_post(self):
+        print("Was I reached at the correct time?")
         db = scouting.Database.Database(self.name)
         db.create_columns(self.form)
 
@@ -53,8 +54,8 @@ class Form:
                 column, value = element.process(request.form)
                 if value:
                     db.add_queue(column, value)
-
         db.commit()
+        db.gen_csv()
         db.close()
 
         flash(
