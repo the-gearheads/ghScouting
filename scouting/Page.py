@@ -10,6 +10,7 @@ class Page:
     def __init__(self, name):
         self.PAGE_TYPES = {"form": scouting.Form.Form, "menu": scouting.Form.Menu}
         self.config = Config(name)
+        print(self.config.config)
         self.type = self.config.config["page_type"]
         self.content = self.__create_content__()
 

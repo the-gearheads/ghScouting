@@ -1,0 +1,74 @@
+page_type: form
+gearheads_banner:
+  type: image
+  filename: gearheads.png
+  position: top
+matchnum:
+  type: number
+  display: Match Number
+  position: float
+  required: true
+team:
+  type: number
+  display: Team Number
+  position: float
+  required: true
+
+#auton questions
+auton_points:
+  type: number
+  display: Auton Points
+  min: 0
+auton_hub:
+  type: checkbox
+  display: Auton Hub Level
+  options:
+    - 'LowerHub'
+    - 'UpperHub'
+auton_type:
+  type: radio
+  display: Auton Type
+  options: 
+    - '0 Ball'
+    - '1 Ball'
+    - '2 Ball'
+    - '3 Ball'
+    - '4 Ball'
+    - '5 Ball'
+    - 'Other'
+auton_works:
+  type: radio
+  display: Does Auton Work?
+  options:
+    - 'Yes'
+    - 'No'
+
+#teleop questions
+teleop_points:
+  type: number
+  display: total teleop cargo points
+teleop_hub:
+  type: checkbox
+  display: Hub Level in Teleop
+  options:
+    - Upper
+    - Lower
+
+#climbing questions
+climbing_points:
+  type: number
+  display: Climbing Points
+climbing_level:
+  type: radio
+  display: Climb Level
+  options:
+    - '0' 
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+
+submit_button:
+  type: submit
+  method: post
+  text: Submit
