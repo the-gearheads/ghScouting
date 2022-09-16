@@ -161,3 +161,10 @@ div.item {
 div.item > label {
     display: block;
 }
+
+.download-btn{
+    margin-top: 5vh;
+    display: block;
+    width: fit-content;
+    margin-left: 7vw;
+}
