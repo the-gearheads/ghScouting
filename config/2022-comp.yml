@@ -6,12 +6,12 @@ gearheads_banner:
 matchnum:
   type: number
   display: Match Number
-  position: float
+  # position: float
   required: true
 team:
   type: number
   display: Team Number
-  position: float
+  # position: float
   required: true
 
 #auton questions
