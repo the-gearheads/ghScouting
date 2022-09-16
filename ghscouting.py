@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, send_from_directory, flash
+from flask import Flask, Response, request, redirect, render_template, send_from_directory, flash
 import werkzeug.wrappers
 import traceback
 import yaml
@@ -64,7 +64,17 @@ def favicon():
 def root():
     # Get default form from config
     return redirect("/" + app.config["gh_default"])
-
+    
+@app.route("/getCSV")
+def getCSV():
+    with open("eggs.csv") as fp:
+        csv = fp.read()
+    # csv = '1,2,3\n4,5,6\n'
+    return Response(
+        csv,
+        mimetype="text/csv",
+        headers={"Content-disposition":
+                 "attachment; filename=data.csv"})
 
 @app.route("/<config>")
 def display_page(config):
