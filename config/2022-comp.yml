@@ -15,49 +15,28 @@ team:
   required: true
 
 #auton questions
-auton_points:
+auton_cargo_upper:
   type: number
-  display: Auton Points
-  min: 0
-auton_hub:
-  type: checkbox
-  display: Auton Hub Level
-  options:
-    - 'LowerHub'
-    - 'UpperHub'
-auton_type:
+  display: "# Auton Cargo Scored Upper Hub"
+auton_cargo_lower:
+  type: number
+  display: "# Auton Cargo Scored Lower Hub" 
+auton_taxi:
   type: radio
-  display: Auton Type
-  options: 
-    - '0 Ball'
-    - '1 Ball'
-    - '2 Ball'
-    - '3 Ball'
-    - '4 Ball'
-    - '5 Ball'
-    - 'Other'
-auton_works:
-  type: radio
-  display: Does Auton Work?
+  display: Move During Auton (Taxi)?
   options:
     - 'Yes'
     - 'No'
 
 #teleop questions
-teleop_points:
+teleop_cargo_upper:
   type: number
-  display: total teleop cargo points
-teleop_hub:
-  type: checkbox
-  display: Hub Level in Teleop
-  options:
-    - Upper
-    - Lower
+  display: "# Teleop Cargo Scored Upper Hub"
+teleop_cargo_lower:
+  type: number
+  display: "# Teleop Cargo Scored Lower Hub"
 
 #climbing questions
-climbing_points:
-  type: number
-  display: Climbing Points
 climbing_level:
   type: radio
   display: Climb Level
@@ -67,6 +46,35 @@ climbing_level:
     - '2'
     - '3'
     - '4'
+climb_sucess:
+  type: radio
+  display: Climb Successful?
+  options:
+    - 'Yes'
+    - 'No'
+
+defense:
+  type: radio
+  display: Defense
+  options:
+    - 'not controllable'
+    - 'poor'
+    - 'pushed around'
+    - 'adequate'
+    - "didn't defend but looked strong"
+    - 'Excellent'
+extra:
+  type: checkbox
+  display: Extra
+  options:
+    - 'Very Manuverable'
+    - "Brick Bot"
+    - "Powerful Bot"
+    - 'Damaged'
+    - 'Lost Comms'
+robot_stop_time:
+  type: number
+  display: If robot stopped, indicate for how long (seconds)
 
 submit_button:
   type: submit

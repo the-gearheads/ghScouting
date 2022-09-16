@@ -63,13 +63,14 @@ class Database:
             if not item.display_field:
                 if issubclass(type(item), scouting.Element.ElementCheckbox):
                     for option in item.args["options"]:
+                        print(f"{item.name}_{option}")
                         names.append(f"{item.name}_{option}")
                 else:
                     names.append(item.name)
         for name in names:
             if not self.__check_column_exist__(name):
                 print("Creating column " + name)
-                self.cursor.execute(f"ALTER TABLE matches ADD COLUMN {name}")
+                self.cursor.execute(f"ALTER TABLE matches ADD COLUMN '{name}'")
 
         # for key, values in config.items():
         #     if (
@@ -134,7 +135,7 @@ class Database:
                 value = "true"
 
             self.cursor.execute(
-                "UPDATE matches SET {} = ? WHERE team = ? and matchnum = ?".format(key),
+                "UPDATE matches SET '{}' = ? WHERE team = ? and matchnum = ?".format(key),
                 (value, self.team, self.match),
             )
 
