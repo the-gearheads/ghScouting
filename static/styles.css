@@ -2,7 +2,7 @@
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
-    src: local('Open Sans Regular'), local('OpenSans-Regular'), url("/static/OpenSans-Regular.ttf");
+    src: local('Open Sans Regular'), local('OpenSans-Regular'), url("/src/static/OpenSans-Regular.ttf");
     unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
@@ -142,7 +142,7 @@ div.float {
     box-shadow: rgba(0,0,0,0.2) 0px 0px 50px;
 }
 
-.uk-button-primary { 
+.uk-button-primary {
     width: auto;
     height: auto;
     padding-top: .5em;
@@ -168,3 +168,35 @@ div.item > label {
     width: fit-content;
     margin-left: 7vw;
 }
+
+.teams_table {
+    display: inline-block;
+    border-collapse: collapse;
+    border-radius: 10px;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    /* min-width: 400px; */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.teams_table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+}
+.teams_table th,
+.teams_table td {
+    padding: 12px 15px;
+}
+.teams_table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.teams_table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.teams_table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+

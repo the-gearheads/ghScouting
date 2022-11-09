@@ -1,0 +1,30 @@
+weights:
+  auton_cargo_upper: 1
+  auton_cargo_lower: 1
+  teleop_cargo_upper: 1
+  teleop_cargo_lower: 1
+  robot_stop_time: -1.5
+
+
+values:
+  auton_taxi: {'Yes': 40, 'No': 0}
+  climbing_level:
+    '0': 0
+    '1': 5
+    '2': 9
+    '3': 12
+    '4': 15
+  climb_sucess: {'Yes': 5, 'No': -5}
+  defense:
+    'not controllable': -5
+    'poor': -5
+    'pushed around': -3
+    'adequate': 0
+    "didn't defend but looked strong": -1
+    'Excellent': 3
+  # extras
+  'extra_Very Manuverable': {'true': 3, 'false': 0}
+  'extra_Brick Bot': {'true': 1, 'false': 0}
+  'extra_Powerful Bot': {'true': 3, 'false': 0}
+  'extra_Damaged': {'true': -10, 'false': 0}
+  'extra_Lost Comms': {'true': -8, 'false': 0}

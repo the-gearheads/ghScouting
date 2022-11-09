@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+{% if not team_number %}
+<div class="teams_table">
+    <table style="border-width: 5px; border-color: black" id="position">
+     <tr>
+        <th>Team Number</th>
+        <th>Relative Score</th>
+     </tr>
+     {% for team_id, team_score in best_teams.items() %}
+     <tr>
+        <td>{{ team_id }}</td>
+        <td>{{ team_score }}</td>
+     </tr>
+     {% endfor %}
+    </table>
+  </div>
+{% endif %}
+{% if team_number %}
+<div class="teams_table selected_team_table">
+    <table style="border-width: 5px; border-color: black">
+     <tr>
+        <th>{{ team_number }}</th>
+     </tr>
+     {% for key, value in team_attributes.items() %}
+     <tr>
+        <td>{{ key }}</td>
+        <td>{{ value }}</td>
+     </tr>
+     {% endfor %}
+    </table>
+</div>
+{% endif %}
+    <script src="static/click.js"></script>
+  </body>
+</html>

@@ -2,11 +2,11 @@
 <head>
     <title>Gearheads Scouting</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href='{{ url_for('static', filename='favicon.ico') }}' />
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='uikit.min.css') }}">
     <body>
-        <div class="main_form"> 
+        <div class="main_form">
             <form>
                 {% set float_config = config.page|selectattr("position", "equalto", "float")| list %}
                 {% set top_config = config.page|selectattr("position", "equalto", "top") | list %}
@@ -48,7 +48,7 @@
                 </div>
                 {% endif %}
             </form>
-            <a class="download-btn"href="/getCSV">Download Data</a>
+            <a class="download-btn" href="/getCSV">Download Data</a>
         </div>
     </body>
 </head>
