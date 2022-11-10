@@ -2,17 +2,17 @@ import yaml
 import csv
 
 
-def stats():
+def stats(team_number):
     with open("config/weights.yml", 'r') as config:
         configuration = yaml.safe_load(config)
 
-    team_number = None
-    team_attributes = dict()
-    best_teams = dict()  # team number: # ranking score
+    team_attributes = None
+    best_teams = None  # team number: # ranking score
     with open("eggs.csv", 'r') as fp:
         csv_file = csv.DictReader(fp)
 
         if not team_number:
+            best_teams = dict()  # team number: # ranking score
             for team in csv_file:
                 team_score = 0
                 for key, value in team.items():
@@ -22,7 +22,6 @@ def stats():
                             team_score += (int(value) * configuration['weights'][key])
                         if key in configuration['values']:
                             team_score += configuration['values'][key][value]
-                        team_attributes[key] = value
 
                 if not best_teams.get(team['team']):
                     best_teams[team['team']] = [team_score]
@@ -35,21 +34,34 @@ def stats():
             best_teams = dict(sorted(best_teams.items(), key=lambda item: item[1], reverse=True))
 
         else:
+            team_attributes = dict()
             for team in csv_file:
                 for key, value in team.items():
                     if value:
                         if key == 'matchnum':
                             continue
                         if key in configuration['weights'].keys():
-                            if team_attributes.get(key):
-                                team_attributes[key] = value
+                            if not team_attributes.get(key):
+                                team_attributes[key] = [value]
                             else:
-                                team_attributes[key] = value
+                                team_attributes[key].append(value)
                         if key in configuration['values']:
-                            team_attributes[key] = value  # TODO: add averaging for values and weights in attributes
+                            if not team_attributes.get(key):
+                                print(key)
+                                team_attributes[key] = [value]
+                            else:
+                                team_attributes[key].append(value)
 
-        return best_teams
+            for key, value in team_attributes.items():
+                if key in configuration['values']:
+                    team_attributes[key] = ", ".join(set(value))
+                else:
+                    team_attributes[key] = "{} - {}".format(min(value), max(value))
+
+        print(f"**** Team Attributes are {team_attributes}")
+
+        return best_teams, team_attributes
 
 
 if __name__ == '__main__':
-    print(stats())
+    print(stats(1189))
