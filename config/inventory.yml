@@ -1,0 +1,28 @@
+page_type: form
+gearheads_banner:
+  type: image
+  filename: gearheads.png
+  position: top
+matchnum:
+  type: number
+  display: Match Number
+  # position: float
+  required: true
+team:
+  type: number
+  display: Team Number
+  # position: float
+required: true
+item_name:
+  type: textarea
+  display: "Name of the item"
+item_id:
+  type: number
+  display: "Item Num"
+location:
+  type: textarea
+  display: "Location of the item"
+submit_button:
+  type: submit
+  method: post
+  text: Submit

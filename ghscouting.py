@@ -86,14 +86,15 @@ def stats():
         return url_for('stats', team_number=request.form['team_number'])
 
     else:
-        print("GEt request made")
         team_number = request.args.to_dict().get('team_number')
-        best_teams, team_attributes = analysis.stats(team_number)
+        best_teams, team_attributes = analysis.stats()
+        print('team attributes', team_attributes)
     return render_template("stats.html", team_number=team_number, best_teams=best_teams, team_attributes=team_attributes)
 
 
 @app.route("/<config>")
 def display_page(config):
+    print(f"waga baba bp obo {config}")
     page = scouting.Page.Page(config)
 
     if isinstance(page.config, Exception):  # Check config threw an exception

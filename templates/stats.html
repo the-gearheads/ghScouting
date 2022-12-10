@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script></script>
   </head>
   <body>
 {% if not team_number %}
@@ -14,7 +15,7 @@
         <th>Relative Score</th>
      </tr>
      {% for team_id, team_score in best_teams.items() %}
-     <tr>
+     <tr id={{team_id}}>
         <td>{{ team_id }}</td>
         <td>{{ team_score }}</td>
      </tr>
@@ -22,7 +23,6 @@
     </table>
   </div>
 {% endif %}
-{% if team_number %}
 <div class="teams_table selected_team_table">
     <table style="border-width: 5px; border-color: black">
      <tr>
@@ -37,7 +37,6 @@
      {% endfor %}
     </table>
 </div>
-{% endif %}
     <script src="static/click.js"></script>
   </body>
 </html>
