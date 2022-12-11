@@ -98,7 +98,6 @@ input[type=text] {
     font-weight: bold;
     font-size: 25px;
 }
-
 textarea {
     font-family: 'Open Sans', sans-serif;
     padding: .75vw;
@@ -112,12 +111,10 @@ textarea {
     width: 40em !important;
     height: 7em;
 }
-
 label {
     margin-bottom: .5em;
     display: inline-block;
 }
-
 #filepicker_button {
     font-weight: normal;
     font-size: unset;
@@ -129,7 +126,6 @@ input[type=radio] {
     margin-left: 7px;
     margin-right: 7px;
 }
-
 div.float {
     float: left;
     position: fixed;
@@ -141,7 +137,6 @@ div.float {
     border-radius: 10px;
     box-shadow: rgba(0,0,0,0.2) 0px 0px 50px;
 }
-
 .uk-button-primary {
     width: auto;
     height: auto;
@@ -153,22 +148,18 @@ div.float {
     border-radius: .5em;
     margin-top: .5em;
 }
-
 div.item {
-    padding: .35em;
+    padding: 0.35em;
 }
-
 div.item > label {
     display: block;
 }
-
-.download-btn{
+.download-btn {
     margin-top: 5vh;
     display: block;
     width: fit-content;
     margin-left: 7vw;
 }
-
 .teams_table {
     display: inline-block;
     border-collapse: collapse;
@@ -176,7 +167,8 @@ div.item > label {
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    /* min-width: 400px; */
+    /* min-width:400px;
+    */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 .teams_table thead tr {
@@ -191,12 +183,61 @@ div.item > label {
 .teams_table tbody tr {
     border-bottom: 1px solid #dddddd;
 }
-
 .teams_table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
-
 .teams_table tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
 
+ul,
+li {
+    display: inline;
+}
+li {
+    /* border:solid 1px black;
+    */
+    padding: 0.2em;
+    border-radius: 10px;
+    /* margin: 5px; */
+    color: white;
+    background-color: #2e49e0;
+}
+.filter_btn {
+    margin-top: 5px;
+    border-radius: 10px;
+    padding: 5px;
+    background: #2e49e0;
+    color: white;
+    font-size: 1.5;
+    cursor: pointer;
+    display: block;
+}
+
+.filter {
+    padding-bottom: 15px;
+    clear: both;
+    width: 100%;
+    height: 0px;
+    overflow: hidden;
+    text-align: center;
+    transition: height 0.4s ease;
+    display: none;
+}
+#touch {
+    position: absolute;
+    opacity: 0;
+    height: 0px;
+}
+#touch:checked + .filter {
+    height: auto;
+    display: block;
+}
+
+.between-text {
+    display: none;
+}
+
+#operator4:checked ~ .between-text {
+    display: inline;
+}

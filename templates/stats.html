@@ -6,14 +6,50 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   </head>
   <body>
-{% if not team_number %}
+  {% if not team_number: %}
+    <label id="filter_btn" for="touch"><span class="filter_btn">Filter Teams</span></label>
+    <input type="checkbox" id="touch">
+    <div class="filter slide">
+      <form method="post">
+        <label>These attributes</label><br />
+
+        <input type="checkbox" id="att1" name="auton_cargo_upper" />
+        <label for="att1"> auton_cargo_upper</label>
+        <input type="checkbox" id="att2" name="auton_cargo_lower" />
+        <label for="att2">auton_cargo_lowwer</label>
+        <input type="checkbox" id="att3" name="teleop_cargo_upper" />
+        <label for="att3">teleop_cargo_upper</label>
+        <br />
+        <label>Are</label><br />
+        <input type="radio" name="operator" id="operator1" value="greater than" />
+        <label for="operator1">Greater Than</label>
+        <input type="radio" name="operator" id="operator2" value="less than" />
+        <label for="operator2">Less Than</label><br />
+        <input type="radio" name="operator" id="operator3" value="equal to" />
+        <label for="operator3">Equal To</label>
+        <input type="radio" name="operator" id="operator4" value="between" />
+        <label for="operator4">Between</label><br />
+        <input type="number" name="first_number" />
+        <label class="between-text" id="between_textbox"> - </label>
+        <input type="number" name="between_number" class="between-text" />
+        <br />
+        <input type="submit" value="submit" />
+      </form>
+    </div>
+    <div class="active-filters">
+      <ul>
+        <li>test123 <img src="..\static\xicon.svg" width="12" /></li>
+        <li>test456 <img src="..\static\xicon.svg" width="12" /></li>
+        <li>Test234 <img src="..\static\xicon.svg" width="12" /></li>
+      </ul>
+    </div>
 <div class="teams_table">
     <table style="border-width: 5px; border-color: black" id="position">
      <tr>
         <th>Team Number</th>
         <th>Relative Score</th>
      </tr>
-     {% for team_id, team_score in best_teams.items() %}
+     {% for team_id, team_score in best_teams.items(): %}
      <tr>
         <td>{{ team_id }}</td>
         <td>{{ team_score }}</td>
@@ -22,14 +58,14 @@
     </table>
   </div>
 {% endif %}
-{% if team_number %}
+{% if team_number: %}
 <div class="teams_table selected_team_table">
     <table style="border-width: 5px; border-color: black">
      <tr>
         <th>Team Number</th>
         <th>{{ team_number }}</th>
      </tr>
-     {% for key, value in team_attributes.items() %}
+     {% for key, value in team_attributes.items(): %}
      <tr>
         <td>{{ key }}</td>
         <td>{{ value }}</td>
