@@ -87,9 +87,8 @@ def stats():
 
     else:
         print("GEt request made")
-        team_number = request.args.to_dict().get('team_number')
-        best_teams, team_attributes = analysis.stats(team_number)
-    return render_template("stats.html", team_number=team_number, best_teams=best_teams, team_attributes=team_attributes)
+        best_teams, team_attributes = analysis.stats()
+    return render_template("stats.html", best_teams=best_teams, team_attributes=team_attributes)
 
 
 @app.route("/<config>")

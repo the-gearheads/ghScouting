@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   </head>
   <body>
-  {% if not team_number: %}
+<div id="main_div">
     <div id="team_attrs_dict">{{team_attributes}}</div>
     <label id="filter_btn" for="touch"><span class="filter_btn">Filter Teams</span></label>
     <input type="checkbox" id="touch">
@@ -51,31 +51,32 @@
         <th>Relative Score</th>
      </tr>
      {% for team_id, team_score in best_teams.items(): %}
-     <tr >
+     <tr id={{"team_entry_"+team_id}}>
         <td class="team_id">{{ team_id }}</td>
         <td>{{ team_score }}</td>
      </tr>
      {% endfor %}
     </table>
   </div>
-{% endif %}
-{% if team_number: %}
-<div class="teams_table selected_team_table">
+</div>
+{% for team_number, team_attr in team_attributes.items(): %}
+<div class="teams_table selected_team_table" id={{"team_attrs_table_"+team_number}}>
     <table style="border-width: 5px; border-color: black">
      <tr>
         <th>Team Number</th>
         <th>{{ team_number }}</th>
      </tr>
-     {% for key, value in team_attributes.items(): %}
-     <tr id={{key}}>
+     {% for key, value in team_attributes[team_number].items(): %}
+     <tr>
         <td>{{ key }}</td>
         <td>{{ value }}</td>
      </tr>
      {% endfor %}
     </table>
 </div>
-{% endif %}
-    <script src="static/click.js"></script>
+{% endfor %}
+
+    <!-- <script src="static/click.js"></script> -->
     <script src="static/analysis.js"></script>
   </body>
 </html>

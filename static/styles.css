@@ -250,5 +250,8 @@ li {
     margin-top: 3vh;
 }
 #team_attrs_dict{
-    visibility:hidden;
+    display:none;
+}
+.selected_team_table{
+    display:none;
 }
