@@ -241,3 +241,14 @@ li {
 #operator4:checked ~ .between-text {
     display: inline;
 }
+
+.team_id{
+    cursor: pointer;
+}
+#filter_submit_btn{
+    cursor:pointer;
+    margin-top: 3vh;
+}
+#team_attrs_dict{
+    visibility:hidden;
+}

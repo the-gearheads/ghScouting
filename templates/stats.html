@@ -7,18 +7,19 @@
   </head>
   <body>
   {% if not team_number: %}
+    <div id="team_attrs_dict">{{team_attributes}}</div>
     <label id="filter_btn" for="touch"><span class="filter_btn">Filter Teams</span></label>
     <input type="checkbox" id="touch">
     <div class="filter slide">
-      <form method="post">
+      <form action="javascript:void(0);" method="post">
         <label>These attributes</label><br />
 
-        <input type="checkbox" id="att1" name="auton_cargo_upper" />
-        <label for="att1"> auton_cargo_upper</label>
-        <input type="checkbox" id="att2" name="auton_cargo_lower" />
-        <label for="att2">auton_cargo_lowwer</label>
-        <input type="checkbox" id="att3" name="teleop_cargo_upper" />
-        <label for="att3">teleop_cargo_upper</label>
+        <input type="radio" name="filter_attr" class="filter_attr" value="auton_cargo_upper"/>
+        <label > auton_cargo_upper</label>
+        <input type="radio" name="filter_attr" class="filter_attr" value="auton_cargo_lower"/>
+        <label >auton_cargo_lower</label>
+        <input type="radio" name="filter_attr" class="filter_attr" value="teleop_cargo_upper"/>
+        <label >teleop_cargo_upper</label>
         <br />
         <label>Are</label><br />
         <input type="radio" name="operator" id="operator1" value="greater than" />
@@ -29,11 +30,11 @@
         <label for="operator3">Equal To</label>
         <input type="radio" name="operator" id="operator4" value="between" />
         <label for="operator4">Between</label><br />
-        <input type="number" name="first_number" />
+        <input type="number" name="first_number" id="first_number"/>
         <label class="between-text" id="between_textbox"> - </label>
-        <input type="number" name="between_number" class="between-text" />
+        <input type="number" name="between_number" class="between-text"/>
         <br />
-        <input type="submit" value="submit" />
+        <input id="filter_submit_btn"type="submit" value="submit" />
       </form>
     </div>
     <div class="active-filters">
@@ -50,8 +51,8 @@
         <th>Relative Score</th>
      </tr>
      {% for team_id, team_score in best_teams.items(): %}
-     <tr>
-        <td>{{ team_id }}</td>
+     <tr >
+        <td class="team_id">{{ team_id }}</td>
         <td>{{ team_score }}</td>
      </tr>
      {% endfor %}
@@ -66,7 +67,7 @@
         <th>{{ team_number }}</th>
      </tr>
      {% for key, value in team_attributes.items(): %}
-     <tr>
+     <tr id={{key}}>
         <td>{{ key }}</td>
         <td>{{ value }}</td>
      </tr>
@@ -75,5 +76,6 @@
 </div>
 {% endif %}
     <script src="static/click.js"></script>
+    <script src="static/analysis.js"></script>
   </body>
 </html>
