@@ -241,3 +241,7 @@ li {
 #operator4:checked ~ .between-text {
     display: inline;
 }
+
+#attributes_table {
+    display: none;
+}

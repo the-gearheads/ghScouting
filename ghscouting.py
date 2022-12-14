@@ -82,14 +82,15 @@ def getCSV():
 
 @app.route("/stats", methods=["POST", "GET"])
 def stats():
-    if request.method == "POST":
-        return url_for('stats', team_number=request.form['team_number'])
-
-    else:
-        print("GEt request made")
-        team_number = request.args.to_dict().get('team_number')
-        best_teams, team_attributes = analysis.stats(team_number)
-    return render_template("stats.html", team_number=team_number, best_teams=best_teams, team_attributes=team_attributes)
+    # -- going to handle in js instead of referring back to server
+    # if request.method == "POST":
+    #     return url_for('stats', team_number=request.form['team_number'])
+    #
+    # else:
+    print("GEt request made")
+    team_number = request.args.to_dict().get('team_number')
+    best_teams, team_attributes, configuration = analysis.stats()
+    return render_template("stats.html", team_number=team_number, best_teams=best_teams, team_attributes=team_attributes, configuration=configuration)
 
 
 @app.route("/<config>")

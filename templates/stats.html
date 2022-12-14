@@ -47,7 +47,7 @@
     <table style="border-width: 5px; border-color: black" id="position">
      <tr>
         <th>Team Number</th>
-        <th>Relative Score</th>
+        <th>Weighted Score</th>
      </tr>
      {% for team_id, team_score in best_teams.items(): %}
      <tr>
@@ -58,22 +58,16 @@
     </table>
   </div>
 {% endif %}
-{% if team_number: %}
 <div class="teams_table selected_team_table">
-    <table style="border-width: 5px; border-color: black">
-     <tr>
-        <th>Team Number</th>
-        <th>{{ team_number }}</th>
-     </tr>
-     {% for key, value in team_attributes.items(): %}
-     <tr>
-        <td>{{ key }}</td>
-        <td>{{ value }}</td>
-     </tr>
-     {% endfor %}
+    <script>
+    var team_attributes = {{ team_attributes|tojson }};
+    var configuration = {{ configuration|tojson }};
+    // console.log(team_attributes);
+    // console.log(configuration);
+    </script>
+    <table style="border-width: 5px; border-color: black" id="attributes_table">
     </table>
 </div>
-{% endif %}
-    <script src="static/click.js"></script>
+  <script src="static/click.js"></script>
   </body>
 </html>
