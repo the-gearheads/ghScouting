@@ -1,7 +1,5 @@
 document.getElementById("filter_submit_btn").onclick=function(){
-    var team_attrs_dict=document.getElementById("team_attrs_dict").innerHTML;
-    team_attrs_dict = team_attrs_dict.replace(/'/g, '"');
-    team_attrs_dict=JSON.parse(team_attrs_dict);
+    var team_attrs_dict= team_attributes
 
     var filter_attrs = document.getElementsByName('filter_attr');
     var filter_attr;
