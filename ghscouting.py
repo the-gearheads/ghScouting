@@ -95,6 +95,7 @@ def stats():
 
 @app.route("/<config>")
 def display_page(config):
+    print(f"waga baba bp obo {config}")
     page = scouting.Page.Page(config)
 
     if isinstance(page.config, Exception):  # Check config threw an exception

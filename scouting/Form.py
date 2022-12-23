@@ -45,10 +45,8 @@ class Form:
         print("Was I reached at the correct time?")
         db = scouting.Database.Database(self.name)
         db.create_columns(self.form)
-
         db.set_match(request.form["matchnum"])
         db.set_team(request.form["team"])
-
         for element in self.form:
             if not element.display_field:
                 column, value = element.process(request.form)

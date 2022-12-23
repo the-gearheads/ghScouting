@@ -245,3 +245,17 @@ li {
 #attributes_table {
     display: none;
 }
+
+.team_id{
+    cursor: pointer;
+}
+#filter_submit_btn{
+    cursor:pointer;
+    margin-top: 3vh;
+}
+#team_attrs_dict{
+    display:none;
+}
+.selected_team_table{
+    display:none;
+}
