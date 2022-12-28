@@ -1,5 +1,5 @@
 document.getElementById("filter_submit_btn").onclick=function(){
-    var team_attrs_dict= team_attributes
+    var team_attrs_dict = team_attributes
 
     var filter_attrs = document.getElementsByName('filter_attr');
     var filter_attr;
@@ -54,6 +54,8 @@ for(var team_id_el of team_id_els){
     team_id_el.onclick=function(e){
         var team_id=e.target.innerHTML;
         document.getElementById("main_div").style.display="none";
+        console.log("team_attrs_table_"+team_id);
+        console.log(document.getElementById("team_attrs_table_"+team_id))
         document.getElementById("team_attrs_table_"+team_id).style.display="inline-block";
     };
 }

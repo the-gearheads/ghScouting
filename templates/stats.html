@@ -8,7 +8,6 @@
   </head>
   <body>
 <div id="main_div">
-    <div id="team_attrs_dict">{{team_attributes}}</div>
     <label id="filter_btn" for="touch"><span class="filter_btn">Filter Teams</span></label>
     <input type="checkbox" id="touch">
     <div class="filter slide">
@@ -58,8 +57,8 @@
      </tr>
      {% endfor %}
     </table>
-  </div>
-{% endif %}
+</div>
+</div>
 <div class="teams_table selected_team_table">
     <script>
     var team_attributes = {{ team_attributes|tojson }};
@@ -67,8 +66,21 @@
     // console.log(team_attributes);
     // console.log(configuration);
     </script>
-    <table style="border-width: 5px; border-color: black" id="attributes_table">
+    {% for team_num, team_attrs in team_attributes.items(): %}
+    <table style="border-width: 5px; border-color: black; display: none;" id="team_attrs_table_{{ team_num }}">
+        {% for attr_name, values_list in team_attrs.items(): %}
+        <tr>
+            <td>{{ attr_name }}</td>
+            {% if attr_name in configuration['values']: %}
+                <td>{{ values_list|join(', ') }}</td>
+            {% else %}
+                {% set sorted_values = values_list|sort %}
+                <td>{{ sorted_values|first ~ ' - ' ~ sorted_values|last }}</td>
+            {% endif %}
+        </tr>
+        {%  endfor %}
     </table>
+    {% endfor %}
 </div>
   <script src="static/analysis.js"></script>
   </body>

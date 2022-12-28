@@ -29,7 +29,7 @@ def stats():
                 best_teams[team['team']].append(team_score)  # average all the scores when done
             
             #this is not supposed to be here
-            team_number=team['team']
+            team_number = team['team']
             team_attributes[team_number]=dict()
             for key, value in team.items():
                 if value:
@@ -52,19 +52,7 @@ def stats():
             best_teams[key] = sum(value) / len(value)
         best_teams = dict(sorted(best_teams.items(), key=lambda item: item[1], reverse=True))
 
-
-        # for team_number, attr_dict in team_attributes.items():
-        #     for attribute_name, attr_value in attr_dict.items():
-        #         if attribute_name in configuration['values']:
-        #             team_attributes[team_number][attribute_name] = ", ".join(set(attr_value))
-        #         else:
-        #             team_attributes[team_number][attribute_name] = "{} - {}".format(min(attr_value), max(attr_value))
-
-        # average scores and sort teams from best > worst
-        for key, value in best_teams.items():
-            best_teams[key] = sum(value) / len(value)
-        best_teams = dict(sorted(best_teams.items(), key=lambda item: item[1], reverse=True))
-
+        # this is done is jinja2 now
         # for team_number, attr_dict in team_attributes.items():
         #     for attribute_name, attr_value in attr_dict.items():
         #         if attribute_name in configuration['values']:
