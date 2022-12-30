@@ -14,11 +14,11 @@
       <form action="javascript:void(0);" method="post">
         <label>These attributes</label><br />
 
-        <input type="radio" name="filter_attr" class="filter_attr" value="auton_cargo_upper"/>
+        <input type="checkbox" name="filter_attr" class="filter_attr" value="auton_cargo_upper"/>
         <label > auton_cargo_upper</label>
-        <input type="radio" name="filter_attr" class="filter_attr" value="auton_cargo_lower"/>
+        <input type="checkbox" name="filter_attr" class="filter_attr" value="auton_cargo_lower"/>
         <label >auton_cargo_lower</label>
-        <input type="radio" name="filter_attr" class="filter_attr" value="teleop_cargo_upper"/>
+        <input type="checkbox" name="filter_attr" class="filter_attr" value="teleop_cargo_upper"/>
         <label >teleop_cargo_upper</label>
         <br />
         <label>Are</label><br />
@@ -32,7 +32,7 @@
         <label for="operator4">Between</label><br />
         <input type="number" name="first_number" id="first_number"/>
         <label class="between-text" id="between_textbox"> - </label>
-        <input type="number" name="between_number" class="between-text"/>
+        <input type="number" name="between_number" class="between-text" id="between_number"/>
         <br />
         <input id="filter_submit_btn"type="submit" value="submit" />
       </form>
@@ -68,6 +68,10 @@
     </script>
     {% for team_num, team_attrs in team_attributes.items(): %}
     <table style="border-width: 5px; border-color: black; display: none;" id="team_attrs_table_{{ team_num }}">
+        <tr>
+            <td>Team Number</td>
+            <td>{{ team_num }}</td>
+        </tr>
         {% for attr_name, values_list in team_attrs.items(): %}
         <tr>
             <td>{{ attr_name }}</td>

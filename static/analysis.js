@@ -14,27 +14,41 @@ document.getElementById("filter_submit_btn").onclick=function(){
         if(operators[i].checked)
         operator=operators[i].value;
     }
-    var firstNumber=document.getElementById('first_number').value;
-
+    var firstNumber = parseInt(document.getElementById('first_number').value);
+    if (operator === "between") {var between_number = parseInt(document.getElementById('between_number').value)}
     var eliminated_teams=[];
     for (const [team_number, team_attr] of Object.entries(team_attrs_dict)) {
         var shouldEliminate=false;
+        var attr_list = team_attr[filter_attr].map(function (x) { return parseInt(x, 10);});
+        console.log(attr_list)
+        var average=attr_list.reduce((acc, c) => acc + c, 0);
+        average/=attr_list.length;
+
         switch(operator) {
             case "greater than":
-                var attr_list = team_attr[filter_attr].map(function (x) { return parseInt(x, 10);});
-                console.log(attr_list)
-                var average=attr_list.reduce((acc, c) => acc + c, 0);
-                average/=attr_list.length;
-                shouldEliminate=average<firstNumber;
+//                var attr_list = team_attr[filter_attr].map(function (x) { return parseInt(x, 10);});
+//                console.log(attr_list)
+//                var average=attr_list.reduce((acc, c) => acc + c, 0);
+//                average/=attr_list.length;
+                shouldEliminate = average<firstNumber;
                 break;
             case "less than":
-                shouldEliminate=average>firstNumber;
+                shouldEliminate = average>firstNumber;
               // code block
                 break;
             case "equal to":
-                shouldEliminate=average!=firstNumber;
+                shouldEliminate = average!=firstNumber;
               // code block
               break;
+            case "between":
+                if (average < first_number) {
+                    shouldEliminate = true
+                } else if (average > between_number) {
+                    shouldEliminate = true
+                } else {
+                    shouldEliminate = false
+                }
+//                shouldEliminate = (average >= first_number && average <= between_number)
             default:
               // code block
           }
