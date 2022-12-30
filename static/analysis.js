@@ -49,13 +49,34 @@ document.getElementById("filter_submit_btn").onclick=function(){
 
 };
 
+let currentHash = window.location.hash;
 var team_id_els=document.getElementsByClassName("team_id");
 for(var team_id_el of team_id_els){
     team_id_el.onclick=function(e){
         var team_id=e.target.innerHTML;
         document.getElementById("main_div").style.display="none";
-        console.log("team_attrs_table_"+team_id);
-        console.log(document.getElementById("team_attrs_table_"+team_id))
         document.getElementById("team_attrs_table_"+team_id).style.display="inline-block";
+        window.history.pushState({}, "", window.location.href.split("#")[0] + "#teampage");
+        currentHash = window.location.hash;
     };
 }
+
+// for back button to go back to best teams
+function best_teams_page() {
+//    document.getElementById("team_attribute_tables").style.display = 'none'
+    tables = document.querySelectorAll(`[id^="team_attrs_table_"]`);
+    tables.forEach(function(table) {
+        table.style.display="none";
+    });
+    document.getElementById("main_div").style.display="inline-block";
+}
+
+addEventListener('popstate', (event) => {
+    if (currentHash == '#teampage') {
+        best_teams_page();
+        window.history.pushState({}, "", window.location.href.split("#")[0] + "");
+        currentHash = window.location.hash;
+    } else {
+        history.back()
+    }
+});

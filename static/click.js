@@ -71,7 +71,7 @@ function best_teams_page() {
 // needed for going back to best teams page on back button click, instead of actual previous page
 window.onpopstate = function(event) {
     console.log("popstate event triggered:" + event)
-    if (location.hash = '#teampage') {
+    if (location.hash == '#teampage') {
         best_teams_page();
         window.history.pushState({}, "", window.location.href.split("#")[0] + "");
     } else {
