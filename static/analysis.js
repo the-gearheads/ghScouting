@@ -41,14 +41,13 @@ document.getElementById("filter_submit_btn").onclick=function(){
               // code block
               break;
             case "between":
-                if (average < first_number) {
+                if (average < firstNumber) {
                     shouldEliminate = true
                 } else if (average > between_number) {
                     shouldEliminate = true
                 } else {
                     shouldEliminate = false
                 }
-//                shouldEliminate = (average >= first_number && average <= between_number)
             default:
               // code block
           }
