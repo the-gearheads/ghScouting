@@ -90,7 +90,11 @@ def stats():
     print("GEt request made")
     team_number = request.args.to_dict().get('team_number')
     best_teams, team_attributes, configuration = analysis.stats()
-    return render_template("stats.html", team_number=team_number, best_teams=best_teams, team_attributes=team_attributes, configuration=configuration)
+    filter_attrs = set()
+    for team_num, attrs in team_attributes.items():
+        for attr in attrs:
+            filter_attrs.add(attr)
+    return render_template("stats.html", team_number=team_number, best_teams=best_teams, team_attributes=team_attributes, configuration=configuration, filter_attrs=filter_attrs)
 
 
 @app.route("/<config>")

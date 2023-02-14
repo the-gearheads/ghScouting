@@ -13,13 +13,10 @@
     <div class="filter slide">
       <form action="javascript:void(0);" method="post">
         <label>These attributes</label><br />
-
-        <input type="checkbox" name="filter_attr" class="filter_attr" value="auton_cargo_upper"/>
-        <label > auton_cargo_upper</label>
-        <input type="checkbox" name="filter_attr" class="filter_attr" value="auton_cargo_lower"/>
-        <label >auton_cargo_lower</label>
-        <input type="checkbox" name="filter_attr" class="filter_attr" value="teleop_cargo_upper"/>
-        <label >teleop_cargo_upper</label>
+        {% for attribute in filter_attrs: %}
+        <input type="radio" name="filter_attr" class="filter_attr" value="attribute"/>
+        <label>{{ attribute }}</label>
+        {% endfor %}
         <br />
         <label>Are</label><br />
         <input type="radio" name="operator" id="operator1" value="greater than" />
@@ -38,11 +35,12 @@
       </form>
     </div>
     <div class="active-filters">
-      <ul>
+      <!-- <ul>
         <li>test123 <img src="..\static\xicon.svg" width="12" /></li>
         <li>test456 <img src="..\static\xicon.svg" width="12" /></li>
         <li>Test234 <img src="..\static\xicon.svg" width="12" /></li>
-      </ul>
+      </ul> -->
+      <button onclick="location.reload()">Clear filters</button> 
     </div>
 <div class="teams_table">
     <table style="border-width: 5px; border-color: black" id="position">
