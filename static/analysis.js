@@ -4,21 +4,27 @@ document.getElementById("filter_submit_btn").onclick=function(){
     var filter_attrs = document.getElementsByName('filter_attr');
     var filter_attr;
     for(i = 0; i < filter_attrs.length; i++) {
-        if(filter_attrs[i].checked)
-        filter_attr=filter_attrs[i].value;
+        if(filter_attrs[i].checked) {
+            filter_attr=filter_attrs[i].value;
+        }
     }
 
     var operators = document.getElementsByName('operator');
     var operator;
     for(i = 0; i < operators.length; i++) {
-        if(operators[i].checked)
-        operator=operators[i].value;
+        if(operators[i].checked) {
+            operator=operators[i].value;
+        }
     }
     var firstNumber = parseInt(document.getElementById('first_number').value);
     if (operator === "between") {var between_number = parseInt(document.getElementById('between_number').value)}
     var eliminated_teams=[];
     for (const [team_number, team_attr] of Object.entries(team_attrs_dict)) {
         var shouldEliminate=false;
+        if (!team_attr[filter_attr]) {
+            eliminated_teams.push(team_number);
+            continue;
+        }
         var attr_list = team_attr[filter_attr].map(function (x) { return parseInt(x, 10);});
         console.log(attr_list)
         var average=attr_list.reduce((acc, c) => acc + c, 0);

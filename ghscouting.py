@@ -80,26 +80,20 @@ def getCSV():
                  "attachment; filename=data.csv"})
 
 
-@app.route("/stats", methods=["POST", "GET"])
+@app.route("/stats", methods=["POST", "GET"])  # we probably don't need POST, too scared to test
 def stats():
-    # -- going to handle in js instead of referring back to server
-    # if request.method == "POST":
-    #     return url_for('stats', team_number=request.form['team_number'])
-    #
-    # else:
-    print("GEt request made")
     team_number = request.args.to_dict().get('team_number')
     best_teams, team_attributes, configuration = analysis.stats()
     filter_attrs = set()
     for team_num, attrs in team_attributes.items():
         for attr in attrs:
-            filter_attrs.add(attr)
+            if attr in configuration['weights']:
+                filter_attrs.add(attr)
     return render_template("stats.html", team_number=team_number, best_teams=best_teams, team_attributes=team_attributes, configuration=configuration, filter_attrs=filter_attrs)
 
 
 @app.route("/<config>")
 def display_page(config):
-    print(f"waga baba bp obo {config}")
     page = scouting.Page.Page(config)
 
     if isinstance(page.config, Exception):  # Check config threw an exception

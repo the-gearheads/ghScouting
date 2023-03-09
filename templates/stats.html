@@ -14,7 +14,7 @@
       <form action="javascript:void(0);" method="post">
         <label>These attributes</label><br />
         {% for attribute in filter_attrs: %}
-        <input type="radio" name="filter_attr" class="filter_attr" value="attribute"/>
+        <input type="radio" name="filter_attr" class="filter_attr" value="{{ attribute }}"/>
         <label>{{ attribute }}</label>
         {% endfor %}
         <br />

@@ -7,7 +7,7 @@ weights:
 
 
 values:
-  auton_taxi: {'Yes': 40, 'No': 0}
+  auton taxi: {'Yes': 40, 'No': 0}
   climbing_level:
     '0': 0
     '1': 5
