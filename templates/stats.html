@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script></script>
+  </head>
+  <body>
+<div id="main_div">
+    <label id="filter_btn" for="touch"><span class="filter_btn">Filter Teams</span></label>
+    <input type="checkbox" id="touch">
+    <div class="filter slide">
+      <form action="javascript:void(0);" method="post">
+        <label>These attributes</label><br />
+        {% for attribute in filter_attrs: %}
+        <input type="radio" name="filter_attr" class="filter_attr" value="{{ attribute }}"/>
+        <label>{{ attribute }}</label>
+        {% endfor %}
+        <br />
+        <label>Are</label><br />
+        <input type="radio" name="operator" id="operator1" value="greater than" />
+        <label for="operator1">Greater Than</label>
+        <input type="radio" name="operator" id="operator2" value="less than" />
+        <label for="operator2">Less Than</label><br />
+        <input type="radio" name="operator" id="operator3" value="equal to" />
+        <label for="operator3">Equal To</label>
+        <input type="radio" name="operator" id="operator4" value="between" />
+        <label for="operator4">Between</label><br />
+        <input type="number" name="first_number" id="first_number"/>
+        <label class="between-text" id="between_textbox"> - </label>
+        <input type="number" name="between_number" class="between-text" id="between_number"/>
+        <br />
+        <input id="filter_submit_btn"type="submit" value="submit" />
+      </form>
+    </div>
+    <div class="active-filters">
+      <!-- <ul>
+        <li>test123 <img src="..\static\xicon.svg" width="12" /></li>
+        <li>test456 <img src="..\static\xicon.svg" width="12" /></li>
+        <li>Test234 <img src="..\static\xicon.svg" width="12" /></li>
+      </ul> -->
+      <button onclick="location.reload()">Clear filters</button> 
+    </div>
+<div class="teams_table">
+    <table style="border-width: 5px; border-color: black" id="position">
+     <tr>
+        <th>Team Number</th>
+        <th>Weighted Score</th>
+     </tr>
+     {% for team_id, team_score in best_teams.items(): %}
+     <tr id={{"team_entry_"+team_id}}>
+        <td class="team_id">{{ team_id }}</td>
+        <td>{{ team_score }}</td>
+     </tr>
+     {% endfor %}
+    </table>
+</div>
+</div>
+<div class="teams_table selected_team_table" id="team_attribute_tables">
+    <script>
+    var team_attributes = {{ team_attributes|tojson }};
+    var configuration = {{ configuration|tojson }};
+    // console.log(team_attributes);
+    // console.log(configuration);
+    </script>
+    {% for team_num, team_attrs in team_attributes.items(): %}
+    <table style="border-width: 5px; border-color: black; display: none;" id="team_attrs_table_{{ team_num }}">
+        <tr>
+            <td>Team Number</td>
+            <td>{{ team_num }}</td>
+        </tr>
+        {% for attr_name, values_list in team_attrs.items(): %}
+        <tr>
+            <td>{{ attr_name }}</td>
+            {% if attr_name in configuration['values']: %}
+                <td>{{ values_list|join(', ') }}</td>
+            {% else %}
+                {% set sorted_values = values_list|sort %}
+                <td>{{ sorted_values|first ~ ' - ' ~ sorted_values|last }}</td>
+            {% endif %}
+        </tr>
+        {%  endfor %}
+    </table>
+    {% endfor %}
+</div>
+  <script src="static/analysis.js"></script>
+  </body>
+</html>
