@@ -18,6 +18,7 @@ def stats():
             team_score = 0
             for key, value in team.items():
                 if value:
+                    print(key, value)
                     if key in configuration['weights'].keys():
                         team_score += (int(value) * configuration['weights'][key])
                     if key in configuration['values']:

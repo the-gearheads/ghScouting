@@ -1,30 +1,32 @@
 weights:
-  auton_cargo_upper: 1
-  auton_cargo_lower: 1
-  teleop_cargo_upper: 1
-  teleop_cargo_lower: 1
+  teleop upper: 1.2
+  teleop middle: 1
+  teleop low: 1
+  auton upper: 1.2
+  auton middle: 1
+  auton low: 1
   robot_stop_time: -1.5
 
 
 values:
-  auton taxi: {'Yes': 40, 'No': 0}
-  climbing_level:
-    '0': 0
-    '1': 5
-    '2': 9
-    '3': 12
-    '4': 15
-  climb_sucess: {'Yes': 5, 'No': -5}
-  defense:
-    'not controllable': -5
-    'poor': -5
-    'pushed around': -3
-    'adequate': 0
-    "didn't defend but looked strong": -1
-    'Excellent': 3
+  auton station level:
+    'No Balancing Shown': 0
+    'Docked': 8
+    'Engaged (level)': 16
+  placeable game pieces:
+    'Cones': 0
+    'Cubes': 0
+
+  endgame station:
+    'No station': 0
+    'Docked': 6
+    'Engaged (level)': 12
+
+  hp comms: {'poor': -3, 'good': 3}
+
   # extras
-  'extra_Very Manuverable': {'true': 3, 'false': 0}
-  'extra_Brick Bot': {'true': 1, 'false': 0}
-  'extra_Powerful Bot': {'true': 3, 'false': 0}
-  'extra_Damaged': {'true': -10, 'false': 0}
-  'extra_Lost Comms': {'true': -8, 'false': 0}
+  'Very Maneuverable': {'true': 3, 'false': 0}
+  'Brick Bot': {'true': -35, 'false': 0}
+  'Holds pieces well': {'true': 10, 'false': 0}
+  'Good at defense': {'true': 4, 'false': 0}
+  'Lost Comms': {'true': -5, 'false': 0}

@@ -1,0 +1,97 @@
+page_type: form
+gearheads_banner:
+  type: image
+  filename: gearheads.png
+  position: top
+matchnum:
+  type: number
+  display: Match Number
+  # position: float
+  required: true
+team:
+  type: number
+  display: Team Number
+  # position: float
+  required: true
+
+#auton questions
+auton start pos:
+  type: radio
+  display: "Auton start position: left (side with cord cover), right, or center"
+  options:
+    - 'L'
+    - 'R'
+    - 'C'
+
+auton station level:
+  type: radio
+  display: "Auton charging station dock level"
+  options:
+    - 'No Balancing Shown'
+    - 'Docked'
+    - 'Engaged (level)'
+
+auton upper:
+  type: number
+  display: "# Auton placed high node"
+auton middle:
+  type: number
+  display: "# Auton placed middle node"
+auton low:
+  type: number
+  display: "# Auton placed low node"
+#teleop questions
+teleop upper:
+  type: number
+  display: "# Teleop placed high node"
+teleop middle:
+  type: number
+  display: "# Teleop placed middle node"
+teleop low:
+  type: number
+  display: "# Teleop placed low node"
+placeable game pieces:
+  type: checkbox
+  display: "What game pieces can they place"
+  options:
+    - 'Cones'
+    - 'Cubes'
+
+#endgame questions
+endgame station:
+  type: radio
+  display: endgame charging station level
+  options:
+    - 'No station'
+    - 'Docked'
+    - 'Engaged (level)'
+
+hp comms:
+  type: radio
+  display: "How good are their human player communications?"
+  options:
+    - 'poor'
+    - 'good'
+
+extra:
+  type: checkbox
+  display: Extra
+  options:
+    - 'Holds pieces well'
+    - 'Brick Bot'
+    - 'Maneuverable'
+    - 'Good at defense'
+    - 'Lost Comms'
+
+#auton scored points:
+#  type: number
+#  display: "Number of points scored in auton"
+
+robot_stop_time:
+  type: number
+  display: "If robot stopped, indicate for how long (seconds)"
+
+submit_button:
+  type: submit
+  method: post
+  text: Submit
