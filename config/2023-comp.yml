@@ -65,6 +65,7 @@ endgame station:
     - 'No station'
     - 'Docked'
     - 'Engaged (level)'
+    - 'Parked (in community)'
 
 hp comms:
   type: radio
@@ -77,15 +78,17 @@ extra:
   type: checkbox
   display: Extra
   options:
-    - 'Holds pieces well'
+    - 'Drops Pieces'
     - 'Brick Bot'
     - 'Maneuverable'
     - 'Good at defense'
     - 'Lost Comms'
+    - 'Tipped over'
+    - 'Picks up from ground'
 
-#auton scored points:
-#  type: number
-#  display: "Number of points scored in auton"
+comments:
+  type: textarea
+  display: "Additional comments"
 
 robot_stop_time:
   type: number

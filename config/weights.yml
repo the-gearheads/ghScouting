@@ -21,12 +21,15 @@ values:
     'No station': 0
     'Docked': 6
     'Engaged (level)': 12
+    'Parked (in community)': 3
 
   hp comms: {'poor': -3, 'good': 3}
 
   # extras
-  'Very Maneuverable': {'true': 3, 'false': 0}
-  'Brick Bot': {'true': -35, 'false': 0}
-  'Holds pieces well': {'true': 10, 'false': 0}
-  'Good at defense': {'true': 4, 'false': 0}
-  'Lost Comms': {'true': -5, 'false': 0}
+  'extra_Very Maneuverable': {'true': 3, 'false': 0}
+  'extra_Brick Bot': {'true': -35, 'false': 0}
+  'extra_Drops Pieces': {'true': -8, 'false': 0}
+  'extra_Good at defense': {'true': 4, 'false': 0}
+  'extra_Lost Comms': {'true': -5, 'false': 0}
+  'extra_Tipped over': {'true': -20, 'false': 0}
+  'extra_Picks up from ground': {'true': 14, 'false': 0}

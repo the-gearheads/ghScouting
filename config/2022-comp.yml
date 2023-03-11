@@ -72,6 +72,7 @@ extra:
     - "Powerful Bot"
     - 'Damaged'
     - 'Lost Comms'
+
 robot_stop_time:
   type: number
   display: If robot stopped, indicate for how long (seconds)

@@ -23,6 +23,7 @@ def stats():
                         team_score += (int(value) * configuration['weights'][key])
                     if key in configuration['values']:
                         team_score += configuration['values'][key][value]
+                        print(f"adding {[configuration['values'][key][value]]} to key {key} value {value}")
 
             if not best_teams.get(team['team']):
                 best_teams[team['team']] = [team_score]
@@ -36,6 +37,11 @@ def stats():
                 if value:
                     if key == 'matchnum':
                         continue
+                    if key == 'comments':
+                        if not team_attributes[team_number].get(key):
+                            team_attributes[team_number][key] = [value]
+                        else:
+                            team_attributes[team_number][key].append(value)
                     if key in configuration['weights'].keys():
                         if not team_attributes[team_number].get(key):
                             team_attributes[team_number][key] = [value]
