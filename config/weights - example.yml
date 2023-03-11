@@ -1,5 +1,5 @@
 weights:
-  auton_cargo_upper: 1
+  auton_cargo_upper: 1=
   auton_cargo_lower: 1
   teleop_cargo_upper: 1
   teleop_cargo_lower: 1
