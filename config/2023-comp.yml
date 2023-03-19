@@ -30,6 +30,7 @@ auton station level:
     - 'No Balancing Shown'
     - 'Docked'
     - 'Engaged (level)'
+    - 'Left community'
 
 auton upper:
   type: number
@@ -72,6 +73,7 @@ hp comms:
   display: "How good are their human player communications?"
   options:
     - 'poor'
+    - 'neutral/no human'
     - 'good'
 
 extra:
