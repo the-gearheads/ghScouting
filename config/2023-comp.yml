@@ -17,7 +17,7 @@ team:
 #auton questions
 auton start pos:
   type: radio
-  display: "Auton start position: left (side with cord cover), right, or center"
+  display: "Auton start position: left (side with cord cover/bump), right, or center"
   options:
     - 'L'
     - 'R'
@@ -76,6 +76,16 @@ hp comms:
     - 'neutral/no human'
     - 'good'
 
+defense:
+  type: radio
+  display: "How good is their defense"
+  options:
+    - 'No Defense shown'
+    - 'Can't defend at all'
+    - 'Pushes a little bit'
+    - 'Moderately slows down robots'
+    - 'Very Good defense, significantly slows robots'
+
 extra:
   type: checkbox
   display: Extra
@@ -83,7 +93,6 @@ extra:
     - 'Drops Pieces'
     - 'Brick Bot'
     - 'Maneuverable'
-    - 'Good at defense'
     - 'Lost Comms'
     - 'Tipped over'
     - 'Picks up from ground'

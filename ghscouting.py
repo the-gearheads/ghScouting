@@ -80,7 +80,7 @@ def getCSV():
                  "attachment; filename=data.csv"})
 
 
-@app.route("/stats", methods=["POST", "GET"])  # we probably don't need POST, too scared to test
+@app.route("/stats", methods=["POST", "GET"])  # we probably don't need POST anymore, too scared to test
 def stats():
     team_number = request.args.to_dict().get('team_number')
     best_teams, team_attributes, configuration = analysis.stats()

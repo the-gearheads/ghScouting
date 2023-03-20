@@ -1,18 +1,18 @@
 weights:
-  teleop upper: 5.1
+  teleop upper: 5
   teleop middle: 3
   teleop low: 2
-  auton upper: 6.1
+  auton upper: 6
   auton middle: 4
   auton low: 3
-  robot_stop_time: -0.1
+  robot_stop_time: -0.05
 
 
 values:
   auton station level:
     'No Balancing Shown': 0
     'Docked': 8
-    'Engaged (level)': 16
+    'Engaged (level)': 14
     'Left community': 3
 
   placeable game pieces:
@@ -22,8 +22,15 @@ values:
   endgame station:
     'No station': 0
     'Docked': 6
-    'Engaged (level)': 12
+    'Engaged (level)': 10
     'Parked (in community)': 3
+
+  defense:
+    'No Defense shown': 0
+    "Can't defend at all": 0
+    'Pushes a little bit': 2
+    'Moderately slows down robots': 4
+    'Very Good defense, significantly slows robots': 7
 
   hp comms: {'poor': -3, 'good': 3, 'neutral/no human': 0}
 
