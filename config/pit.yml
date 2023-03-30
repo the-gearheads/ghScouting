@@ -34,3 +34,16 @@ wiring:
   display: "wiring"
   options:
     - 
+
+"drive train: text
+robot construction: flimsy solid, etc: text
+organized wiring: neat, neutral, chaoctic
+subsystem number: number
+subsystem concern of overcomplexity: text
+pit crew sie: number
+point of concern: text
+spare assemblies: yes/no
+notable featyures: text
+condition of robot: text
+tipp: tes/no
+addiotonal notes: text"
