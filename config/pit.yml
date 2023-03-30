@@ -1,0 +1,31 @@
+page_type: form
+gearheads_banner:
+  type: image
+  filename: gearheads.png
+  position: top
+team:
+  type: number
+  display: Team Number
+  # position: float
+  required: true
+
+robolength:
+  type: number
+  display: "Robot Length"
+
+robowidth:
+  type: number
+  display: "Robot Width"
+
+roboweight:
+  type: number
+  display: "Robot Weight"
+
+drivetrain:
+  type: textarea
+  display: "Drive Train"
+
+roboconstruction:
+  type: textarea
+  display: "Robot construction (flimsy, solid, etc)"
+

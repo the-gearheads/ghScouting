@@ -2,8 +2,8 @@ import yaml
 import csv
 
 
-def stats():
-    with open("config/weights.yml", 'r') as config:
+def stats(weightsFile):
+    with open("config/{}".format(weightsFile), 'r') as config:
         configuration = yaml.safe_load(config)
 
     team_attributes = dict()

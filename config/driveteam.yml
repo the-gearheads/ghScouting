@@ -1,0 +1,44 @@
+page_type: form
+gearheads_banner:
+  type: image
+  filename: gearheads.png
+  position: top
+matchnum:
+  type: number
+  display: Match Number
+  # position: float
+  required: true
+team:
+  type: number
+  display: Team Number
+  # position: float
+  required: true
+
+communication:
+  tye: radio
+  display: "Communication w/ drive team"
+  options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+responsiveness:
+  tye: radio
+  display: "responsiveness to drive team"
+  options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+team dynamics:
+  tye: radio
+  display: "team dynamics"
+  options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+ability:
+  type: radio
+  display: "ability"
+  options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+altercations:
+  type: radio
+  display: "Altercations?"
+  options: ["Yes", "No"]
+
+notes:
+  type: textarea
+  display: "Additonal notes?"
