@@ -81,7 +81,7 @@ defense:
   display: "How good is their defense"
   options:
     - 'No Defense shown'
-    - 'Can't defend at all'
+    - "Can't defend at all"
     - 'Pushes a little bit'
     - 'Moderately slows down robots'
     - 'Very Good defense, significantly slows robots'

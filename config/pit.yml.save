@@ -56,7 +56,6 @@ poc:
 spare:
   type: radio
   display: "spare assemblies?"
-  options: ["yes", "no"]
 
 notable:
   type: textarea
@@ -69,13 +68,11 @@ condition:
 tippy:
   type: radio
   display: "tippy"
-  options: ["yes", "no"]
+  options: ["yes", "no]
 
 additonal:
   type: textarea
   display: "comments"
-
-submit_button:
-  type: submit
-  method: post
-  text: Submit
+ondition of robot: text
+tipp: tes/no
+addiotonal notes: text"
