@@ -29,3 +29,8 @@ roboconstruction:
   type: textarea
   display: "Robot construction (flimsy, solid, etc)"
 
+wiring:
+  type: radio
+  display: "wiring"
+  options:
+    - 
