@@ -21,8 +21,9 @@ ELEMENT_TYPES = {
 
 
 class Form:
-    def __init__(self, config):
+    def __init__(self, config, dbFile):
         self.name = config.name
+        self.dbFile = dbFile
         self.config = config
         self.form = self.__create_form__(self.config)
 
@@ -43,7 +44,7 @@ class Form:
 
     def process_post(self):
         print("Was I reached at the correct time?")
-        db = scouting.Database.Database(self.name)
+        db = scouting.Database.Database(self.dbFile)
         db.create_columns(self.form)
         db.set_match(request.form["matchnum"])
         db.set_team(request.form["team"])

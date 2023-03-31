@@ -6,17 +6,21 @@ import scouting
 
 
 class Page:
-    def __init__(self, name):
+    def __init__(self, name, dbFile):
 
         self.PAGE_TYPES = {"form": scouting.Form.Form, "menu": scouting.Form.Menu}
-        self.config = Config(name)
+        self.config = Config(name, dbFile)
         print(self.config.config)
         self.type = self.config.config["page_type"]
+        self.dbFile = dbFile
         self.content = self.__create_content__()
 
     def __create_content__(self):
         if self.type in self.PAGE_TYPES:
-            return self.PAGE_TYPES[self.type](self.config)
+            if self.PAGE_TYPES[self.type] == scouting.Form.Form:
+                return self.PAGE_TYPES[self.type](self.config, self.dbFile)
+            else:
+                return self.PAGE_TYPES[self.type](self.config)
         return None
 
     def get_page(self, app):
@@ -31,9 +35,10 @@ class Page:
 
 
 class Config:
-    def __init__(self, name):
+    def __init__(self, name, dbFile):
         self.name = name
         self.config = self.__create_config__(name)
+        self.dbFile = dbFile
 
     def __create_config__(self, name):
         try:

@@ -44,7 +44,7 @@ def return_error(name, page_data):
 
 app = Flask(__name__)
 
-main_config = scouting.Page.Config("config")
+main_config = scouting.Page.Config("config", "eggs.csv")
 gh_config = {f"gh_{k}": v for k, v in main_config.config.items()}
 app.config.update(gh_config)
 
@@ -94,20 +94,18 @@ def stats():
 @app.route("/pitstats", methods=["POST", "GET"])  # we probably don't need POST anymore, too scared to test
 def pitstats():
     team_number = request.args.to_dict().get('team_number')
-    best_teams, team_attributes, configuration = analysis.stats("weights2.yml")
+    best_teams, team_attributes, configuration = analysis.stats("weights2.yml", "pit.csv")
     filter_attrs = set()
     for team_num, attrs in team_attributes.items():
         for attr in attrs:
             if attr in configuration['weights']:
                 filter_attrs.add(attr)
-    print("HELLO THESE ARE THE TEAM ATTRIBUTES")
-    print(team_attributes)
     return render_template("stats.html", team_number=team_number, best_teams=best_teams, team_attributes=team_attributes, configuration=configuration, filter_attrs=filter_attrs)
 
 
 @app.route("/<config>")
 def display_page(config):
-    page = scouting.Page.Page(config)
+    page = scouting.Page.Page(config, f"{config}.csv")
 
     if isinstance(page.config, Exception):  # Check config threw an exception
         return return_error(page)
@@ -120,7 +118,7 @@ def display_page(config):
 
 @app.route("/<config>", methods=["POST"])
 def page_post(config):
-    page = scouting.Page.Page(config)
+    page = scouting.Page.Page(config, f"{config}.csv")
 
     if isinstance(page.config, Exception):  # Check config threw an exception
         return return_error(page)
@@ -133,7 +131,7 @@ def page_post(config):
 
 @app.route("/<config>/csv")
 def gen_csv(config):
-    page = scouting.Page.Page(config)
+    page = scouting.Page.Page(config, f"{config}.csv")
     if page.type == "form":
         db = scouting.Database.Database(config)
         return db.gen_csv().getvalue()

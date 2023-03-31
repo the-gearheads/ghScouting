@@ -1,20 +1,23 @@
 import yaml
 import csv
+import os
 
 
-def stats(weightsFile):
+def stats(weightsFile, dbfile):
     with open("config/{}".format(weightsFile), 'r') as config:
         configuration = yaml.safe_load(config)
 
     team_attributes = dict()
 
     best_teams = None  # team number: # ranking score
-    with open("eggs.csv", 'r') as fp:
-        csv_file = csv.DictReader(fp)
-        # print(csv_file)
+    if not os.path.exists(dbfile):
+        open(dbfile, 'a').close()
 
+    with open(dbfile, 'r+') as fp:
+        csv_file = csv.DictReader(fp)
         best_teams = dict()  # team number: # ranking score
         for team in csv_file:
+            print(team)
             team_score = 0
             for key, value in team.items():
                 if value:
@@ -32,6 +35,8 @@ def stats(weightsFile):
             
             #this is not supposed to be here
             team_number = team['team']
+            print(team_number)
+            print(team)
             team_attributes[team_number]=dict()
             for key, value in team.items():
                 if value:
@@ -72,4 +77,4 @@ def stats(weightsFile):
 
 
 if __name__ == '__main__':
-    print(stats())
+    print(stats("pit.yml", "/home/ghscouting/ghScouting/pit.csv"))
