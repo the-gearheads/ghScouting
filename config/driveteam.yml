@@ -15,17 +15,17 @@ team:
   required: true
 
 communication:
-  tye: radio
+  type: radio
   display: "Communication w/ drive team"
   options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 responsiveness:
-  tye: radio
+  type: radio
   display: "responsiveness to drive team"
   options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 team dynamics:
-  tye: radio
+  type: radio
   display: "team dynamics"
   options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -42,3 +42,8 @@ altercations:
 notes:
   type: textarea
   display: "Additonal notes?"
+
+submit_button:
+  type: submit
+  method: post
+  text: Submit
