@@ -58,10 +58,11 @@
 </div>
 </div>
 <div class="teams_table selected_team_table" id="team_attribute_tables">
+<!-- {{team_attributes}} -->
     <script>
     var team_attributes = {{ team_attributes|tojson }};
     var configuration = {{ configuration|tojson }};
-    // console.log(team_attributes);
+    console.log(team_attributes);
     // console.log(configuration);
     </script>
     {% for team_num, team_attrs in team_attributes.items(): %}

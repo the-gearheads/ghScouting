@@ -42,12 +42,12 @@ def stats(weightsFile):
                             team_attributes[team_number][key] = [value]
                         else:
                             team_attributes[team_number][key].append(value)
-                    if key in configuration['weights'].keys():
+                    if key in configuration['weights'].keys() or True:
                         if not team_attributes[team_number].get(key):
                             team_attributes[team_number][key] = [value]
                         else:
                             team_attributes[team_number][key].append(value)
-                    if key in configuration['values']:
+                    if key in configuration['values'] or True:
                         if not team_attributes[team_number].get(key):
                             # print(key)
                             team_attributes[team_number][key] = [value]
