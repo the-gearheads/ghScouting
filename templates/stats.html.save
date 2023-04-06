@@ -48,13 +48,11 @@
      <tr>
         <th>Team Number</th>
         <th>Weighted Score</th>
-        <th>Statbotics Epa</th>
      </tr>
      {% for team_id, team_score in best_teams.items(): %}
      <tr id={{"team_entry_"+team_id}}>
         <td class="team_id">{{ team_id }}</td>
         <td>{{ team_score }}</td>
-        <td>{{ epas_dict[team_id] }}</td>
      </tr>
      {% endfor %}
     </table>
@@ -88,7 +86,7 @@
     </table>
     {% endfor %}
 </div>
-  <a class="download-btn" href="{{ request.endpoint }}/csv" filename="data.csv">download</a>
+  <a class="download-btn" href="{{ 2023-comp/csv" filename="data.csv">download 2023-comp</a>
   <script src="static/analysis.js"></script>
   </body>
 </html>

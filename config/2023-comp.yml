@@ -17,11 +17,11 @@ team:
 #auton questions
 auton start pos:
   type: radio
-  display: "Auton start position: left (side with cord cover/bump), right, or center"
+  display: "Auton start position: bump=charging station cord cover"
   options:
-    - 'L'
-    - 'R'
-    - 'C'
+    - 'Bump'
+    - 'Center'
+    - 'No Bump'
 
 auton station level:
   type: radio
@@ -100,10 +100,6 @@ extra:
 comments:
   type: textarea
   display: "Additional comments"
-
-robot_stop_time:
-  type: number
-  display: "If robot stopped, indicate for how long (seconds)"
 
 submit_button:
   type: submit

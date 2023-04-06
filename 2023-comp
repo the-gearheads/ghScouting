@@ -1,0 +1,294 @@
+matchnum,team,auton start pos,auton station level,auton upper,auton middle,auton low,teleop upper,teleop middle,teleop low,placeable game pieces_Cones,placeable game pieces_Cubes,endgame station,hp comms,extra_Holds pieces well,extra_Brick Bot,extra_Maneuverable,extra_Good at defense,extra_Lost Comms,robot_stop_time,extra_Drops Pieces,extra_Tipped over,extra_Picks up from ground,comments
+6,7174,C,Engaged (level),1,,,,,1,true,,Engaged (level),,,,true,,,,,,,
+7,217,R,No Balancing Shown,1,,,2,2,,true,,No station,good,true,,,,,,,,,
+0,3538,C,Engaged (level),1,,,1,,,true,,Engaged (level),,true,,,,,,,,,
+420,69,R,Engaged (level),0,0,0,0,0,0,true,,Parked (in community),good,,,,,,,true,,,tes t comment
+1,1528,L,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),poor,,true,,,,,,,,Balanced in teleop and that is all
+1,9148,L,No Balancing Shown,0,0,0,0,1,0,true,,No station,good,,,,,,,,,true,
+1,5555,C,No Balancing Shown,0,0,0,0,0,0,,,Docked,,,,,true,,,,,,
+1,3632,L,Engaged (level),0,0,0,0,0,1,,true,Parked (in community),poor,,,true,,,,,,,Can't choose were to place cubes only drops them then pushes them
+1,6567,L,No Balancing Shown,0,0,0,1,0,0,true,,Parked (in community),good,,,,,,,,,true,Slow moving.  Slow to place cone on high node.
+1,3539,C,Docked,1,,,2,,,true,,Engaged (level),good,,,,true,,,,,,Nice robot can pick from ground and double station
+2,8427,C,No Balancing Shown,0,0,1,0,0,0,,true,No station,poor,,,,,,,,,,Did not leave community. Barely moved.
+2,7769,L,Docked,2,0,0,3,0,2,true,,Docked,good,,,true,true,,,,,,Lightning fast.  Very nimble in all directions.
+2,313,C,No Balancing Shown,0,0,0,0,0,0,,,No station,,,,,,,5,true,,,I think they got stuck on the docking station 
+2,9253,L,No Balancing Shown,0,0,0,0,0,0,,,Parked (in community),poor,,,true,,,,,,,"Has no way to grab cubes or cones, doesn't  know what they are doing"
+3,2048,R,Engaged (level),0,0,0,0,1,1,,true,Parked (in community),good,,,,,,,true,,,Can't move well when arm is extended 
+3,3096,R,No Balancing Shown,0,0,0,0,1,0,true,,Docked,poor,,,,,,,true,,,cannot pick up from ground
+3,226,C,No Balancing Shown,1,0,0,0,1,0,true,,Docked,good,,,,,,,true,,,Something broke off their robot
+3,5478,L,No Balancing Shown,0,0,0,0,0,0,,,No station,poor,,true,,,true,170,,,,Stalled during auton.  Moved briefly then lost comma a second time. Doesn't appear to have any ability to pick up anything.
+3,7174,C,Engaged (level),0,0,1,2,1,1,true,,Engaged (level),poor,,,,,,,true,,,Dropped one high piece to low. Second team knocked out of balance.
+4,7145,L,No Balancing Shown,0,0,0,0,0,0,,,Docked,good,,true,true,true,,,,,,They can only play defense.  Very quick very fast.  The balance at the end.
+4,240,R,,,0,1,0,0,0,true,,Parked (in community),poor,,,,,,145,true,,,
+4,8280,C,Engaged (level),0,1,0,0,2,0,true,,Engaged (level),good,,,,true,,,,,,Could not place cube (3rd pcs). Did not appear to place high.
+4,201,C,Docked,0,1,0,0,0,0,,true,Engaged (level),poor,,,,,,,true,,,
+5,5197,L,No Balancing Shown,0,0,0,0,0,0,,,Docked,,,,,,,,,,,
+5,5467,R,No Balancing Shown,0,0,0,0,1,0,true,,No station,,,,,,true,30,,,,Did not move well.  Never left their zone. They placed one cube which they had at the start.
+5,7597,C,Docked,0,0,0,0,0,1,,true,Docked,poor,,true,,,,30,,,,
+5,217,C,Docked,0,0,0,1,0,2,true,true,Engaged (level),poor,,,,,,,,,true,It appeared the arm on the robot broke during the match
+5,4768,R,No Balancing Shown,0,0,0,,,,,true,Parked (in community),good,,,true,,,,,,,"Can't  pick things up well, arm dangles, too fast so it loses balance"
+6,1198,,,,,,,,,,,,,,,,,,,,,,
+6,1189,C,Engaged (level),1,0,0,5,0,0,true,,Engaged (level),good,,,true,,,,,,,
+5,4854,R,No Balancing Shown,0,0,0,0,1,0,true,,Parked (in community),poor,,true,,,,30,,,,mostly stopped got stuck on cone
+6,4854,R,No Balancing Shown,0,0,0,0,0,0,,,No station,,,,,,true,150,,,,
+6,2673,R,Engaged (level),0,0,0,1,0,1,true,,Parked (in community),good,,,,,,,true,,,Overall a good robot but can't aim well when dropping  cones
+6,9182,L,No Balancing Shown,0,0,0,0,0,2,,true,No station,poor,,,,,,,,,,"Caused penalty, weak grabber, messed up balance"
+6,8352,L,No Balancing Shown,0,0,0,0,0,0,,,No station,,,,,,true,,,,,They were not able to pick up anything.  The grabber/claw was very very wobbly.  
+6,3572,C,Docked,1,,,2,1,,true,,Engaged (level),good,,,,true,,,,,,Good bot. Picks from floor. missed one place. 
+7,5498,L,No Balancing Shown,0,0,0,3,0,0,true,,Docked,good,,,,,,,,,,They didn't grab anything from the ground.  Proficient in grabbing from humans.
+7,5065,L,No Balancing Shown,0,0,0,0,0,0,,,No station,,,,,,,,,,,
+7,313,C,No Balancing Shown,0,0,0,0,0,0,,,Parked (in community),,,true,,,true,130,,,,Never moved
+7,2048,L,No Balancing Shown,0,0,0,0,1,1,,true,No station,poor,,,true,,,,,,,"Crossed line during auton, rammed into wall and damaged claw"
+8,3632,L,No Balancing Shown,0,0,0,0,0,0,,true,Parked (in community),,,,,,,,true,,,
+8,5478,C,No Balancing Shown,0,0,0,0,0,0,,,No station,poor,,true,,,,,,,,very slow
+8,9250,L,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),poor,,true,,,,,,,,No auton. No ability to pick up/ hold anything.  Strictly defense.  Balanced on the dock at the end.
+8,5577,L,,0,0,0,0,1,1,true,,Engaged (level),good,,,,,,,true,,,"Can't pick up from the ground, doesn't  know how to control robot"
+8,6029,L,No Balancing Shown,0,0,0,0,0,3,,true,Parked (in community),poor,,,,,,,,,,Susceptible to defense
+8,226,C,No Balancing Shown,,,1,,,3,,true,Engaged (level),good,,,,true,,,,,,Push cubes on ground. Intake broken
+9,3096,,,1,0,0,1,0,0,true,,Engaged (level),good,,,,,,,,,,
+9,9207,L,No Balancing Shown,0,0,0,0,0,3,,true,,,,,,,,,true,,,"Can only place in the low nodes, takes awhile to pick up cubes"
+9,9253,C,No Balancing Shown,0,0,0,0,0,0,,,No station,,,true,,,,,,,,
+9,8427,C,No Balancing Shown,,,,,,1,,true,Engaged (level),poor,,,,true,,,,,,Sketchy gripper.
+9,7145,L,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),poor,,true,,true,,,,,,Moved a little during auton.  No capability of picking up/ holding/placing.
+9,9148,L,No Balancing Shown,0,0,0,0,1,0,true,,No station,poor,,,,,,,,,,Caused balancing issues
+10,5197,L,No Balancing Shown,0,0,0,0,0,0,,,Parked (in community),poor,,,,,true,60,,,,No auton.  Lost comms 
+10,217,R,No Balancing Shown,0,0,1,4,0,0,true,,Engaged (level),good,,,,,,,true,,,
+10,3539,C,Docked,1,0,0,3,0,0,true,,Engaged (level),good,,,true,,,,,,,Nice not. Pushed partner off edge of cs then got them un stuck.
+10,8728,R,No Balancing Shown,0,0,0,0,0,2,true,,Engaged (level),,,,,,,,,,true,they made their robot spin during auton :)
+11,5532,C,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),,,true,,,,,,,,
+11,240,L,,0,1,0,0,1,0,true,,Parked (in community),good,,,,,,,,,,
+11,7769,L,,1,,,4,,,true,,Engaged (level),good,,,,,,,,,,Good all around
+11,1189,C,Docked,1,0,0,4,1,1,true,,Engaged (level),poor,,,,,,,true,,,MOving too fast. Dropped Two cones at players station.
+11,469,R,No Balancing Shown,1,0,0,2,0,3,true,,Parked (in community),good,,,true,,,,,,,Held onto piece even when hard defended
+12,4854,L,No Balancing Shown,0,0,0,0,0,0,true,,Parked (in community),good,,true,,true,,,,,,Moved out of community during auton. No placing capability. No attempt to move pieces.
+12,2673,L,No Balancing Shown,0,0,0,0,0,0,true,,,poor,,,,,true,60,,,,"Powered off mid match, terrible communication"
+12,4768,L,No Balancing Shown,0,0,0,0,1,1,true,,No station,,,,,,,,true,,,
+12,7174,C,Engaged (level),0,1,0,0,1,1,true,,No station,poor,,,,,,40,true,,,got stuck at the end
+12,5498,,No Balancing Shown,1,0,0,0,1,0,true,,Engaged (level),poor,,,,,,,true,,,"Moved out of community, crossed mid line during auton"
+12,1528,C,No Balancing Shown,,,,,,,,,,,,,,,,80,,,,Parked  behind cs in auton and did notove afuntil climb. Then partially climbed costing balance bonus.
+13,3572,C,No Balancing Shown,1,0,0,1,1,,true,,Engaged (level),good,,,true,,,,true,,,Dropped 1 cone
+13,5467,L,No Balancing Shown,0,0,0,0,1,0,,true,Parked (in community),,,,,,,20,,,,stayed in corner practically whole time. very little movement
+13,9182,L,,0,0,0,0,0,3,true,,Engaged (level),,,,,,,,,,true,Left community in auton
+13,5065,L,No Balancing Shown,0,0,0,0,0,0,,,No station,poor,,,,,,,,,,Very tippy
+14,6567,R,No Balancing Shown,0,0,0,0,0,0,true,true,Docked,good,,,,,,,,,true,moved during auton. near got low node
+14,5478,C,No Balancing Shown,0,0,0,0,0,0,,,Parked (in community),good,,true,,,,,,,,Cleared zone over cs in auto. Parked in middle of field and got in way.  Tried but could not double balance.
+14,8728,L,No Balancing Shown,0,0,1,0,0,5,true,,Parked (in community),good,,,,true,,,,,,
+14,5197,L,No Balancing Shown,0,0,0,0,0,1,,,No station,poor,,,true,,,,,,,No auton
+15,3632,R,Engaged (level),0,0,0,0,0,4,,true,No station,good,,,,,,,,,true,Can only place things on the lower nodes
+15,1189,C,Engaged (level),1,0,0,3,1,0,true,,Engaged (level),good,,,true,,,,,,,Gg
+15,8280,L,Docked,0,1,0,0,2,1,true,,Engaged (level),good,,,,,,,,,true,
+15,8352,L,No Balancing Shown,0,0,0,0,0,0,,true,No station,,,,,,true,,,,,stayed in one spot for majority of the match. wheels/bumper got stuck on another bot at end
+16,7145,L,Docked,0,0,0,0,0,0,,,Engaged (level),good,,,true,,,,,,,Ment to only guard 
+16,226,C,Docked,0,0,0,0,0,4,,true,Engaged (level),poor,,,,,,,,,true,Nice lowbot.
+16,4768,L,,0,0,0,1,1,0,true,true,No station,,,,,,,,,,true,claw very loose. tried to push their way onto docking station at very end despite 2 bots being balanced
+17,7579,R,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),,,true,,,,,,,,
+17,3539,C,Docked,1,0,0,2,0,0,true,,No station,good,,,,,,,,,,
+17,3572,L,,1,,,2,,,true,,Docked,,,,true,,,,,,,Placed a cube during auton but it rolled away.
+17,469,C,Engaged (level),1,0,0,4,0,1,true,,Engaged (level),good,,,true,true,,,,,,Drove fast. Great picker. Placer sometimes has difficulty at high.
+17,8427,L,No Balancing Shown,0,0,0,0,0,1,,true,Engaged (level),poor,,true,,,,,,,,Broken claw
+18,7174,C,No Balancing Shown,0,1,0,0,1,2,true,,Engaged (level),good,,,,,,,,,,
+18,6029,C,No Balancing Shown,0,0,0,0,0,4,true,,Parked (in community),,,,,,,,,,true,mainly pushed objects to get them into nodes
+18,9250,L,No Balancing Shown,0,0,0,0,0,1,,,Parked (in community),poor,,,,true,,,,,,"No auton, no claw"
+18,217,L,Docked,1,0,0,4,0,0,true,,Engaged (level),good,,,true,,,,,,,"Can easily pick up cones, quick"
+18,201,C,Engaged (level),1,,,,,3,,,,good,,,,true,,,,,,Slow arm. Pushed cubes from ground.
+19,9253,L,No Balancing Shown,0,0,0,0,0,0,,,No station,,,true,,,,,,,,No auton
+19,5498,L,No Balancing Shown,0,0,0,0,0,3,,true,Engaged (level),,,,true,,,,,,,moved out of community during auton. very slow arm. only pushed objects into nodes
+19,9182,R,No Balancing Shown,0,0,0,0,0,2,,true,Engaged (level),good,,true,,,,,,,,can only do low node
+19,9148,L,No Balancing Shown,0,0,0,0,1,0,true,,No station,poor,,,,,,,,,true,No auton
+19,5577,C,No Balancing Shown,,,1,,,,,true,Engaged (level),good,,,,true,,,,,,
+20,8280,C,Engaged (level),0,1,0,0,2,2,true,,Engaged (level),good,,,,,,,,,true,
+20,5065,L,,0,0,0,0,0,0,,,Engaged (level),,,,true,,,,,,,No movement in auton.  They try to scoop cones with limited success.  They were not able to push it into a node.
+20,5555,L,No Balancing Shown,,,,,,,,,No station,,,true,,,,,,,,"Can only do defense 
+because it's arm doesn't work"
+20,2673,R,No Balancing Shown,0,0,0,2,0,0,true,,No station,good,,,,,,,true,,,moved out of community during auton. cannot really grab cubes easy
+20,8352,C,No Balancing Shown,0,0,0,0,0,1,,true,No station,poor,,true,,,,,,,,Broken claw
+21,3539,L,No Balancing Shown,1,0,0,0,1,0,true,,Engaged (level),good,,,,,,,true,,,Auton left community 
+21,7769,L,Engaged (level),1,,,5,,,true,,Engaged (level),,,,,,,,,,true,There is nothing they can't do
+21,7145,C,No Balancing Shown,0,0,0,0,0,0,,,No station,,,,,,true,45,,,,lost comms and barely moved for rest of match
+21,5467,L,No Balancing Shown,0,0,0,0,3,0,,true,Engaged (level),good,,,,,,,,,true,Has difficulty picking cubes up
+21,4854,L,No Balancing Shown,0,0,0,0,0,1,,,Engaged (level),poor,,true,,,,,,,,"Moved out of community auton, very tippy"
+21,9207,C,No Balancing Shown,,,,,,2,,true,Engaged (level),good,,,,true,,,,,,Drew penalty in auton. Pushed from hround
+22,5197,L,No Balancing Shown,0,0,0,0,0,1,,,Engaged (level),poor,,,,,,,,,,Only placed first piece and then balanced
+22,5478,L,No Balancing Shown,,,,,,1,,true,Engaged (level),,,true,,,,60,,,,
+22,6029,R,No Balancing Shown,0,0,0,0,0,0,,,No station,,,,,,true,130,,,,has an aunton
+22,8427,L,,0,0,0,,,,,,,,,,,,,70,,,,Not a lot of movement. 
+22,7174,C,Engaged (level),0,1,0,0,3,0,true,,Engaged (level),good,,,true,,,,,,,struggles picking up cubes from the ground
+22,5532,C,No Balancing Shown,,,,,,2,true,,Engaged (level),,,true,,,,,,,,Fast. Pushes from ground.
+23,9148,L,,0,0,0,1,,,,,Engaged (level),,,,,,,,true,,,Placed one cube then went straight to the dock.
+23,4768,L,No Balancing Shown,0,0,0,0,0,1,true,,Engaged (level),poor,,,,,,,true,,,Moved out of community
+23,9253,L,No Balancing Shown,0,0,0,0,0,0,,,Parked (in community),,,true,,,,,,,,Auton left community 
+23,6567,R,No Balancing Shown,1,1,0,0,1,1,,true,Engaged (level),poor,,,,,,,true,,,
+23,469,C,No Balancing Shown,1,0,0,0,0,0,true,,No station,,,,true,,,95,,,,
+23,240,C,,,,1,1,,,true,,Engaged (level),good,,,,true,,,,,,
+24,7597,L,No Balancing Shown,0,0,0,0,0,2,,,Engaged (level),,,true,,,,,,,,
+24,3572,C,Docked,1,0,0,2,1,0,true,,Engaged (level),good,,,,,,,,,true,
+24,313,L,,0,0,0,0,0,1,,,No station,,,,,,true,90,,,,No auton
+24,5498,L,,1,0,0,0,0,0,true,,,,,,,,true,,,,,Had a tough time moving.  Almost non exiatent
+24,5555,C,No Balancing Shown,,,,,,,,,Engaged (level),,,,,,true,,,,,Good climb. Attempted defense. Could do better.
+24,3096,R,No Balancing Shown,1,0,0,2,1,0,true,,No station,good,,,,,,,,,,
+25,2673,L,,,,,,,3,true,,Parked (in community),,,,true,,,,,,,Moved during auton.
+25,8728,L,No Balancing Shown,0,0,1,,,3,true,,Engaged (level),,,,,,,,,,true,
+25,9182,R,No Balancing Shown,0,0,0,0,0,4,,,Parked (in community),,,true,,,,,,,,really good for a brick bot
+25,9250,C,Docked,0,0,0,0,0,0,,,Engaged (level),,,true,,,,170,,,,got pushed onto the platform
+25,5065,L,No Balancing Shown,0,0,0,0,0,0,,,No station,poor,,true,,,,,,,,"No autonomous, tippy, several penalties"
+25,1528,C,No Balancing Shown,,,,,,,,,No station,,,true,,,,,,,,Committed two zone penalties. Tried to climb. Pushed one block and almost scored.
+26,3632,L,No Balancing Shown,0,0,0,0,0,1,,true,Docked,,,,,,,,,,,
+26,226,L,No Balancing Shown,0,0,1,0,1,0,true,,Engaged (level),good,,,,,,,true,,,"Left community auton, claw broke"
+26,5577,L,,0,0,0,0,0,,,,Parked (in community),,,,,true,,,,,,No auton
+26,1189,C,Engaged (level),1,,,4,1,,true,,Engaged (level),good,,,,,,,true,,,Great match. Dropped 1 at ds.
+26,217,R,No Balancing Shown,1,0,0,3,2,0,true,,Parked (in community),good,,,,,,,,,true,
+27,7145,R,No Balancing Shown,0,0,0,0,0,0,,,No station,,,true,,,,,,,,tipped at 115sec 
+27,8352,L,,0,0,0,0,0,0,,,Parked (in community),,,,,true,,,,,,No auton.  They flipped an opponent over. 
+27,8427,L,No Balancing Shown,0,0,1,0,0,0,,,No station,poor,,,,,true,115,,,,
+27,5532,C,No Balancing Shown,,,,,,,,,Engaged (level),,,,,,,,,,,Spun around aimlessly 
+27,7174,C,Engaged (level),0,0,0,0,3,0,true,,Engaged (level),good,,,true,,,60,,,,
+27,5197,L,No Balancing Shown,0,0,0,0,0,2,,true,Parked (in community),,,true,,,,,,,,Couldn’t go onto charging station and slow at low nodes 
+28,7769,L,Engaged (level),1,,,3,,,,,,,,,,,,,,,,
+28,4854,C,No Balancing Shown,0,0,0,0,0,0,,,Parked (in community),,,,,,true,200,,,,
+28,5498,L,No Balancing Shown,0,0,1,0,0,0,,,No station,poor,,,,,,100,,,,
+28,8280,L,No Balancing Shown,0,1,0,0,1,0,true,,Engaged (level),good,,,,,,,,,,
+28,3096,R,,1,0,0,2,0,0,true,,Docked,,,,,,,,,,true,
+28,9148,C,No Balancing Shown,,,,,,1,,,,,,,,true,,60,,,,Lost balance after 2nd team balanced.
+29,2048,L,No Balancing Shown,0,0,0,0,2,2,,true,Docked,,,,,,,,,,true,Auton left community 
+29,8728,L,No Balancing Shown,0,0,1,0,0,2,true,,Parked (in community),poor,,,,,,,true,,,Auton left community
+29,6029,R,No Balancing Shown,1,0,0,0,0,3,,,Docked,,,true,,,,,,,,
+29,9207,C,No Balancing Shown,0,0,0,0,0,0,,,Parked (in community),,,,true,,,,,,,broken claw. pushed objects into community
+29,3572,C,Docked,1,,,2,,,true,,Engaged (level),good,,,,true,,,,,,Picks up from sls. Fed one cone to team.
+30,5577,,No Balancing Shown,0,0,1,0,0,1,,,No station,,,true,,,,,,,,
+30,4768,L,No Balancing Shown,0,0,0,1,0,0,,true,Engaged (level),poor,,,,,,,,,true,Auton exit community
+30,5555,L,No Balancing Shown,0,0,0,0,0,0,,true,Engaged (level),,,,,,,,,,,
+30,1189,C,Engaged (level),1,0,0,6,0,0,true,,Parked (in community),good,,,true,,,,,,,
+30,5478,C,No Balancing Shown,,,,,,,,,,,,,,,true,135,,,,Died entire match
+31,0,,,,,,,,,,,,,,,,,,,,,,
+31,5065,L,No Balancing Shown,0,0,0,0,0,0,,true,,,,true,,,,,,,,No auton
+31,9253,L,,0,0,0,0,0,1,,,Engaged (level),poor,,true,,,,,,,,No auton
+31,313,R,No Balancing Shown,0,0,0,0,0,0,,,Parked (in community),,,,,,true,135,,,,
+31,217,C,No Balancing Shown,1,,,3,,1,true,,,,,,,,,,,,,"Fell over cs in auto, slow and tippy, missed 1 high and scored low"
+31,226,C,Docked,0,1,0,0,0,4,,true,Engaged (level),,,,,,,,,,true,
+32,1528,L,No Balancing Shown,0,0,0,0,0,1,,true,No station,,,true,,,,,,,,No auton
+32,3632,L,No Balancing Shown,0,0,0,0,0,1,,,No station,,,true,,,,30,,,,"Moved out of community during auton, placed in low node with too much effort"
+32,9250,C,,0,0,0,0,0,2,,,Parked (in community),,,true,,,,,,,,pushed objects around
+32,469,C,No Balancing Shown,,,,,1,,,true,Engaged (level),good,,,,,,,true,,,Robot freaked out for about 45 secs. Dropped multiple pcs
+32,2673,R,,0,0,0,1,1,0,,true,Docked,good,,,,,,,,,true,"it almost tips over a lot
+
+also now that we are being honest, red right mixed up docked an engaged. this has been going on since round 26
+"
+33,8728,L,No Balancing Shown,0,0,1,,,2,,,,,,,,,,,,,,Auton left community 
+33,6567,L,No Balancing Shown,0,0,0,0,0,1,,,Engaged (level),poor,,true,,,,,,,,
+33,7174,C,Engaged (level),,1,,,,1,true,,Engaged (level),good,,,true,,,,,,,
+33,5467,C,No Balancing Shown,,,,,1,,,true,Engaged (level),poor,,,,,,,,,,Could not pick from dss
+33,7769,R,Engaged (level),0,1,0,1,0,1,true,,Parked (in community),good,,,,,,,true,,,
+34,8427,L,,,,1,,,1,,true,Engaged (level),good,,true,,,,,,,,
+34,9182,L,No Balancing Shown,0,0,0,0,0,2,,true,Engaged (level),poor,,true,,,,,true,,,Left community aufon
+34,1189,C,Engaged (level),1,0,0,4,0,0,true,,Parked (in community),good,,,true,,,,,,,
+34,5555,C,No Balancing Shown,,,,,,,,,Engaged (level),,,,,true,,,,,,Drove around aimlessly 
+35,2048,L,No Balancing Shown,0,0,0,0,1,0,,,Engaged (level),poor,,,,,,,true,,,"Auton left community, almost fell"
+35,3572,C,Engaged (level),1,,,1,,2,true,,,good,,,,,,,true,,,"Picks from Ss, tippy, fast, missed 2 high cones, dropped 1"
+35,4854,L,,,,,,,1,,,No station,,,,,,,,,,,I spaced out for the entire first half of the match and missed stuff sorry 
+35,240,R,No Balancing Shown,,,1,,1,1,true,,Parked (in community),good,,,,,,0,true,,,Missed the top multiple times 
+35,201,C,Engaged (level),1,0,0,1,,1,true,,Docked,good,,,,,,,true,,,very slow arm. resorted to pushing objects
+36,217,C,Docked,1,0,0,5,0,0,true,,No station,good,,,,,,,,,true,
+36,5532,L,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),,,true,,,,,,,,No auton
+36,2763,L,No Balancing Shown,0,0,0,0,0,0,,,No station,,,,,,true,120,,,,
+36,313,,No Balancing Shown,,,1,,,2,,true,No station,poor,,true,,,,,,,,"Nocked off team mate off dock and engaded
+Only low "
+36,9148,C,No Balancing Shown,,,,,,1,,,Engaged (level),,,,,,,,,,,"Pushed 1 in tele, aimlessly drove over cs"
+37,5065,L,No Balancing Shown,0,0,0,0,0,0,,true,Engaged (level),good,,,true,,,,,,,No auton
+37,9250,L,No Balancing Shown,0,0,0,0,0,0,,,No station,poor,,true,,,,70,,,,"No auton, very tippy"
+37,9253,C,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),,,true,,,,,,,,
+37,5197,R,No Balancing Shown,0,0,0,0,0,0,,true,Engaged (level),,,true,,,,,,,,"No auton 
+Almost score but mostly offensive defense "
+37,3539,C,Docked,1,,,3,,1,true,,Engaged (level),good,,,,true,,,,,,Helps 2nd team climb and balance
+38,9207,L,No Balancing Shown,0,0,0,0,0,4,,true,Engaged (level),,,true,,,,,,,,Auton leave community 
+38,1528,C,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),,,true,,,,,,,,
+38,5467,L,No Balancing Shown,0,0,0,0,3,0,,true,No station,good,,,,,,,,,true,No auton
+38,3096,C,No Balancing Shown,1,,,3,,,true,,No station,good,,,,true,,,,,,Dropped off side of cs at end
+38,8352,R,,0,0,1,0,0,1,,true,No station,poor,,true,,,,,,,,"Got tipped on the charge station 
+Only focused on denfence "
+39,4768,L,No Balancing Shown,0,0,0,0,0,0,true,,Engaged (level),good,,,,,,,true,,,Auton left community 
+39,8280,C,Docked,,,1,,1,2,true,,Engaged (level),good,,,,,,,true,,,"Trouble picking from ds, push cubes in lower"
+39,469,C,Engaged (level),1,0,0,0,0,1,true,,Parked (in community),,,,,,,,true,,,missed several drops
+39,3632,L,No Balancing Shown,0,0,0,0,0,2,,,Docked,poor,,true,,,,,,,,Left community auton
+39,7145,R,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),poor,,true,,,,,,,,Played poor defense and can’t do really anything else…
+40,5478,L,No Balancing Shown,0,0,0,0,0,1,,,Parked (in community),,,true,,,,,,,,Auton left community 
+40,3572,C,Engaged (level),0,0,0,3,0,1,true,,Engaged (level),good,,,true,,,,,,,
+40,217,L,No Balancing Shown,1,0,0,1,2,1,true,,Parked (in community),good,,,,,,,,,true,Left community autonomous
+40,5498,C,No Balancing Shown,1,,,1,,,true,,Engaged (level),good,,,,,,,true,,,Trouble picking from ds
+40,7769,R,Docked,1,0,0,4,0,1,true,,Engaged (level),good,,,true,,,,,,,"Really fast reload and really consistent, solid and fast "
+41,9253,L,No Balancing Shown,0,0,0,0,0,3,,,Docked,,,true,,,,,,,,No auton
+41,2048,L,No Balancing Shown,0,0,0,0,2,0,,true,Engaged (level),good,,,,,,,,,,Left community auton
+41,8427,C,No Balancing Shown,,,,,,4,,,No station,,,,true,,,40,,,,Pushing cubes in lower nodes
+41,5197,R,No Balancing Shown,0,0,0,,,1,,true,Engaged (level),poor,,true,,,,,,,,No auton no game plan for their defense 
+41,5577,C,No Balancing Shown,0,0,0,0,0,2,,,Parked (in community),,,,,,,,,,,claw seemed unfunctioning. pushed objects into nodes.
+42,7597,C,No Balancing Shown,0,0,0,0,0,4,,,Engaged (level),,,true,,,,40,,,,pushed objects into nodes
+42,8352,L,No Balancing Shown,0,0,0,0,0,1,,,Parked (in community),,,true,,,,,,,,Auton left community 
+42,313,L,No Balancing Shown,0,0,0,0,0,3,,,Engaged (level),poor,,,,,,,,,,No auton
+42,201,C,Docked,1,,,1,,1,,true,No station,,,,,,true,70,,,,"Marshalling cubes, lost comm last 70 secs"
+42,3096,R,,1,0,0,3,0,0,true,,Engaged (level),poor,,,,,,,,,,"Alright bot, not top but not bad "
+43,240,L,,0,0,0,,,1,,true,No station,,,,true,,,,,,,Moved in Auto
+43,2673,L,No Balancing Shown,0,0,0,1,0,1,true,,No station,,,,,,,,,,,Auton left community 
+43,9207,C,No Balancing Shown,0,0,0,,,3,,true,Docked,,,,,,,,,,true,
+43,9250,R,No Balancing Shown,0,0,0,0,0,0,,,Parked (in community),,,true,,,,,,,,
+43,6567,L,No Balancing Shown,0,0,0,0,0,2,,,Engaged (level),poor,,,,,,,,,,
+43,8280,C,Engaged (level),,1,,,2,,true,,Engaged (level),good,,,true,,,,,,,Tough picking cube from floor
+44,9148,L,No Balancing Shown,0,0,0,0,0,1,,true,Engaged (level),,,,,,,,,,,No auton
+44,5467,L,,0,0,0,1,,,,,Engaged (level),,,,,,,,,,,No auton
+44,1528,R,,0,0,0,0,0,0,,,No station,poor,,true,,,,,,,,
+44,1189,C,Engaged (level),1,0,0,4,0,0,true,,Parked (in community),good,,,true,,,,,,,
+44,8728,L,No Balancing Shown,0,0,1,0,0,4,true,,Engaged (level),poor,,,,,,,,,true,"Left community auton, can only do low"
+44,226,C,No Balancing Shown,,,1,,,,,,Engaged (level),,,,,,,,,,,"Busted entire super structure in auton, nice end game "
+45,5555,C,No Balancing Shown,0,0,0,0,0,0,,,No station,,,,,,true,150,,,,arms not functional.
+45,5065,L,No Balancing Shown,0,0,0,0,0,0,,,Parked (in community),poor,,true,,,,,,,,No auton
+45,7145,R,,0,0,1,0,3,0,true,,Docked,,,,,,,,,,true,
+45,4768,L,No Balancing Shown,0,0,0,0,0,1,true,,Engaged (level),poor,,,,,,,,,true,"Bro, my mans did nothing 💀💀💀
+
+-DJ Gearhead (i watched this bot)"
+45,7174,C,Engaged (level),,,1,,3,2,true,,Docked,good,,,,,,,,,,"Missed high auton, pushed blocks to comm, pushed 1 off docking trying for 3"
+46,3096,L,No Balancing Shown,0,0,0,0,1,1,true,,Engaged (level),,,,,,,,true,,,
+46,469,C,Engaged (level),1,0,0,1,2,1,true,,Parked (in community),good,,,,,,,true,,,
+46,6029,L,No Balancing Shown,1,0,0,0,0,2,,,No station,poor,,true,,,,,,,,Nice throw in auton
+46,201,R,No Balancing Shown,0,0,0,0,0,0,,,,,,,,,true,120,,,,its kinda funny how red right always breaks keep that in mind guys
+46,3539,C,Engaged (level),1,,,4,,,true,,Docked,,,,,,,,,,true,Tried to double climb. But only engaged
+47,4854,L,,0,0,0,0,1,1,true,,Docked,,,true,,,,,,,,Auton left community 
+47,5532,L,No Balancing Shown,0,0,0,0,0,2,,,Engaged (level),poor,,true,,,,,,,,No auton
+47,9253,C,No Balancing Shown,,,,,,2,true,,Engaged (level),,,,true,,,,,,,
+47,3572,C,Engaged (level),1,0,0,0,0,1,,,Docked,good,,,,,,,true,,,
+47,6567,R,No Balancing Shown,0,0,0,0,0,3,,,Parked (in community),good,,,true,,,,,,,
+48,9250,L,No Balancing Shown,0,0,0,0,0,0,,,Docked,,,,,,,90,,,,No auton
+48,2048,L,No Balancing Shown,0,0,0,0,0,1,,true,No station,poor,,,,,,,,,,Left community auton
+48,8352,C,No Balancing Shown,0,0,0,0,0,0,,,Docked,,,,,,true,120,,,,stuck or lost comms.
+48,1189,C,Engaged (level),1,,,4,2,,true,,No station,good,,,true,,,6,,,,Lost com last 6 sec and missed park
+48,9148,R,No Balancing Shown,0,0,0,2,0,1,true,,Docked,,,,,,,,,,,
+49,7145,L,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),,,true,,,,,,,,auton left community 
+49,4768,C,No Balancing Shown,0,0,0,0,0,2,,,Engaged (level),,,,,,,,,,,pushed objects into nodes. 
+49,7769,R,Docked,1,0,0,3,0,2,true,,Engaged (level),good,,,,,,,,,true,
+49,8728,L,No Balancing Shown,0,0,1,0,0,5,true,,Engaged (level),poor,,,true,,,,,,,"Left community auton, can only do low but very fast and filled most of low solo"
+49,5555,C,No Balancing Shown,,,,,,,,,Engaged (level),,,,true,,,,,,,"Auton shimmy , got stuck on cs - partner knocked off, aimless defense, triple climb"
+50,8,,,,,,,,,,,,,,,,,,,,,,
+50,5065,L,No Balancing Shown,0,0,0,0,0,0,,true,Engaged (level),,,true,,,,,,,,No auton
+51,8280,R,No Balancing Shown,0,1,0,0,1,2,true,,Engaged (level),good,,,,,,,,,,
+50,3539,C,Engaged (level),1,0,0,3,1,0,true,,Parked (in community),good,,,true,,,,,,,
+50,226,L,No Balancing Shown,0,0,0,0,0,5,,true,Engaged (level),poor,,,,,,,,,true,Upper climber broken
+50,7174,C,Engaged (level),,,,,,3,true,,Engaged (level),good,,,true,,,,,,,"Missed mid auton, missed 2 mids "
+51,8427,L,,0,0,1,0,0,0,,true,Engaged (level),,,true,,,,,,,,
+51,2673,L,No Balancing Shown,0,0,0,1,0,1,true,,Engaged (level),poor,,,,,,,,,,
+51,5467,C,No Balancing Shown,,,,,,2,,,Parked (in community),,,,,,,,,,,"Slow, "
+51,6209,R,,0,0,0,0,0,2,,,Parked (in community),,,,,,,,,,,
+52,1528,R,No Balancing Shown,0,0,0,0,0,2,,,Engaged (level),,,true,,,,,,,,
+52,9182,L,No Balancing Shown,0,0,1,0,0,3,,true,No station,,,true,,,,,,,,
+52,5478,L,No Balancing Shown,0,0,0,0,0,1,,,No station,poor,,,,,,,,,,
+52,313,C,No Balancing Shown,0,0,0,0,0,1,,true,Docked,good,,true,,,,,,,,No auton and meh strategy 
+52,469,C,Engaged (level),1,,,3,1,,true,,Engaged (level),good,,,true,,,,,,,Dropped 1 high cone
+53,3096,L,,1,0,0,0,0,0,,true,No station,,,,,,,110,,true,,
+53,8352,L,No Balancing Shown,0,0,0,0,0,1,,,No station,poor,,true,,,,120,,,,
+53,3572,C,Engaged (level),1,0,0,3,,,true,,Engaged (level),good,,,,,,,,,,
+53,5577,C,No Balancing Shown,,,,,,,,,No station,,,,,,,,,,,"Drove aimlessly in middle of field, tried to climb but could not"
+54,6567,L,No Balancing Shown,0,0,0,0,0,3,,true,Engaged (level),good,,,,,,,,,,
+54,5065,L,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),poor,,true,,,,,,,,"No auton, gave up and balanced at a minute left and then left the balance, only to go back and do it later"
+54,9148,C,No Balancing Shown,,,,,,1,true,,Engaged (level),,,,true,,,,,,,
+55,7597,L,No Balancing Shown,0,0,0,0,0,1,,,,,,,,,,,,,,Left community auton
+55,8427,C,No Balancing Shown,,,1,,,,,true,Docked,,,,true,,,,,,,"Moving cubes 7557 good ball mover, aimless driving"
+58,240,C,Docked,0,0,0,0,3,0,true,,No station,good,,,,,,,,,true,
+58,9182,L,No Balancing Shown,,,1,,,2,true,,Engaged (level),,,,,true,,,,,,Auton left community 
+59,5498,L,No Balancing Shown,0,0,0,0,0,2,true,,Docked,neutral/no human,,,,,,,true,,,
+60,7597,L,No Balancing Shown,0,0,0,0,0,2,,,No station,neutral/no human,,true,,,,50,,,,
