@@ -1,4 +1,5 @@
 import sqlite3
+import shelve
 import csv
 import io
 
@@ -71,7 +72,11 @@ class Database:
             if not self.__check_column_exist__(name):
                 print("Creating column " + name)
                 self.cursor.execute(f"ALTER TABLE matches ADD COLUMN '{name}'")
-
+        
+        try:
+            self.cursor.execute(f"ALTER TABLE matches ADD COLUMN IF NOT EXISTS 'Team EPA'")
+        except sqlite3.OperationalError:
+            pass
         # for key, values in config.items():
         #     if (
         #         not self.__check_column_exist__(key)

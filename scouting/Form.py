@@ -1,5 +1,6 @@
 from flask import render_template, request, flash, redirect
 import werkzeug
+import statbotics_api
 import traceback
 import scouting.Page
 import scouting.Element
@@ -53,6 +54,9 @@ class Form:
                 column, value = element.process(request.form)
                 if value:
                     db.add_queue(column, value)
+        
+        # team_epa = statbotics_api.get_epa(int(request.form["team"]))
+        # db.add_queue("Team EPA", team_epa)
         db.commit()
         db.gen_csv()
         db.close()

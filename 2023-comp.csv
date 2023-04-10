@@ -1,302 +1,172 @@
-matchnum,team,auton start pos,auton station level,auton upper,auton middle,auton low,teleop upper,teleop middle,teleop low,placeable game pieces_Cones,placeable game pieces_Cubes,endgame station,hp comms,defense,extra_Drops Pieces,extra_Brick Bot,extra_Maneuverable,extra_Lost Comms,extra_Tipped over,extra_Picks up from ground,comments,robot_stop_time
-7,6099,L,,1,0,0,0,0,0,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,very slow to pick things up,
-7,5926,C,Docked,1,0,0,2,1,1,,true,No station,good,No Defense shown,,,true,,,,Pretty maneuverable but it isn’t efficient in placing. Only places cubes and auton is not too good. ,
-7,1701,L,Engaged (level),1,0,0,2,4,0,true,,Parked (in community),good,Pushes a little bit,,,true,,,,,0
-8,5901,C,Left community,1,0,0,4,0,0,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,,,
-8,6567,C,Docked,0,1,0,0,2,0,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,,0
-8,7224,C,Engaged (level),1,0,0,3,0,0,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,,
-9,818,C,Engaged (level),1,0,0,4,2,0,true,,Engaged (level),,No Defense shown,,,true,,,,"Can quickly pick up cubes and cones, has very good communications",0
-10,123,R,Left community,1,0,0,3,0,1,true,,Engaged (level),good,No Defense shown,true,,,,,,,
-10,4140,C,Engaged (level),1,,,,,,true,,No station,good,No Defense shown,,,,,true,,Tippy McTipperson (Early in match),
-10,6077,L,No Balancing Shown,0,0,0,0,0,4,,true,Engaged (level),neutral/no human,Pushes a little bit,,,,,,true,No auton. Stays stationary until Teleop. Not very maneuverable and pushes a little.,
-10,4779,R,Engaged (level),1,,,4,1,3,true,,Parked (in community),neutral/no human,No Defense shown,true,,,,,,"Had dropped a cone in community, but picked it up in 3 seconds to place high.
-Slow turning with in the community ",
-11,5460,L,,1,,,2,3,3,true,,Parked (in community),good,No Defense shown,,,true,,,,,
-11,5046,C,Engaged (level),1,0,0,0,0,0,,true,Engaged (level),good,"Very Good defense, significantly slows robots",,,true,,,,Very easily blocked other team but sometimes would end up blocking their own team,
-11,3175,L,No Balancing Shown,2,0,0,2,2,3,true,,Engaged (level),good,No Defense shown,,,true,,,,,
-11,7597,L,No Balancing Shown,,,,,,2,,true,Engaged (level),neutral/no human,Moderately slows down robots,,true,,,,,Brick bot. I think they had an arm but they took it off. Very jerky and can slow down bots. Would’ve been better if they had an arm. ,
-12,8115,C,Docked,1,0,0,2,0,0,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,,
-12,9255,R,Left community,1,0,0,2,0,2,true,,Engaged (level),good,No Defense shown,true,,,,,,,0
-12,9245,R,Left community,1,,,2,2,1,true,,Engaged (level),good,Pushes a little bit,true,,,,,,Dropped a middle cone In community left community to let another bot to leave quickly,
-12,3539,C,Docked,1,,,3,3,,true,,Engaged (level),good,Pushes a little bit,,,true,,,,Very fast and maneuverable. Good auton but can’t engage. Engages in teleop and good relations with human player. Good grabber claw and can push a bit. Good placement in high and middle node both cones and cubes.,
-13,6099,R,Left community,0,0,0,2,0,1,,true,Engaged (level),neutral/no human,No Defense shown,,,,,,true,,
-13,9212,R,Left community,0,1,0,0,0,0,,true,Parked (in community),neutral/no human,No Defense shown,,,,true,,,,100
-13,8385,C,Left community,0,0,0,1,2,4,,true,Engaged (level),neutral/no human,No Defense shown,,,,,,true,"Picked up from ground, filled mostly low area. Not very fast, almost got knocked over",
-9,7813,L,No Balancing Shown,0,0,0,0,0,1,,true,Engaged (level),neutral/no human,No Defense shown,true,,,,,,Team lost 14-109,0
-13,2137,R,Left community,1,0,0,2,4,1,true,,Engaged (level),good,Pushes a little bit,,,true,,,,"Roughed some defensive bots, really prefers placing mid nodes
-Grip looks loose but didn’t drop any cones 
-Docked with a second bot ",
-14,4130,C,Engaged (level),1,,,3,,,true,,Engaged (level),good,No Defense shown,,,,,,true,Moved slowly to avoid tipping.,
-14,1701,R,No Balancing Shown,1,0,0,2,4,1,true,,Parked (in community),good,No Defense shown,,,,,,true,Team won 118-38,0
-15,3175,R,,1,0,0,3,,7,true,,Engaged (level),neutral/no human,Pushes a little bit,,,true,,,,,
-15,123,C,Engaged (level),1,0,0,3,0,0,true,,Parked (in community),good,No Defense shown,,,true,,,,,
-16,5555,R,Left community,,,1,,,2,,true,No station,poor,No Defense shown,,,,,,,"Hard to pick up cubes (10-20 seconds per pickup) and has issues putting into low nodes 
-Auton is very basic with just place and move forward.",
-16,2604,R,Left community,0,0,0,0,0,1,true,,Parked (in community),neutral/no human,No Defense shown,true,,,,,,Team lost 46-94,106
-16,3539,C,Engaged (level),1,,,6,,2,true,,Engaged (level),good,Pushes a little bit,,,true,,,,Very good ground pickup and super efficient and fast moving and grabbing from human to place in high mode. Scored at least half of their teams points. Good placement and engaged on auton AND teleop. Teleop engage was within 5 seconds. Very very good robot.,
-17,8385,L,Left community,0,1,0,0,2,4,,true,Engaged (level),good,No Defense shown,,,,,,true,,
-17,5460,R,Docked,1,0,0,4,0,2,true,,Parked (in community),good,No Defense shown,,,true,,,,,
-17,9245,C,No Balancing Shown,,,,2,,1,true,,Engaged (level),neutral/no human,Pushes a little bit,true,,,,,,"No center auton 
-Hard time picking up cubes and placing cubes 
-Cone preference 
-Engaged with another bot on charging station ",
-17,6077,C,Docked,,,,,,2,true,,Engaged (level),poor,No Defense shown,true,,,,,,"This match they got stuck on the charging station. No lost comma or anything, just in awkward position and got stuck. Eventually got going but dropped some pieces and only scored low node. It did engage in teleop but not very maneuverable and jerky movement. ",20
-17,7762,R,No Balancing Shown,0,0,0,0,0,3,true,,Engaged (level),poor,No Defense shown,true,,,,,,"Couldn’t grab off the double substration
+matchnum,team,auton start pos,auton station level,auton upper,auton middle,auton low,teleop upper,teleop middle,teleop low,placeable game pieces_Cones,placeable game pieces_Cubes,endgame station,hp comms,defense,extra_Drops Pieces,extra_Brick Bot,extra_Maneuverable,extra_Lost Comms,extra_Tipped over,extra_Picks up from ground,comments
+1,5534,Bump,No Balancing Shown,,,1,,,5,,true,Docked,good,No Defense shown,,,,,,,Red alliance. Tippy robot that isn’t very fast. Filled up most of low row themselves though took a long time to get cubes.
+3,245,Center,Engaged (level),1,,,3,1,,true,,Engaged (level),good,Pushes a little bit,,,true,,,,Good bulky bot but maneuverable and can go quickly and pick up
+2,1718,Bump,Left community,1,,,3,3,1,true,,Engaged (level),good,No Defense shown,,,true,,,,
+2,2771,Center,Engaged (level),1,,,2,,1,true,,Engaged (level),good,No Defense shown,,,true,,,,"Blue alliance. 2 robot balance. Pretty fast, swerve drive. Good at placing cones and cubes."
+3,7211,No Bump,Left community,1,0,0,2,3,1,true,,Engaged (level),good,No Defense shown,,,true,,,true,Red alliance 
+3,3620,No Bump,Left community,2,,,5,1,,true,,Engaged (level),good,Pushes a little bit,,,,,,,"Blue alliance, 2 robot balance. Auton ran into charge station and almost messed up balancing points, though it is a 2 piece auton. Defense countered them and they aren’t that fast"
+4,8382,Bump,No Balancing Shown,1,0,0,,1,,true,,Engaged (level),,Moderately slows down robots,,,,,,true,"Red Alliance.
+"
+4,2604,Bump,Left community,0,0,0,0,0,0,,,No station,neutral/no human,Can't defend at all,,true,,,,,"blue team, bumped into another bot and lost comms for practically the entire game"
+4,6078,No Bump,,1,,,3,,2,true,,Parked (in community),good,No Defense shown,,,,,,,Picks up from dss only. Slowed way down half way thru match. Missed 2nd cone in auton.
+5,2611,Center,Engaged (level),1,,,3,,2,true,,Engaged (level),good,,,,true,,,,Very tippy bot no ground pickup but can maneuver quickly and easily place.
+5,7160,Center,Docked,1,0,0,2,3,0,true,,Parked (in community),good,No Defense shown,,,true,,,,
+5,503,Bump,Left community,,,1,3,1,2,true,,Parked (in community),good,No Defense shown,,,true,,,,Red alliance. Elevator to score in mid and high inconsistent. Attempted 2 piece teleop but only one scored.
+6,5561,Center,Engaged (level),1,,,,1,3,,true,Engaged (level),neutral/no human,Pushes a little bit,,,true,,,,Good ground pickup but only cubes. Good maneuverability but only low node.
+6,3767,No Bump,No Balancing Shown,1,0,0,3,1,2,true,,Parked (in community),good,Can't defend at all,true,,,,,,"Blue alliance, very tippy, to the point where I would not pick them. Almost went down twice after getting bumped a little bit."
+6,7782,Bump,No Balancing Shown,1,0,0,2,1,0,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,very slow
+6,5926,Center,Left community,1,0,1,,2,1,true,,Engaged (level),good,No Defense shown,,,,,,,Red alliance 
+6,4362,No Bump,,1,,,3,3,1,true,,No station,good,No Defense shown,,,true,,,,"Missed 2 in auon, dropped last cone at dss, waited for cone and missed park and lost by 1 point"
+7,5560,Center,Left community,1,0,0,2,2,0,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,,"the tippiest bot, im pretty shocked it didn't fall over and break"
+7,9208,Bump,Left community,1,,,,,3,,true,Engaged (level),good,Pushes a little bit,,,true,,,,"Decent bot, a little heavy but could engage and had decent auton."
+7,2832,Center,Engaged (level),,,,4,,,true,,Parked (in community),good,No Defense shown,,,,true,,,Cleared zone in auton. Triple balanced with arms pushing them up. Rammed twice and almost tipped both times.
+7,5660,Center,Left community,1,0,0,2,4,0,true,,Engaged (level),good,No Defense shown,,,true,,,,absolutely insane drivers. rockets over bump and charging station. sturdy bot. auton messed up by other bot in beginning
+8,3620,No Bump,Left community,1,0,1,3,3,0,true,,Engaged (level),good,No Defense shown,,,,,,,speedy and picks up good
+8,6861,Bump,Left community,0,0,0,,,6,true,,Parked (in community),neutral/no human,No Defense shown,,,,,,true,fairly slow. THE BOT HAS A MOVING EYE ITS SO COOL
+8,5534,Center,Left community,1,,,2,2,,true,,Parked (in community),neutral/no human,No Defense shown,,,,,,,"Red alliance, same as before"
+9,2611,Bump,Left community,1,,,3,,,true,,Parked (in community),good,Pushes a little bit,,,true,,,,Same as last game but still tippy with a decent arm. Not too maneuverable. Good defense can stop it.
+9,7211,No Bump,Left community,1,0,0,2,1,1,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,,"A little tippy.  Almost fell once
+Blue Alliance"
+9,1718,Center,Engaged (level),1,,,4,,1,true,,Engaged (level),good,No Defense shown,,,true,,,,Missed 1 mid cube in tele
+9,503,Bump,Left community,,,1,,1,2,true,,Engaged (level),poor,No Defense shown,,,true,,,,"2 robot balance, red alliance. Elevator inconsistent, they missed 2 cones on the high."
+10,1023,Center,No Balancing Shown,0,0,0,0,2,3,true,,Engaged (level),good,No Defense shown,,,,,,true,"able to score high, but kept going for mid and low nodes? grabs from double station"
+10,2771,Bump,No Balancing Shown,1,,,,,2,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,,"Red alliance. Struggled to place a piece for a bit, maybe problem with claw. 2 bot balance"
+11,2604,No Bump,Left community,0,0,0,,,1,,,Engaged (level),neutral/no human,Pushes a little bit,,true,,,,,
+11,4362,No Bump,Left community,1,,,4,,,true,,Engaged (level),good,No Defense shown,,,true,,,,Defense can slow them down 
+12,2960,Center,Engaged (level),1,0,0,3,1,2,true,,Engaged (level),good,No Defense shown,,,true,,,,
+12,3767,No Bump,Left community,1,,,1,,,true,,No station,neutral/no human,Can't defend at all,,,,,true,,"Red alliance, got hit and went down early on"
+12,8382,Bump,Left community,0,1,0,0,2,0,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,"Red alliance
+Bot barely scored, spent round trying to pick up tipped over teammate. "
+12,302,Center,Engaged (level),1,0,0,4,0,0,true,,Engaged (level),good,No Defense shown,,,,,,true,"nearly tipped when placing a cone, wobbly when going over charging pad. missed a cube during auton"
+13,5926,Bump,No Balancing Shown,1,,,1,0,3,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,Red alliance 
+14,5660,No Bump,Left community,1,0,0,4,0,0,true,,Engaged (level),good,No Defense shown,,,true,,,true,drivers a little calmer this match
+14,2771,Center,Engaged (level),1,0,0,1,0,1,true,,Engaged (level),good,No Defense shown,,,true,,,,Blue alliance. Missed one cone. 3 bot balance.
+14,5534,Bump,Left community,0,1,0,1,1,0,,true,Engaged (level),neutral/no human,No Defense shown,,,,true,,,"Lost comms 33 seconds 
+Blue alliance 
+"
+15,6861,Bump,Left community,1,0,0,,,5,,true,Parked (in community),neutral/no human,Pushes a little bit,,,,,,true,
+16,3520,Center,Engaged (level),1,0,0,2,2,1,true,,Engaged (level),poor,No Defense shown,,,true,,,,the human player hand signals are confusing the drivers
+16,2604,Bump,No Balancing Shown,0,0,0,0,0,0,,,Engaged (level),neutral/no human,Pushes a little bit,,true,,,,,
+16,2960,Center,Engaged (level),1,0,0,2,1,2,,true,Engaged (level),neutral/no human,No Defense shown,true,,,,,,defense bot potential 
+16,7211,No Bump,Left community,1,0,0,,3,,true,,Engaged (level),good,No Defense shown,,,,,,true,"Almost tipped over once.
+Red alliance "
+16,8382,Bump,No Balancing Shown,1,,,,,3,,true,Engaged (level),neutral/no human,No Defense shown,,,,,,true,"Blue alliance, a bit tippy. 2 bot balance"
+16,2832,No Bump,Left community,1,,,,,1,true,,Parked (in community),neutral/no human,No Defense shown,,,,true,,,Busted lighted  unicorn front cone picker early match (terrible design concept)
+17,7782,Bump,No Balancing Shown,0,0,1,3,1,1,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,,Very very slow moving
+17,2611,Center,Docked,1,,,3,,,true,,Engaged (level),good,Pushes a little bit,,,true,,,,"Less, but still had good pick up. overall better than last time."
+19,5561,No Bump,No Balancing Shown,1,1,,,1,3,,true,Engaged (level),neutral/no human,Pushes a little bit,,,,,true,,Quite tippy on its own. Good ground pick up but not very fast.
+19,3767,No Bump,,0,1,0,3,1,1,true,,No station,good,No Defense shown,,,,,,,"dropped a piece, little tippy"
+19,503,Bump,,1,0,0,1,0,4,true,,Engaged (level),neutral/no human,Pushes a little bit,true,,,,,,"Blue alliance 
+Game pieces sometimes fall out of intake
+Missed placing cones on high node"
+20,5926,Center,Engaged (level),1,0,0,2,,2,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,"Blue alliance 
+Missed placing one high node"
+20,302,Center,No Balancing Shown,0,0,0,0,0,0,true,,No station,neutral/no human,No Defense shown,,,,,true,,"auton was off, tipped over in beginning of match during auton. auton concided with 548"
+20,245,Bump,,2,,,2,4,,true,,Engaged (level),good,Pushes a little bit,,,true,,,,"Good and maneuverable a good auton and very good speed. Very efficient and moving and could get many cones on the middle node.
+"
+22,5660,Bump,No Balancing Shown,1,0,0,3,3,0,true,,No station,neutral/no human,No Defense shown,true,,,,,,"Red alliance 
+Tippy: almost tipped over once
+"
+22,5167,Center,Engaged (level),1,0,0,1,1,1,true,,Engaged (level),good,No Defense shown,true,,,,,,goes to double feeder station. cones not reliable to grab
+22,1023,Bump,No Balancing Shown,,,,3,1,,true,,Engaged (level),neutral/no human,Pushes a little bit,,,,,,,
+23,7782,No Bump,Left community,1,0,0,2,2,0,true,,No station,neutral/no human,Pushes a little bit,,,,,,true,fairly slow but very consistent. turned a bit and accidentally messed up the placement on a triple engage during endgame
+23,2604,Bump,Left community,0,0,0,0,0,0,,,Engaged (level),neutral/no human,Moderately slows down robots,,true,,,,,"Only played defense 
+Blue alliance 
+Got penalties for blue alliance "
+24,548,No Bump,Left community,1,,,3,3,,true,,Engaged (level),good,,,,true,,,,"Triple climb, 1 pcs auton"
+24,3546,Bump,Left community,1,0,0,1,0,3,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,had heavy defense played against them.
+24,302,Center,Engaged (level),1,0,0,3,4,,true,,Engaged (level),good,No Defense shown,,,true,,,,"Red alliance 
+Bot was able to maneuver around the defense being played against it."
+25,7250,Bump,Left community,1,,,1,1,,true,,Parked (in community),good,No Defense shown,true,,,,,,Not a very good grabber  not very fast not a not a good option. Just not a good bot overall. If bumped it will drop pieces but handles cubes better than cones.
+25,5926,Center,Engaged (level),0,0,1,1,3,,,true,Engaged (level),good,No Defense shown,,,,,,true,"Red alliance 
+Auton also leaves community "
+26,245,Bump,No Balancing Shown,1,,,3,2,,true,,Parked (in community),good,Pushes a little bit,,,true,,,,"Good robot same as last time good maneuverability and can get around defense quickly. Very efficient cycling. can only do cones and missed A cone in auton.
 
-Team lost 31-123",0
-18,7224,C,Engaged (level),1,0,0,2,0,1,,true,Parked (in community),good,No Defense shown,,,,,,true,,
-18,8115,L,Left community,1,0,0,2,0,0,true,,Docked,good,Pushes a little bit,,,true,,,,,
-18,9255,L,No Balancing Shown,1,0,0,3,0,2,true,,Engaged (level),good,No Defense shown,,,,,,,Goes for cones more often,0
-18,7597,L,Left community,,,,,,2,,,Engaged (level),neutral/no human,Moderately slows down robots,,true,,,,,Not a very good bot. Could only push cones and cubes into low nodes. Brock bot basically but could slow down some others. Auton is to leave community and it is good at engaging. Only pushed items into low nodes so I won’t count it as placing items.,
-19,5046,C,Docked,1,0,0,0,0,0,,true,No station,poor,No Defense shown,,,true,,,,It's battery died mid match,110
-19,6099,R,Left community,1,0,0,2,0,0,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,,
-19,4779,C,Engaged (level),0,0,0,1,0,0,true,,Parked (in community),neutral/no human,"Very Good defense, significantly slows robots",true,,,,,,"Missed the night during auton (cube)
-Dropped a cube in loading Zoe (caused by a possible arm failure?)
-Played HEAVY defense and kept 2 bots from going to the loading zone",
-19,5926,R,Left community,1,,,4,,,true,,,neutral/no human,Can't defend at all,,,true,,,,Had a rough start but good auton. Maneuverable and was getting pushed around but eventually found rhythm and got pieces on high node. ,
-20,9212,R,No Balancing Shown,1,0,0,0,1,0,,true,No station,good,No Defense shown,true,,,,,,,10
-20,4961,L,Left community,,,,1,,,true,,Engaged (level),good,No Defense shown,true,,,,,,Moderate auton and had decent relations with human player. But the robot wasn’t efficient and easily pushed around.,
-20,1701,L,No Balancing Shown,1,0,0,3,3,1,true,,Engaged (level),good,,,,true,,,,Team won 127-73,0
-20,2137,C,Engaged (level),1,,,4,1,,true,,Engaged (level),good,No Defense shown,true,,,,,,"Extremely precise, fast, and precise grabber and placer
-Let their teammates leave quickly from the community 
-Drop a cone when going over the bumb on the right side of community 
-Bot was extremely fast in all qualities.",
-21,6077,L,Left community,,,,,2,,,true,Engaged (level),neutral/no human,Pushes a little bit,,,true,,,,Intake was not very efficient could only pick up cubes and stopped for 20 seconds and its cube in intake. Not a very efficient bot but if comma not lost then it can be good but it is a little top heavy and could tip over. ,20
-22,7224,C,Engaged (level),1,0,0,1,0,2,true,,Engaged (level),good,No Defense shown,true,,,,,,,
-22,5460,C,Engaged (level),1,0,0,4,0,4,true,,Engaged (level),good,No Defense shown,true,,,,,true,Can pick up and drop game peices very quick,0
-22,5555,L,Left community,,,1,,,,,true,Engaged (level),neutral/no human,Pushes a little bit,,,,,,,"Extremely tippy
-Tries to do lots of defense but is easily pushed around and almost fell twice
-Waste time in waiting for an opponent to block when none near
-Triple docked 
-Has a gripper but hadn’t used it ",
-22,3175,R,Left community,2,,,2,,1,true,,Parked (in community),neutral/no human,Moderately slows down robots,true,,,,,,"Good maneuvering, can maneuver/ swerve around other robots well and fast",
-23,8115,R,Left community,1,0,0,4,0,0,true,,Engaged (level),good,No Defense shown,,,,,,,,
-23,9255,L,No Balancing Shown,0,1,0,3,0,0,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,,Other team was ramming into their team a lot,0
-23,4779,C,Engaged (level),,,,,,,,,Engaged (level),,Moderately slows down robots,,,,,,,"Had left community
-Got stuck on charging station post auton 
-Played all defense and caused major disruption to operations 
-(Had a rematch because of field issue)
-Rematch notes-
-Had NOT gotten stuck on charging 
-Played defense without placing any game pieces 
-Engaged with another bot",
-23,7813,L,No Balancing Shown,0,0,0,0,0,1,,true,Parked (in community),neutral/no human,Can't defend at all,true,,,,,,Team lost 49-81,0
-24,3539,C,Engaged (level),1,,,5,,,true,,Engaged (level),good,Pushes a little bit,,,true,,,,Very good bot. Not as efficient as last time but it had perfect auton and good pickup. It could bump around other boys with ease but didn’t attempt to play defense often and was very good at engaging with teammates ,
-24,1701,R,Left community,1,0,0,2,4,1,true,,Engaged (level),good,No Defense shown,true,,,,,,"Dropped two cones
 
-Team won 113-75",0
-25,6120,C,Docked,1,0,0,1,0,0,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,,,
-25,123,L,Left community,1,0,0,4,0,0,true,,Engaged (level),good,No Defense shown,,,true,,,,,
-25,6099,L,Left community,1,0,0,2,0,1,,true,Engaged (level),neutral/no human,No Defense shown,,,,,,true,Team won 112-48,0
-25,9212,L,,,,,,,,,,No station,neutral/no human,No Defense shown,,,,true,,,"Didn’t move for most of round, possibly lost comms. Moved for a few seconds in beginning, stopped, then moved a bit in the end.",100
-25,818,C,No Balancing Shown,1,0,0,3,3,0,true,,Engaged (level),good,No Defense shown,,,true,,,,By the looks of it it can only pick up cones,
-26,7597,R,No Balancing Shown,,,,,,1,,,,neutral/no human,Pushes a little bit,,true,,,,,It did push one into low node but it was very useless and couldn’t do anything except push things around. ,
-26,2137,R,Left community,1,0,0,4,,,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,,"Fast off of auton and consitantly fast
-Dodges defender’s 
-Great performance as a majority cone placer ",
-27,8115,R,Left community,1,0,0,2,,2,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,,
-27,5901,C,Engaged (level),1,0,0,5,,2,true,,Parked (in community),good,No Defense shown,,,true,,,,,
-26,5046,C,,0,1,0,2,1,0,,true,No station,good,No Defense shown,true,,,,,,,
-27,4961,R,Left community,,,,,,2,true,,,good,No Defense shown,true,,,,,,Couldn’t place cones on properly sometimes. A little bit tippy but didn’t fall over. Dropped a couple pieces and was ineffective. Nimble but could get pushed around and lose balance easily ,
-28,8385,L,Left community,0,1,0,,,6,,true,Engaged (level),neutral/no human,No Defense shown,,,,,,true,,
-28,8364,L,Left community,,,,,,,,,Engaged (level),neutral/no human,Can't defend at all,,true,,,,,Had poor control of robot. Did not move very much.,40
-28,5860,C,Docked,0,1,0,,4,,true,,Parked (in community),neutral/no human,No Defense shown,,,,,,,"Left community during auton 
-Uses the drop station for picking up game piece
-Only cone(?)
-Some what fast drive speed but slow (5-10 second) intake of pieces ",
-29,3175,C,Engaged (level),1,0,0,3,0,5,true,,Parked (in community),good,No Defense shown,,,true,,,,,
-29,7813,L,Left community,0,0,0,0,0,1,true,,Engaged (level),neutral/no human,Can't defend at all,,true,,,,,"Team won 101-58
-
-Didn’t do much the entire time",0
-29,5555,R,Left community,,1,,,,2,,true,Engaged (level),neutral/no human,No Defense shown,,,,,,true,"Shot during auton for middle 
-Hard time placing pieces (can only place low)
-Slow pick up (only from ground)
-During end game locked a teammate from going onto charging station(did get 1 fellow teammate on, just slowed the team down)",
-29,5926,C,Engaged (level),1,,,2,1,,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,,"Good at engagement, probably because of a good Auto balance and low center of gravity. Maneuverability was good but was aimless at some times. Not very efficient and PA was not very good. (Points added to alliance)",
-30,6099,R,Left community,1,0,0,0,0,1,,true,Engaged (level),neutral/no human,No Defense shown,,,,,,,,
-30,5460,R,Engaged (level),2,0,0,2,0,4,true,,Parked (in community),good,Pushes a little bit,,,,,,,"wire unhooked from arm, rendering them unable score high or mid points",
-31,7224,C,Engaged (level),1,0,0,,,3,true,,Engaged (level),good,No Defense shown,true,,,,,,,
-31,1701,C,Docked,1,0,0,3,1,2,true,,Docked,good,No Defense shown,,,,,,true,"Placed cubes on low nodes only, cones were anywhere else
-
-Team won 91-81
-
-Went down in one rank point",0
-31,3539,R,No Balancing Shown,1,,,4,,,true,,,good,Pushes a little bit,,,true,,,,Stopped at the end 20 seconds probably because of comms. Not as good of a game and they did not perform well in auton. I’m not got 4 high which was not as good as usual. Overall underperformed and hit the wall hard which could have resulted in lost comms.,20
-31,9245,L,Left community,1,0,0,3,0,0,,true,No station,poor,No Defense shown,,,,,,,"Fast intake, although slow drive speeds
-Defensive bot have a hard time slowing 9245 down
-Prefers cones, could do cube’s possibly 
-Accidentally kept team from from engaging by rolling off.",
-32,123,C,Engaged (level),1,0,0,0,0,0,true,,Engaged (level),neutral/no human,Moderately slows down robots,,,,,,,had a cone get stuck. spent the entire match trying to dislodge it,
-32,818,R,,1,0,0,3,1,1,true,,Parked (in community),good,No Defense shown,,,true,,,,It has to throw the cubes a little to place them in the middle or high nodes,
-32,2137,L,Left community,1,0,0,0,0,0,,,Engaged (level),good,"Very Good defense, significantly slows robots",,,true,,,,"Had a claw failure(not closing) and quickly switch to defensive play
-Kept two other enemy bots away from the loading zone for 20 seconds per trip 
-Engaged with a fellow bot on charging station 
-I highly recons this bot after this match.",
-33,6567,C,Docked,0,0,0,0,0,3,true,,,neutral/no human,No Defense shown,true,,,,,,"He struggled a bit when placing
-
-Team lost 62-88",0
-33,9212,R,No Balancing Shown,1,0,0,0,1,1,,true,Parked (in community),neutral/no human,Pushes a little bit,,,,,,,Almost tipped over a couple of times ,
-33,5901,C,Docked,1,0,0,2,0,1,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,,
-34,555,L,Left community,0,1,0,0,0,1,,true,Engaged (level),poor,,,,,,,true,"Shot starting peice 
-Team seems to be playing less then average 
-Bot looks very confused 
-3 bot engage!
-Team looked as if they had no clue what was happening ",
-34,7762,C,No Balancing Shown,0,0,1,0,0,1,true,,Engaged (level),good,Pushes a little bit,true,,,,,,"HE DROPPED 5 CONES
-
-Triple Balance
-
-Team won 66-42",0
-35,7224,C,Engaged (level),1,0,0,,,2,true,,Docked,neutral/no human,No Defense shown,,,,,,true,,
-35,4779,R,Left community,,,1,,,1,,,Parked (in community),neutral/no human,Moderately slows down robots,,,,,,,"Played pretty good defense against solo bots and rarely two bots at once
-Once no more bots were blockable then pushed a cone into lower ",
-35,8115,R,No Balancing Shown,1,,,3,,,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,Dropped 2 pieces,
-35,3539,C,Engaged (level),1,,,1,,1,true,,,good,Pushes a little bit,,,true,,,,Took numerous hits from other bits which may have disabled arm as they could only push items after that. Severely underperformed but auton was working fine. Did not lose comms but it did lose arm functionality. Could be because of weak frame?,4
-36,5460,R,Engaged (level),2,0,0,4,2,1,true,,Engaged (level),good,No Defense shown,,,true,,,,,
-36,123,L,Left community,1,0,0,3,,1,true,,Parked (in community),good,No Defense shown,,,,,,,,
-36,5860,R,Left community,1,,0,,1,1,true,,Engaged (level),good,No Defense shown,,,,,,,"Has a lift and a telescopic arm to place and pick up
-Slow movement and pickup 
-Missed a middle piece 
-2 bot engage",
-36,5926,C,Docked,1,,,3,1,1,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,,Good maneuverability and was nimble and medium speed. Goood auton and interesting strategy for teleop. Swerve helped them.,
-37,6099,L,Left community,1,0,0,2,0,1,true,,Docked,neutral/no human,No Defense shown,true,,,,,,,
-37,7813,R,Left community,0,0,0,0,0,2,,true,Parked (in community),poor,No Defense shown,true,,,,,,Team lost 78-80,2
-37,4130,C,Engaged (level),1,,,2,,2,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,Tippy McTipperson,
-37,9245,C,Docked,1,0,0,3,,1,true,,Parked (in community),good,No Defense shown,true,,,,,,"Left community during auton
-Tele drives over charging station
-Prefer Cubes(?)
-Dropped a cone during intake 
-Missed a cone last 30 seconds 
-Couldn’t get on due to size constraints from other bots(6099 and 7813)",
-38,9212,L,No Balancing Shown,1,0,0,0,0,0,,true,Engaged (level),neutral/no human,Pushes a little bit,,,,,,,Almost tipped over multiple times ,
-38,3175,C,Left community,1,,,2,,5,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,true,"Redoing this entry (messed up last one)
-",
-39,5901,C,Docked,1,0,0,4,0,2,true,,Parked (in community),good,No Defense shown,,,true,,,,,
-39,8385,L,,0,1,0,,,3,,true,Engaged (level),neutral/no human,Pushes a little bit,,,,,,true,,
-39,4961,L,Left community,,,,,,,,,Parked (in community),neutral/no human,No Defense shown,,,,true,,,"Robot was stopped temporarily for a while, something seemed to have fallen off and the bot was dragging it. May have been part of arm. Bot moved in last seconds to park in community.",81
-40,2604,L,Left community,0,0,0,0,0,0,,,Engaged (level),neutral/no human,"Very Good defense, significantly slows robots",,true,,,,,,
-40,7762,R,Left community,0,0,1,0,0,0,true,,No station,neutral/no human,No Defense shown,,,,,,,Lost comms at the beginning of auton,130
-40,6567,L,Left community,0,1,0,0,1,0,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,Team lost 50-95,0
-41,9245,R,,1,0,0,2,1,1,true,,Engaged (level),,No Defense shown,,,,,,,"Auton failed and locked the bot under the charging station causing the charging station to not engage
-Engaged with another bot",
-42,7813,R,Left community,0,0,0,0,0,4,true,,Engaged (level),good,No Defense shown,true,,,,,,"Pushed cone after auton, uses single substration to “carry” cubes over, only dropped twice
-
-Team won 124-109",0
-42,4779,C,,,,,,,,,,,,,,,,,,,"Finally they had fixed their arm, but then broke the height limit (penalty) then went onto the charging station and backwards, fell splitting the community in half during auton, Also  made the charging station impossible to engage",
-44,123,C,Engaged (level),1,0,0,3,0,0,true,,Parked (in community),good,No Defense shown,,,,,,,,
-44,2604,R,Left community,0,0,0,0,0,0,,,Engaged (level),neutral/no human,Moderately slows down robots,true,,,,,,"They removed the arm intake, no longer has an intake at all, bot was constantly moving and defending against alliance (succeeded)
-
-Team won 117-98",0
-45,4130,R,Engaged (level),1,,,4,,,true,,Engaged (level),good,No Defense shown,,,,,,true,Tippy McTipperson,
-45,7762,R,Left community,0,0,1,0,1,1,true,,Engaged (level),good,No Defense shown,true,,,,,,,
-45,5555,R,Left community,,1,,,,3,,true,Engaged (level),neutral/no human,Pushes a little bit,,,,,,true,"Slow and can only place on low
-3 bot engage ",
-45,5926,C,Engaged (level),1,,,2,,2,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,,Nothing special this time. Seemed to have less maneuvering than last time but same good auton and another interesting strategy. Got 3 engaged in last 15 seconds which was good.,
-45,6567,L,No Balancing Shown,0,1,0,,2,,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,"Hard time picking up cubes to a point where it couldn’t pick it up fully
-
-Triple balance
-
-Team won 108-80",3
-46,4961,R,Left community,,,,,,5,,true,Parked (in community),good,No Defense shown,,,true,,,,Didn’t really go high or middle but was efficient at low node. Nothing extra special this time. ,
-46,2137,C,Engaged (level),0,1,0,0,0,0,true,,Engaged (level),neutral/no human,Pushes a little bit,,,true,,,,"Arm broke once again, went straight to offense, Was baiting a penalty then tried to go back to picking up, but arm was still broken 
-Engaged by itself ",
-47,8385,L,Left community,0,1,0,0,1,4,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,,
-47,5901,R,Left community,1,0,0,4,0,0,true,,Engaged (level),good,No Defense shown,,,,,,true,,
-47,6077,R,Left community,,,,2,,1,true,,,neutral/no human,Moderately slows down robots,true,,,,,,Quite bulky and not nimble but can pick up cones and cubes. Able to place well but it stopped for the last 25 seconds for an unknown reason.,25
-48,6120,L,No Balancing Shown,1,0,0,1,0,0,true,,Engaged (level),poor,No Defense shown,,,,,,,,
-50,4961,R,Left community,,,,,1,1,,true,,good,No Defense shown,true,,,,,,Good human comms and good placement but stilll inefficient. ,
-50,6567,R,Left community,0,1,0,0,2,0,true,,Engaged (level),neutral/no human,Pushes a little bit,,,,,,true,,
-50,5860,R,,0,1,0,0,2,0,true,,Engaged (level),good,Moderately slows down robots,,,true,,,,"Drive speed is very fast and also targeted a powerful opponent (1189) and have slowed 1189 down by 10~ seconds and another bot.
-They had a strategy beforehand 
-Only place middle down  possible ",
-3,4810,L,Left community,,1,,,,4,,true,Parked (in community),neutral/no human,No Defense shown,,,,,,true,Elevator appeared non-functional after auton. They were pretty good at pushing cubes into bottom.,
-21,4710,R,,,1,,,,1,,true,Engaged (level),neutral/no human,Pushes a little bit,,,,,,,Elevator still not working. Decent at pushing cubes into bottom row.,
-52,4810,L,Left community,,1,,,,4,,true,Docked,neutral/no human,No Defense shown,,,,,,,Elevator still not working. Very good at pushing cubes into bottom row.,
-1,9252,L,No Balancing Shown,,,,,,3,true,,Engaged (level),good,Pushes a little bit,,true,,,,,Effective at pushing cubes and a cone into the bottom row. Drivers seemed mostly aware of available game pieces and other robots. (As much as they could be for Q1),
-26,9252,L,Left community,,,1,,,2,,true,Engaged (level),neutral/no human,No Defense shown,,true,,,,,"Very good brick bot. Speedy and able to push game pieces into bottom row. 
-Oh baby a triple… OH YEAH!!!",
-54,9252,L,No Balancing Shown,,,,,,4,,true,Engaged (level),good,Pushes a little bit,,true,,,,,Complimented 818 and 1701 well by scoring multiple in bottom row.,
-4,3302,R,Left community,,,1,,,1,,true,No station,good,No Defense shown,,,,true,,,"Crossed center line in auton.
-
--Lost comms three times (20 seconds, 3 seconds, and 7 seconds)
--Slow moving across field
--Tippy McTipperson (On Charge Station)",30
-30,3302,R,No Balancing Shown,,,,,,2,,true,Engaged (level),neutral/no human,No Defense shown,,,,,,,Alright at scoring low. Pretty slow crossing the field overall.,
-51,3302,R,No Balancing Shown,,,,,,1,,true,,neutral/no human,No Defense shown,,,,true,,,"-Tippy McTipperson (On Charge Station)
--Had trouble moving throughout most of match (potentially comms issue, although moved in small increments sporadically)",60
-57,7813,R,Left community,0,0,1,0,0,1,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,Red alliance. 2 robots balanced. No defense shown but the bot is very maneuverable and might be able to play decent defense. Small and can potentially triple balance. Only scores in low and not very good at it.,0
-57,8364,L,Left community,,,,,,1,true,,Docked,neutral/no human,No Defense shown,,true,,,,,Didn’t score efficiently. Did not attempt defense.,
-57,6120,R,Left community,0,0,0,1,0,1,true,,Docked,good,No Defense shown,,,,true,,,"They didn't lose comms all together but their intake gave out, and they spent the whole match messing with it. 
-blue alliance 
-",
-58,4130,C,Engaged (level),1,,,3,,2,true,,Parked (in community),good,No Defense shown,,,,,,true,Good at scoring.,
-59,2137,C,Docked,1,0,0,4,2,0,true,,Engaged (level),good,No Defense shown,,,true,,,,"Blue teams
-",
-59,5860,L,Left community,0,0,1,0,2,0,true,,Engaged (level),good,Moderately slows down robots,true,,,,,true,"Started with scoring but then switched to defense, half decent grabbing abilities.
-red",
-59,7224,C,Engaged (level),1,0,0,3,0,0,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,"2 robots balanced. Red alliance. Not very fast, can likely triple balance. Good center auton.",
-59,8385,R,Left community,,,1,,,4,,true,Engaged (level),neutral/no human,No Defense shown,,,,,,true,,
-60,4810,R,Left community,0,1,0,0,0,2,,true,Engaged (level),neutral/no human,No Defense shown,,,,,,true,Blue Alliance,
-60,2604,L,No Balancing Shown,0,0,1,,,3,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,"They got their arm back but it doesn’t pick anything up, it pushes cones and cubes instead but at a slow rate
-
-Team lost 35-90",0
-60,5926,C,Engaged (level),1,0,0,1,1,2,true,,Parked (in community),neutral/no human,Pushes a little bit,,,true,,,true,Another interesting strategy. Good auton and good pick up from ground. But stopped by a mediocre defense and eventually got around. Couldn’t dock but parked in community to improvise. Not as good as last time but still decent.,
-60,9255,L,Left community,1,0,0,3,0,0,true,,Docked,good,No Defense shown,,,,,,,Red. Uncoordinated balancing. Can move fast but very tippy when they move fast. Almost tipped over.,
-60,9252,C,No Balancing Shown,,,,,,2,,true,No station,neutral/no human,No Defense shown,,true,,,,,Pushes pieces around ,
-62,7762,L,No Balancing Shown,0,0,1,,,3,true,,Docked,neutral/no human,No Defense shown,true,,,,,,"Blue alliance 
-Pushes pieces",
-63,7224,L,Left community,1,0,0,1,0,3,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,"Tried to fill up low row, did a decent job. Red alliance. Not the fastest, but a decent offensive robot.",
-63,5860,L,Left community,0,1,0,0,0,0,true,,Docked,neutral/no human,Moderately slows down robots,,,,,,,"defense the whole time, very tippy, nice auton.
-blue",
-63,5760,L,Left community,0,1,0,0,0,0,,,Docked,poor,Moderately slows down robots,,,true,,,,"Fast turning/switching directions can cause them to tip up ~4-8 inches up
-Seems to be slower then yesterday and had some moments of inactivity/confusion 
-Had slowed down bots by 5 seconds every other trip, 
-Blocked only 1 opponents",
-64,4810,R,Left community,0,1,0,,,2,,true,No station,neutral/no human,Pushes a little bit,,,,,,,"Blue alliance 
-Pushed cubes on ground ",15
-64,4779,C,Engaged (level),1,0,0,1,1,1,true,,Engaged (level),good,Pushes a little bit,true,,true,,,,"Auton left community 
-Quickly gets a game piece during Teleoperation because of ground pickup 
-Placer is unstable and takes time to place because of movement
-Can evade defense easily 
-Sluggish pickup 
-Engaged with another bot
-Can place on all levels but high can be unstable
-Medium driving speeds with nice driver swerve control ",
-64,8385,L,Left community,,1,,,,2,true,,Docked,good,No Defense shown,true,,,,,,A bit unstable/ tippy when on the charge station,
-64,9245,L,Left community,1,0,0,4,0,0,true,,Engaged (level),good,Can't defend at all,,,,,,,"Blue alliance. 2 bots balanced. Everybot, susceptible to defense and loses gets out pushed while trying to play defense",
-65,7813,R,No Balancing Shown,,,1,,,,,,,good,Moderately slows down robots,,true,,,,,This bot has no arm but can sometimes do low node cones and cubes. Mostly played defense and often slowed down some robots but also let some get past. Good defending was sporadic and it didn’t really do much.,
-65,9252,C,Left community,,,1,,,,,true,Engaged (level),neutral/no human,Pushes a little bit,,true,,,,,Tends to slide off of charge station when another bot comes on,
-65,5926,C,Engaged (level),1,0,0,2,0,1,true,,Engaged (level),neutral/no human,Pushes a little bit,true,,,,,,"RED TEAM
-pieces kept getting flung out of hands. loose grip, especially with cones
-mainly goes for single station",
-65,2604,L,Left community,0,0,0,0,0,0,,,Parked (in community),neutral/no human,Moderately slows down robots,,true,,,,,"Red. Only played defense, not bad at defense",
-66,6077,,,,,,,,,,,,,,,,,,,,Bot did NOT show up for match. Probably a major issue.,
-66,2137,C,Engaged (level),1,0,0,4,0,0,true,,No station,neutral/no human,No Defense shown,true,,,,,,"Blue alliance 
-Drops cone if bumped into",
-67,5555,R,Left community,1,,,,,2,,true,Docked,neutral/no human,No Defense shown,,,,,,true,"Slower, popped a cube in the end, only picks up from ground",
-67,9255,R,Left community,1,0,0,2,0,0,true,,Engaged (level),neutral/no human,Can't defend at all,,,,,,,"BLUE TEAM
-grabs from double station
-missed dropping 1 cone
-pushed around easily",
-67,7224,C,Engaged (level),1,0,0,2,0,0,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,Red alliance. Arm broken during match. 2 bot balance.,
-68,7762,L,Left community,0,0,0,,1,2,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,"Got stuck on charging station 
-Blue alliance ",40
-68,4779,R,Left community,1,0,0,3,0,0,true,,Docked,good,No Defense shown,,,,,,true,"2 piece auton failed. Got hit and stopped for last 40 seconds of match. Can pick up from ground, but not good at it.",40
-69,4810,L,Left community,0,1,0,0,0,0,,true,Parked (in community),neutral/no human,Moderately slows down robots,,,,,,,Red Alliance,
-69,6085,R,Left community,0,1,0,0,2,0,true,,Engaged (level),neutral/no human,Can't defend at all,,,,,,,"the robot is capable, but the drivers drive like they're scared of getting hurt.
-Blue",
-69,9252,C,Left community,0,0,0,0,0,4,,,Engaged (level),good,No Defense shown,,true,,,,,"Red. Attempted to triple balance, ended balancing alone. Good at rolling in cubes on floor, struggled to get anything from human player station.",
-70,7813,R,,,,1,,,,,,,neutral/no human,Moderately slows down robots,,,,,,,Better defense this time but still a little bit scrappy. Got a penalty . Didn’t help out team in terms of scoring. Had trouble defending against skilled robots like 3539.,
-72,8115,C,Engaged (level),1,0,0,3,0,2,true,,Engaged (level),good,No Defense shown,,,true,,,,"BLUE TEAM
-auton: places cube, balances
-goes to double station
-slightly wobbly when arm is extended",
-75,5926,C,Engaged (level),1,0,0,1,0,3,true,,Engaged (level),good,No Defense shown,,,,,,true,"BLUE TEAM
-auton: places a cone, balances
-",
-76,9255,R,Left community,0,0,1,3,0,1,true,,Parked (in community),good,Can't defend at all,,,,,,,"BLUE TEAM
-grabs from double station
-auton: place a cube, leave community
-extremely wobbly, nearly tipped multiple times",
-78,8115,L,Left community,0,0,1,1,0,0,true,,No station,neutral/no human,No Defense shown,,,,,,,"RED TEAM
-LOST A WHEEL.",60
+"
+26,6861,Bump,Left community,1,0,0,0,0,4,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,has a tendency to just fling pieces into community?
+27,7782,Center,Engaged (level),1,0,0,2,1,0,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,grabbing cones is less consistent. cones usually get flung out if it's not picked up right
+27,7211,No Bump,Left community,2,0,0,2,4,,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,,Blue alliance 
+27,3767,Bump,No Balancing Shown,1,0,0,0,3,0,true,,No station,good,,,,true,,,,"it stopped moving, probably something wrong with the turning or arm or something. "
+27,8382,No Bump,Left community,,,,,,1,true,,Engaged (level),,No Defense shown,true,,,,,,Takes a very long time to place pieces. Odd vacuum style pick up system.
+28,302,Center,Engaged (level),0,0,0,2,2,1,true,,Parked (in community),neutral/no human,No Defense shown,,,,,,,
+28,2604,No Bump,Left community,0,0,0,0,0,0,,,Engaged (level),neutral/no human,Pushes a little bit,,true,,,,,"not very manuverable, despite being only able to defend"
+28,1023,Bump,Left community,1,0,0,2,2,0,true,,Engaged (level),neutral/no human,Moderately slows down robots,,,,,,true,"Blue alliance 
+"
+1718,28,Center,Engaged (level),1,,,6,2,,true,,Engaged (level),,No Defense shown,,,true,,,,"Great driving, triple balance,"
+29,5660,Center,Engaged (level),1,0,0,2,3,0,true,,Docked,good,Pushes a little bit,,,,,,,
+30,503,Center,Engaged (level),1,,,2,1,,,,Engaged (level),neutral/no human,,,,,,,,"Blue alliance, 2 bot balance"
+30,5926,Center,Engaged (level),1,0,0,,,4,,true,Engaged (level),good,No Defense shown,,,,,,true,"Red alliance 
+Auton leaves community "
+31,8179,Center,Docked,1,0,0,3,2,0,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,,
+31,7250,Center,Engaged (level),1,,,1,,,,true,Engaged (level),good,No Defense shown,true,,,,,,Very jerky robot but has decent ground pick up but keeps dropping cones. Not very maneuverable and decent human relations.
+31,7211,No Bump,Left community,2,0,0,4,0,0,true,,Parked (in community),good,No Defense shown,,,,,,true,"Blue alliance 
+Fairly consistent scoring on high nodes"
+32,3620,No Bump,Left community,1,0,1,3,1,1,true,,,good,No Defense shown,,,true,,,,
+32,5561,Bump,Left community,1,,,1,2,3,,true,Engaged (level),neutral/no human,,,,,,,true,"Very jerky, but can only pick up kcubes but has a good auton. Not very maneuverable and an interesting strategy."
+32,3546,No Bump,Left community,1,0,0,4,0,3,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,,
+32,2771,Center,Engaged (level),1,0,0,2,3,0,true,,Engaged (level),good,No Defense shown,,,true,,,,"Red alliance, 2 bot balance.
+Only did cones, fairly consistent bot"
+32,5167,Center,Docked,1,,,2,1,,true,,Docked,neutral/no human,No Defense shown,true,,,,,,
+33,245,No Bump,No Balancing Shown,2,,,3,1,1,true,,,good,Pushes a little bit,,,true,,,,"Good maneuverability same as last time good Auton. Good cycling..
+"
+33,6861,Bump,Left community,1,0,0,0,0,3,,true,Engaged (level),neutral/no human,No Defense shown,,,,,,true,
+33,1025,Center,Docked,,,1,1,1,3,,true,Docked,neutral/no human,No Defense shown,,,,,,,"Red Alliance
+"
+33,308,Bump,No Balancing Shown,1,0,0,2,0,2,true,,Parked (in community),neutral/no human,No Defense shown,true,,,,,,
+33,3767,Center,Engaged (level),1,,,,,,,true,No station,neutral/no human,No Defense shown,,,,true,,,"Was late to match, comms issues throughout the match basically stopped in the middle of the field after Auton."
+34,5460,Bump,No Balancing Shown,0,0,0,0,0,0,,,No station,neutral/no human,,,,,true,,,"they were the team that made everyone wait, and then they didn't even turn on their robot, tweakin fr‼️"
+34,6078,Bump,Left community,1,,,5,,,true,,Engaged (level),good,Pushes a little bit,,,true,,,,Very good robot has a good autoton it leaves community. Good maneuverability is pretty speedy and cycles well. 
+34,503,Center,Engaged (level),,,1,3,1,1,true,,Engaged (level),good,No Defense shown,,,true,,,,"2 bot balance. Red alliance. Elevator is much more consistent today, only missed high in auton"
+34,8382,Bump,Left community,,,1,,,2,true,,Engaged (level),neutral/no human,Pushes a little bit,,,,,,true,"Red alliance, two balance"
+34,7782,,Engaged (level),0,0,0,0,0,0,,,Engaged (level),neutral/no human,Pushes a little bit,,,,,,,couldn't release grippers entire match
+35,5907,Center,Engaged (level),1,0,0,3,0,0,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,,
+35,302,Center,Engaged (level),0,0,0,2,4,1,true,,Parked (in community),good,No Defense shown,,,,,,true,
+35,5660,Bump,No Balancing Shown,1,0,0,2,1,0,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,"Blue alliance 
+3 balance
+"
+36,5561,No Bump,,1,1,,2,,2,,true,Engaged (level),neutral/no human,Pushes a little bit,,,true,,,,More better efficiency than last time better maneuverability still decent ground pick up and overall same as last time. Better balancing.
+36,1023,Bump,No Balancing Shown,1,0,0,2,2,2,true,,Parked (in community),good,No Defense shown,,,true,,,,goes to double station
+36,2611,Center,Engaged (level),1,0,0,3,0,1,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,,tippy
+36,2832,Center,Engaged (level),1,,,3,,3,true,,Engaged (level),good,No Defense shown,,,true,,,,"Drove out of community on auto balance, dropped one high cone into low"
+36,5534,Bump,Left community,1,,,,2,4,true,,Parked (in community),good,No Defense shown,,,,,,,"Blue alliance, filled up bottom row first"
+37,308,Center,Engaged (level),1,0,0,3,1,0,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,,tippy
+37,2771,Center,Engaged (level),1,,,,1,,true,,Engaged (level),good,No Defense shown,,,,,,,"Red alliance, arm issues. 3 bot balance."
+37,4362,No Bump,,1,2,,3,3,,true,,Parked (in community),good,No Defense shown,,,true,,,,Nice match for them
+38,3546,Bump,Left community,1,0,0,3,0,1,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,has to grab cone at specific angle in order to grab
+38,6861,No Bump,Left community,,,1,,,5,,true,Engaged (level),neutral/no human,Can't defend at all,,,,,,true,"Red alliance, only used cubes and filled up bottom. Bot is very slow and easily countered by defense"
+39,1025,Center,Docked,1,0,0,1,,1,true,,Parked (in community),neutral/no human,No Defense shown,,,,,,true,Red alliance 
+40,3620,No Bump,Left community,1,0,0,3,3,0,true,,Parked (in community),good,No Defense shown,,,true,,,,
+40,5460,No Bump,Left community,1,0,0,3,0,0,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,"Red alliance
+3 balance
+"
+40,5167,Center,Engaged (level),0,0,0,2,0,1,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,missed their auton
+39,8179,Center,Left community,1,0,0,3,0,1,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,,
+40,3767,Center,Engaged (level),1,,,2,,,true,,Engaged (level),good,Can't defend at all,true,,,,,,"Red alliance. Tippy. Dropped 2 pieces, not very fast overall"
+41,6078,Bump,Left community,1,,,2,2,1,,true,Parked (in community),good,Pushes a little bit,,,true,,,,Very good game but overall same as last time.
+41,1023,Bump,,1,0,0,0,0,5,true,,Engaged (level),good,Pushes a little bit,true,,,,,,
+42,9208,Center,Engaged (level),1,,,2,,,true,,Docked,good,No Defense shown,,,true,,,,
+42,5534,Bump,Left community,1,,,,,6,true,,Docked,neutral/no human,No Defense shown,,,,,,,"Red alliance. Filled up low row, kind of slow"
+42,7160,Center,Docked,1,0,0,3,0,0,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,,
+43,7782,No Bump,Left community,1,0,0,2,1,0,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,
+43,2832,Bump,Left community,1,,,2,,3,true,,Engaged (level),good,No Defense shown,,,true,,,,2 team balance
+43,8179,Center,Engaged (level),1,0,0,3,2,0,true,,Engaged (level),neutral/no human,No Defense shown,,,true,,,,
+43,1025,No Bump,Left community,1,0,0,2,1,2,true,,Parked (in community),neutral/no human,No Defense shown,,,,,,true,Blue alliance 
+43,308,Bump,Left community,1,,,2,1,,true,,Parked (in community),poor,Pushes a little bit,true,,,,,,"Red alliance. Human player comms inconsistent, caused them to drop a piece. Pieces get knocked out easily"
+44,2611,Bump,Left community,1,0,0,4,0,0,true,,Engaged (level),good,No Defense shown,,,true,,,,
+44,5167,Center,Engaged (level),1,0,0,2,1,1,true,,Engaged (level),good,No Defense shown,,,,,,true,
+44,548,Bump,Left community,,,1,5,,,true,,Engaged (level),good,No Defense shown,,,true,,,,Pushed dead alliance partner onto cs and balanced 2 for 1 rank point
+45,5460,Center,Engaged (level),1,0,0,2,0,3,true,,Engaged (level),good,No Defense shown,,,true,,,,
+46,5907,Center,Engaged (level),1,0,0,4,,1,true,,Engaged (level),good,No Defense shown,,,true,,,,super speedy
+46,4362,Bump,Left community,1,1,1,4,3,,true,,Parked (in community),good,No Defense shown,,,true,,,,Fast driving.
+47,3546,No Bump,Left community,1,0,0,4,0,3,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,true,
+47,3767,Center,Engaged (level),1,,,1,1,,true,,Engaged (level),neutral/no human,No Defense shown,true,,,,,,Blue alliance. A little tippy. 
+48,9208,Bump,Left community,1,,,2,,,true,,Parked (in community),good,No Defense shown,,,true,,,,
+48,1025,No Bump,Left community,1,0,0,2,2,1,true,,Engaged (level),good,No Defense shown,,,,,,,
+49,7250,Center,No Balancing Shown,1,,,2,1,,,true,Engaged (level),neutral/no human,No Defense shown,,,true,,,,
+49,7160,Bump,Left community,1,0,0,2,0,2,true,,Engaged (level),neutral/no human,No Defense shown,,,,,,,
+50,6078,Bump,Left community,1,,,2,1,,true,,Docked,good,Pushes a little bit,,,true,,,,Good bot but had some minor difficulties.
+50,308,No Bump,,2,0,0,4,1,0,true,,Parked (in community),neutral/no human,No Defense shown,,,,,,,
+51,8179,Bump,Left community,0,0,0,3,0,1,true,,Engaged (level),good,No Defense shown,,,,,,,
+56,5561,Center,Engaged (level),1,,,1,,2,,true,Engaged (level),neutral/no human,Pushes a little bit,,,true,,,,Good bot but a little fidgerty
+67,2611,Center,Engaged (level),1,,,3,,,true,,Parked (in community),good,Pushes a little bit,,,true,,,,A bit jittery but it can move decently fast and can place good. Interesting strategies but efficient.

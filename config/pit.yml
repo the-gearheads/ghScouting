@@ -60,12 +60,25 @@ poc:
 
 spare:
   type: radio
-  display: "spare assemblies?"
+  display: "spare parts?"
   options: ["yes", "no"]
+
+start position:
+  type: radio
+  display: "preferred starting position in auton?"
+  options: ["bump", "center", "no bump"]
 
 notable:
   type: textarea
   display: "notable features"
+
+autons:
+  type: textarea
+  display: "what autons can they run?"
+
+goals:
+  type: textarea
+  display: "what are their preferred goals?"
 
 condition:
   type: textarea

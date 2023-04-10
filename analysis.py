@@ -1,4 +1,5 @@
 import yaml
+import statbotics_api
 import csv
 import os
 
@@ -62,8 +63,9 @@ def stats(weightsFile, dbfile):
         # average scores and sort teams from best > worst
         for key, value in best_teams.items():
             best_teams[key] = sum(value) / len(value)
-        best_teams = dict(sorted(best_teams.items(), key=lambda item: item[1], reverse=True))
 
+        best_teams = dict(sorted(best_teams.items(), key=lambda item: (item[1]), reverse=True))
+        # best_teams = dict(sorted(best_teams.items(), key=lambda item: sort_key(item, best_teams), reverse=True))
         # this is done is jinja2 now
         # for team_number, attr_dict in team_attributes.items():
         #     for attribute_name, attr_value in attr_dict.items():
@@ -75,6 +77,12 @@ def stats(weightsFile, dbfile):
         # print(f"**** Team Attributes are {team_attributes}")
         return best_teams, team_attributes, configuration
 
+
+# def sort_key(item, teams_dict):
+#     epas = statbotics_api.get_epa_list(list(teams_dict.keys()))
+#     if epas.get(item[0]):
+#         return (item[1] + epas[item[0]]) / 2
+#     return item[1]
 
 if __name__ == '__main__':
     print(stats("pit.yml", "/home/ghscouting/ghScouting/pit.csv"))
