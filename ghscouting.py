@@ -107,7 +107,7 @@ def pitstats():
 @app.route("/drivestats", methods=["POST", "GET"])  # we probably don't need POST anymore, too scared to test
 def drivestats():
     team_number = request.args.to_dict().get('team_number')
-    best_teams, team_attributes, configuration = analysis.stats("driveweights.yml", "driveteam.csv")
+    best_teams, team_attributes, configuration = analysis.stats("driveweights.yml", "driveteam.csv", sort_by_epa=True)
     filter_attrs = set()
     for team_num, attrs in team_attributes.items():
         for attr in attrs:
