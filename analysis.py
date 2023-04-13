@@ -4,7 +4,7 @@ import csv
 import os
 
 
-def stats(weightsFile, dbfile, sort_by_epa=False):
+def stats(weightsFile, dbfile, sort_by_epa=False, team_num_attr=None):
     with open("config/{}".format(weightsFile), 'r') as config:
         configuration = yaml.safe_load(config)
 
@@ -14,7 +14,7 @@ def stats(weightsFile, dbfile, sort_by_epa=False):
     if not os.path.exists(dbfile):
         open(dbfile, 'a').close()
 
-    with open(dbfile, 'r+') as fp:
+    with open(dbfile, 'r+', encoding='utf8') as fp:
         csv_file = csv.DictReader(fp)
         best_teams = dict()  # team number: # ranking score
         for team in csv_file:
@@ -38,7 +38,7 @@ def stats(weightsFile, dbfile, sort_by_epa=False):
             team_number = team['team']
             # print(team_number)
             # print(team)
-            team_attributes[team_number]=dict()
+            team_attributes[team_number] = dict()
             for key, value in team.items():
                 if value:
                     if key == 'matchnum':
@@ -66,13 +66,16 @@ def stats(weightsFile, dbfile, sort_by_epa=False):
 
         best_teams = dict(sorted(best_teams.items(), key=lambda item: (item[1]), reverse=True))
 
-        if sort_by_epa is True:
-            best_teams = {team_id: epa for team_id, epa in (best_teams.keys(), statbotics_api.get_epa_list(list(best_teams.keys())))}
-            best_teams = dict(sorted(best_teams.items(), key=lambda item: (item[1]), reverse=True))
+        if sort_by_epa and best_teams.keys():
+            epas_list = statbotics_api.get_epa_list(list(best_teams.keys()))
+            best_teams = dict(sorted(best_teams.items(), key=lambda item: (epas_list[int(item[0])]), reverse=True))
 
-
+        # add team name to attrs
+        team_names = statbotics_api.get_teams_names(list(best_teams.keys()))
+        for team_number, attrs in team_attributes.items():
+            attrs['name'] = [team_names[int(team_number)]]
         return best_teams, team_attributes, configuration
 
 
 if __name__ == '__main__':
-    print(stats("weights.yml", "/home/ghscouting/ghScouting/2023-comp.csv"))
+    print(stats("weights.yml", "2023-comp.csv", sort_by_epa=True))

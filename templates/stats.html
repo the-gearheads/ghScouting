@@ -48,13 +48,17 @@
      <tr>
         <th>Team Number</th>
         <th>Weighted Score</th>
+         {% if epas_dict %}
         <th>Statbotics Epa</th>
+         {% endif %}
      </tr>
      {% for team_id, team_score in best_teams.items(): %}
      <tr id={{"team_entry_"+team_id}}>
         <td class="team_id">{{ team_id }}</td>
         <td>{{ team_score }}</td>
-        <td>{{ epas_dict[team_id] }}</td>
+         {% if epas_dict %}
+        <td>{{ epas_dict[team_id | int] }}</td>
+         {% endif %}
      </tr>
      {% endfor %}
     </table>

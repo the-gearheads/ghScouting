@@ -83,37 +83,38 @@ def getCSV():
 
 @app.route("/stats", methods=["POST", "GET"])  # we probably don't need POST anymore, too scared to test
 def stats():
-    team_number = request.args.to_dict().get('team_number')
-    best_teams, team_attributes, configuration = analysis.stats("weights.yml", "2023-comp.csv")
+    best_teams, team_attributes, configuration = analysis.stats("weights.yml", "2023-comp.csv", sort_by_epa=True)
     filter_attrs = set()
     epas_dict = statbotics_api.get_epa_list(list(team_attributes.keys()))
     for team_num, attrs in team_attributes.items():
         for attr in attrs:
             if attr in configuration['weights']:
                 filter_attrs.add(attr)
-    return render_template("stats.html", team_number=team_number, best_teams=best_teams, team_attributes=team_attributes, configuration=configuration, filter_attrs=filter_attrs, epas_dict=epas_dict)
+    return render_template("stats.html", best_teams=best_teams, team_attributes=team_attributes, configuration=configuration, filter_attrs=filter_attrs, epas_dict=epas_dict)
 
-@app.route("/pitstats", methods=["POST", "GET"])  # we probably don't need POST anymore, too scared to test
+
+@app.route("/pitstats", methods=["POST", "GET"])
 def pitstats():
-    team_number = request.args.to_dict().get('team_number')
     best_teams, team_attributes, configuration = analysis.stats("weights2.yml", "pit.csv")
     filter_attrs = set()
+
     for team_num, attrs in team_attributes.items():
         for attr in attrs:
             if attr in configuration['weights']:
                 filter_attrs.add(attr)
-    return render_template("stats.html", team_number=team_number, best_teams=best_teams, team_attributes=team_attributes, configuration=configuration, filter_attrs=filter_attrs)
+    return render_template("stats.html", best_teams=best_teams, team_attributes=team_attributes, configuration=configuration, filter_attrs=filter_attrs)
 
-@app.route("/drivestats", methods=["POST", "GET"])  # we probably don't need POST anymore, too scared to test
+
+@app.route("/drivestats", methods=["POST", "GET"])
 def drivestats():
-    team_number = request.args.to_dict().get('team_number')
-    best_teams, team_attributes, configuration = analysis.stats("driveweights.yml", "driveteam.csv", sort_by_epa=True)
+    best_teams, team_attributes, configuration = analysis.stats("driveweights.yml", "driveteam.csv")
     filter_attrs = set()
     for team_num, attrs in team_attributes.items():
         for attr in attrs:
             if attr in configuration['weights']:
                 filter_attrs.add(attr)
-    return render_template("stats.html", team_number=team_number, best_teams=best_teams, team_attributes=team_attributes, configuration=configuration, filter_attrs=filter_attrs)
+    return render_template("stats.html", best_teams=best_teams, team_attributes=team_attributes, configuration=configuration, filter_attrs=filter_attrs)
+
 
 @app.route("/<config>")
 def display_page(config):
