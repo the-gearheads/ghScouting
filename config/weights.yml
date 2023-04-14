@@ -23,15 +23,15 @@ values:
     'Engaged (level)': 10
     'Parked (in community)': 3
 
-  defense:
-    'No Defense shown': 0
-    "Can't defend at all": 0
-    'Pushes a little bit': 2
-    'Moderately slows down robots': 4
-    'Very Good defense, significantly slows robots': 7
+#  defense:
+#    'No Defense shown': 0
+#    "Can't defend at all": 0
+#    'Pushes a little bit': 2
+#    'Moderately slows down robots': 4
+#    'Very Good defense, significantly slows robots': 7
 
   hp comms: {'poor': -3, 'good': 3, 'neutral/no human': 0}
-
+  endgame strategy: {'continue placing piece': 0, 'climb charge station': 'both': 5}
   # extras
   'extra_Very Maneuverable': {'true': 5, 'false': 0}
   'extra_Brick Bot': {'true': 0, 'false': 0}

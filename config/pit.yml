@@ -14,51 +14,23 @@ team:
   # position: float
   required: true
 
-robolength:
-  type: float
-  display: "Robot Length"
-
-robowidth:
-  type: float
-  display: "Robot Width"
-
-roboweight:
-  type: float
-  display: "Robot Weight"
+#robolength:
+#  type: float
+#  display: "Robot Length"
+#
+#robowidth:
+#  type: float
+#  display: "Robot Width"
+#
+#roboweight:
+#  type: float
+#  display: "Robot Weight"
 
 drivetrain:
   type: textarea
   display: "Drive Train"
 
-roboconstruction:
-  type: textarea
-  display: "Robot construction (flimsy, solid, etc)"
-
-wiring:
-  type: radio
-  display: "wiring"
-  options:
-    - "neat"
-    - "neutral"
-    - "choaotic"
-
-numsubsystem:
-  type: number
-  display: "num of subsystems"
-
-subcomplex:
-  type: textarea
-  display: "concern of overcomplex subsystems?"
-
-pitnum:
-  type: number
-  display: "num of pitcrew memebers"
-
-poc:
-  type: textarea
-  display: "Points of concern?"
-
-spare:
+pare:
   type: radio
   display: "spare parts?"
   options: ["yes", "no"]
@@ -80,16 +52,44 @@ goals:
   type: textarea
   display: "what are their preferred goals?"
 
+roboconstruction:
+  type: textarea
+  display: "Apparent robot construction (flimsy, solid, etc)"
+
+wiring:
+  type: radio
+  display: "Apparent wiring"
+  options:
+    - "neat"
+    - "neutral"
+    - "choaotic"
+
+#numsubsystem:
+#  type: number
+#  display: "num of subsystems"
+#
+#subcomplex:
+#  type: textarea
+#  display: "concern of overcomplex subsystems?"
+
+#pitnum:
+#  type: number
+#  display: "num of pitcrew memebers"
+
+poc:
+  type: textarea
+  display: "Apparent points of concern?"
+
 condition:
   type: textarea
   display: "condition of robot"
 
-tippy:
-  type: radio
-  display: "tippy"
-  options: ["yes", "no"]
+#tippy:
+#  type: radio
+#  display: "tippy"
+#  options: ["yes", "no"]
 
-additonal:
+additional:
   type: textarea
   display: "comments"
 

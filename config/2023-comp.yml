@@ -32,31 +32,77 @@ auton station level:
     - 'Engaged (level)'
     - 'Left community'
 
-auton upper:
-  type: number
-  display: "# Auton placed high node"
-auton middle:
-  type: number
-  display: "# Auton placed middle node"
-auton low:
-  type: number
-  display: "# Auton placed low node"
+auton first piece type:
+  type: radio
+  display: "Auton First Piece object"
+  options:
+    - 'Cone'
+    - 'Cube'
+    - 'None'
+auton first piece:
+  type: radio
+  display: "Auton First Piece placement"
+  options:
+    - 'Missed/None'
+    - 'High'
+    - 'Mid'
+    - 'Low'
+auton second piece type:
+  type: radio
+  display: "Auton Second Piece object"
+  options:
+    - 'Cone'
+    - 'Cube'
+    - 'None'
+auton second piece:
+  type: radio
+  display: "Auton Second Piece placement"
+  options:
+    - 'Missed/None'
+    - 'High'
+    - 'Mid'
+    - 'Low'
+auton third piece type:
+  type: radio
+  display: "Auton Third Piece object"
+  options:
+    - 'Cone'
+    - 'Cube'
+    - 'None'
+auton third piece:
+  type: radio
+  display: "Auton Third Piece placement"
+  options:
+    - 'Missed/None'
+    - 'High'
+    - 'Mid'
+    - 'Low'
+#auton middle:
+#  type: number
+#  display: "# Auton placed middle node"
+#auton low:
+#  type: number
+#  display: "# Auton placed low node"
 #teleop questions
-teleop upper:
-  type: number
-  display: "# Teleop placed high node"
-teleop middle:
-  type: number
-  display: "# Teleop placed middle node"
-teleop low:
-  type: number
-  display: "# Teleop placed low node"
+#teleop upper:
+#  type: number
+#  display: "# Teleop placed high node"
+#teleop middle:
+#  type: number
+#  display: "# Teleop placed middle node"
+#teleop low:
+#  type: number
+#  display: "# Teleop placed low node"
 placeable game pieces:
   type: checkbox
   display: "What game pieces can they place"
   options:
     - 'Cones'
     - 'Cubes'
+
+teleop strategy:
+  type: textarea
+  display: "What is their strategy in teleop"
 
 #endgame questions
 endgame station:
@@ -68,23 +114,26 @@ endgame station:
     - 'Engaged (level)'
     - 'Parked (in community)'
 
-hp comms:
+endgame strategy:
   type: radio
-  display: "How good are their human player communications?"
   options:
-    - 'poor'
-    - 'neutral/no human'
-    - 'good'
+    - 'continue placing piece'
+    - 'climb charge station'
+    - 'both'
 
 defense:
-  type: radio
-  display: "How good is their defense"
-  options:
-    - 'No Defense shown'
-    - "Can't defend at all"
-    - 'Pushes a little bit'
-    - 'Moderately slows down robots'
-    - 'Very Good defense, significantly slows robots'
+  type: textarea
+  display: "What is There defense like?"
+#  options:
+#    - 'No Defense shown'
+#    - "Can't defend at all"
+#    - 'Pushes a little bit'
+#    - 'Moderately slows down robots'
+#    - 'Very Good defense, significantly slows robots'
+
+broke down:
+  type: textarea
+  display: "Did the bot break down or stop doing offense?"
 
 extra:
   type: checkbox
