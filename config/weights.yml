@@ -7,6 +7,10 @@ weights:
   auton low: 3
 
 values:
+  auton left community:
+    'Yes': 3
+    'No': 0
+
   auton station level:
     'No Balancing Shown': 0
     'Docked': 8

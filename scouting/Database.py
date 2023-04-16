@@ -112,7 +112,7 @@ class Database:
         writer = csv.writer(csv_data)
         writer.writerow(columns)
         writer.writerows(data)
-        with open(self.filename, 'w', newline='') as csvfile:
+        with open(self.filename, 'w', newline='', encoding='utf-8') as csvfile:
             spamwriter = csv.writer(csvfile)
             spamwriter.writerow(columns)
             spamwriter.writerows(data)

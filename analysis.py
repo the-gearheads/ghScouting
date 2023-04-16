@@ -27,27 +27,19 @@ def stats(weightsFile, dbfile, sort_by_epa=False, team_num_attr=None):
                         team_score += (int(value) * configuration['weights'][key])
                     if key in configuration['values']:
                         team_score += configuration['values'][key][value]
-                        # print(f"adding {[configuration['values'][key][value]]} to key {key} value {value}")
 
             if not best_teams.get(team['team']):
                 best_teams[team['team']] = [team_score]
-            else:  # the team has already been entered before, just average the two scores
+            else:  # the team has already been entered before
                 best_teams[team['team']].append(team_score)  # average all the scores when done
             
-            #this is not supposed to be here
             team_number = team['team']
-            # print(team_number)
-            # print(team)
             team_attributes[team_number] = dict()
             for key, value in team.items():
                 if value:
+                    print(key, value)
                     if key == 'matchnum':
                         continue
-                    if key == 'comments':
-                        if not team_attributes[team_number].get(key):
-                            team_attributes[team_number][key] = [value]
-                        else:
-                            team_attributes[team_number][key].append(value)
                     if key in configuration['weights'].keys() or True:
                         if not team_attributes[team_number].get(key):
                             team_attributes[team_number][key] = [value]
@@ -55,7 +47,6 @@ def stats(weightsFile, dbfile, sort_by_epa=False, team_num_attr=None):
                             team_attributes[team_number][key].append(value)
                     if key in configuration['values'] or True:
                         if not team_attributes[team_number].get(key):
-                            # print(key)
                             team_attributes[team_number][key] = [value]
                         else:
                             team_attributes[team_number][key].append(value)

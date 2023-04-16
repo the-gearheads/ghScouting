@@ -23,6 +23,13 @@ auton start pos:
     - 'Center'
     - 'No Bump'
 
+auton left community:
+  type: radio
+  display: "Did they leave the community"
+  options:
+    - 'Yes'
+    - 'No'
+
 auton station level:
   type: radio
   display: "Auton charging station dock level"
@@ -30,7 +37,6 @@ auton station level:
     - 'No Balancing Shown'
     - 'Docked'
     - 'Engaged (level)'
-    - 'Left community'
 
 auton first piece type:
   type: radio
@@ -123,7 +129,7 @@ endgame strategy:
 
 defense:
   type: textarea
-  display: "What is There defense like?"
+  display: "What is their defense like?"
 #  options:
 #    - 'No Defense shown'
 #    - "Can't defend at all"

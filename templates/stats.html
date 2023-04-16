@@ -55,7 +55,7 @@
      {% for team_id, team_score in best_teams.items(): %}
      <tr id={{"team_entry_"+team_id}}>
         <td class="team_id">{{ team_id }}</td>
-        <td>{{ team_score }}</td>
+        <td>{{ team_score|round(2, 'floor') }}</td>
          {% if epas_dict %}
         <td>{{ epas_dict[team_id | int] }}</td>
          {% endif %}
@@ -83,9 +83,11 @@
             <td>{{ attr_name }}</td>
             {% if attr_name in configuration['values']: %}
                 <td>{{ values_list|join(', ') }}</td>
-            {% else %}
+            {% elif attr_name in configuration['weights'] %}
                 {% set sorted_values = values_list|sort %}
                 <td>{{ sorted_values|first ~ ' - ' ~ sorted_values|last }}</td>
+            {% else %}
+                <td>{{ values_list|join(', ') }}</td>
             {% endif %}
         </tr>
         {%  endfor %}
